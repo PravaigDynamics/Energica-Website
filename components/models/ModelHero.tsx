@@ -1,0 +1,166 @@
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { type BikeModel } from "@/data/models";
+import { PrimaryButton, Button } from "@/components/ui/Button";
+
+interface ModelHeroProps {
+  model: BikeModel;
+}
+
+export default function ModelHero({ model }: ModelHeroProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      /* Bike slides in from right, scales up */
+      gsap.from(".mh-bike", {
+        x: "12vw",
+        scale: 0.92,
+        opacity: 0,
+        duration: 1.3,
+        ease: "power3.out",
+        delay: 0.15,
+      });
+
+      /* Text cascade */
+      const tl = gsap.timeline({ delay: 0.1 });
+      tl.from(".mh-eyebrow", { y: 24, opacity: 0, duration: 0.6, ease: "power3.out" })
+        .from(".mh-title", { y: 80, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.3")
+        .from(".mh-tagline", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, "-=0.4")
+        .from(
+          ".mh-inline-spec",
+          { y: 20, opacity: 0, stagger: 0.08, duration: 0.5, ease: "power3.out" },
+          "-=0.35"
+        )
+        .from(
+          ".mh-cta",
+          { y: 20, opacity: 0, stagger: 0.07, duration: 0.45, ease: "power3.out" },
+          "-=0.2"
+        )
+        .from(".mh-scroll", { opacity: 0, duration: 0.5, ease: "power2.out" }, "-=0.1");
+
+      /* Subtle parallax drift on the bike as page scrolls */
+      gsap.to(".mh-bike", {
+        y: "-10%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+    },
+    { scope: sectionRef }
+  );
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative w-full h-screen min-h-[680px] bg-[#0a0a0a] flex items-center overflow-hidden pt-20"
+    >
+      {/* ── Radial glow behind the bike ─────────────────────── */}
+      <div
+        aria-hidden
+        className="absolute right-0 top-1/2 -translate-y-1/2 w-[65vw] h-[90vh] pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse at 75% 50%, ${model.colors[0]?.hex ?? "rgb(0,255,0)"}18 0%, transparent 60%)`,
+        }}
+      />
+
+      {/* ── Ghost watermark name ─────────────────────────────── */}
+      <div
+        aria-hidden
+        className="absolute inset-0 flex items-center justify-end pr-6 overflow-hidden pointer-events-none select-none"
+      >
+        <span
+          className="font-display text-white/[0.022] leading-none"
+          style={{ fontSize: "clamp(100px, 20vw, 280px)" }}
+        >
+          {model.name.replace(/[\s+]/g, "")}
+        </span>
+      </div>
+
+      {/* ── Bike image ──────────────────────────────────────── */}
+      <div className="mh-bike absolute right-0 top-1/2 -translate-y-1/2 w-[55vw] max-w-[860px] h-[72vh] pointer-events-none will-change-transform">
+        <Image
+          src={model.heroImage}
+          alt={`${model.name} motorcycle`}
+          fill
+          priority
+          className="object-contain object-right"
+          sizes="55vw"
+        />
+      </div>
+
+      {/* ── Red vertical accent line (large screens) ────────── */}
+      <div
+        aria-hidden
+        className="absolute left-14 top-1/2 -translate-y-1/2 w-[2px] h-40 bg-[rgb(0,255,0)] hidden xl:block"
+        style={{ opacity: 0.6 }}
+      />
+
+      {/* ── Text panel ──────────────────────────────────────── */}
+      <div className="relative z-10 px-[clamp(24px,4vw,64px)] max-w-2xl">
+        {/* Eyebrow */}
+        <p className="mh-eyebrow inline-flex items-center gap-3 mb-6">
+          <span className="w-8 h-px bg-[rgb(0,255,0)]" />
+          <span className="text-[11px] uppercase tracking-[0.35em] text-white/35">
+            Energica Motorcycles
+          </span>
+        </p>
+
+        {/* Model name */}
+        <h1
+          className="mh-title font-display text-white leading-none mb-[24px]"
+          style={{ fontSize: "clamp(72px, 11vw, 180px)" }}
+        >
+          {model.name}
+        </h1>
+
+        {/* Tagline */}
+        <p className="mh-tagline text-base md:text-lg text-white/45 italic mb-8">
+          &ldquo;{model.tagline}&rdquo;
+        </p>
+
+        {/* Inline key specs — first two */}
+        <div className="flex items-stretch gap-0 mb-[48px]">
+          {model.keySpecs.slice(0, 2).map((spec, i) => (
+            <div
+              key={spec.label}
+              className={`mh-inline-spec pr-6 ${i > 0 ? "pl-6 border-l border-white/10" : ""}`}
+            >
+              <div className="flex items-baseline gap-1">
+                <span className="font-display text-3xl md:text-4xl text-white">
+                  {spec.value}
+                </span>
+                <span className="font-display text-sm text-[rgb(0,255,0)]">{spec.unit}</span>
+              </div>
+              <p className="text-[9px] uppercase tracking-[0.25em] text-white/30 mt-0.5">
+                {spec.label}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTAs */}
+        <div className="flex flex-wrap gap-4">
+          <PrimaryButton href="/test-ride" className="mh-cta">Book Test Ride</PrimaryButton>
+          <Button variant="secondary" size="lg" href="/dealers" className="mh-cta">Find Dealer</Button>
+        </div>
+      </div>
+
+      {/* ── Scroll hint ─────────────────────────────────────── */}
+      <div className="mh-scroll absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <span className="text-[9px] uppercase tracking-[0.3em] text-white/25">Scroll</span>
+        <div className="w-px h-8 bg-white/15 relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-full bg-white/60 scroll-indicator-line" />
+        </div>
+      </div>
+
+    </section>
+  );
+}

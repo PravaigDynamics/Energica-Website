@@ -1,0 +1,143 @@
+"use client";
+
+import { useRef, useState } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { type ModelSpecs } from "@/data/models";
+import { cn } from "@/lib/utils";
+
+interface SpecsAccordionProps {
+  specs: ModelSpecs;
+}
+
+type AccordionKey = "motor" | "battery" | "electronics" | "dimensions" | "cycleParts";
+
+const SECTION_LABELS: Record<AccordionKey, string> = {
+  motor: "Motor & Performance",
+  battery: "Battery & Charging",
+  electronics: "Electronics & Connectivity",
+  dimensions: "Dimensions & Weight",
+  cycleParts: "Cycle Parts",
+};
+
+const SECTION_ORDER: AccordionKey[] = [
+  "motor",
+  "battery",
+  "electronics",
+  "dimensions",
+  "cycleParts",
+];
+
+function humanLabel(key: string): string {
+  return key
+    .replace(/([A-Z])/g, " $1")
+    .replace(/^./, (c) => c.toUpperCase())
+    .trim();
+}
+
+function SpecRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex justify-between py-3 border-b border-white/[0.05] group">
+      <span className="text-sm text-white/40 group-hover:text-white/60 transition-colors shrink-0 pr-4">
+        {label}
+      </span>
+      <span className="text-sm text-white text-right max-w-xs leading-snug">{value}</span>
+    </div>
+  );
+}
+
+export default function SpecsAccordion({ specs }: SpecsAccordionProps) {
+  const [open, setOpen] = useState<AccordionKey>("motor");
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".sa-row", {
+        y: 30,
+        opacity: 0,
+        stagger: 0.06,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: wrapRef.current,
+          start: "top 80%",
+        },
+      });
+    },
+    { scope: wrapRef }
+  );
+
+  const sectionsData: Record<AccordionKey, Record<string, string | undefined>> = {
+    motor: specs.motor as Record<string, string | undefined>,
+    battery: specs.battery as Record<string, string | undefined>,
+    electronics: specs.electronics as Record<string, string | undefined>,
+    dimensions: specs.dimensions as Record<string, string | undefined>,
+    cycleParts: specs.cycleParts as Record<string, string | undefined>,
+  };
+
+  return (
+    <div ref={wrapRef} className="divide-y divide-white/[0.05]">
+      {SECTION_ORDER.map((key) => {
+        const isOpen = open === key;
+        const data = sectionsData[key];
+        const entries = Object.entries(data).filter(([, v]) => !!v) as [string, string][];
+
+        return (
+          <div key={key} className="sa-row">
+            <button
+              onClick={() => setOpen(isOpen ? "motor" : key)}
+              className="w-full flex items-center justify-between py-5 text-left group"
+            >
+              {/* Left: number tag + label */}
+              <span className="flex items-center gap-4">
+                <span className="font-display text-sm text-white/10 group-hover:text-[rgb(0,255,0)]/30 transition-colors duration-200 w-5 text-right">
+                  {(SECTION_ORDER.indexOf(key) + 1).toString().padStart(2, "0")}
+                </span>
+                <span
+                  className={cn(
+                    "font-display text-xl transition-colors duration-200",
+                    isOpen
+                      ? "text-[rgb(0,255,0)]"
+                      : "text-white group-hover:text-white/80"
+                  )}
+                >
+                  {SECTION_LABELS[key]}
+                </span>
+              </span>
+
+              {/* Right: plus / close icon */}
+              <span
+                className={cn(
+                  "text-[rgb(0,255,0)] text-xl transition-transform duration-300 flex-shrink-0 ml-4",
+                  isOpen ? "rotate-45" : "rotate-0"
+                )}
+              >
+                +
+              </span>
+            </button>
+
+            {/* Panel */}
+            <div
+              className={cn(
+                "overflow-hidden transition-all duration-500",
+                isOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
+              )}
+              style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
+            >
+              <div className="pb-8 pl-9">
+                {entries.length > 0 ? (
+                  entries.map(([label, value]) => (
+                    <SpecRow key={label} label={humanLabel(label)} value={value} />
+                  ))
+                ) : (
+                  <p className="text-white/20 text-sm py-3">
+                    Specifications coming soon
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
