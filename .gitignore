@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# Large video assets — host via CDN or streaming service
+/public/videos/
+
 # production
 /build
 

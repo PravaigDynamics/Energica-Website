@@ -183,6 +183,12 @@ h4, h5, h6 { font-size: var(--text-h4); }
 .ds-block-gap    { margin-top: var(--gap-blocks); }
 
 /* ── Animations ──────────────────────────────────────────── */
+@keyframes scrollDown {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  50%  { opacity: 1; }
+  100% { transform: translateY(250%);  opacity: 0; }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;

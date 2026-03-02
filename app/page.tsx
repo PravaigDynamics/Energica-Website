@@ -1,21 +1,17 @@
 import HeroSection from "@/components/home/HeroSection";
-import FeaturedModel from "@/components/home/FeaturedModel";
-import ModelLineup from "@/components/home/ModelLineup";
-import PerformanceStats from "@/components/home/PerformanceStats";
-import TechSection from "@/components/home/TechSection";
-import RacingSection from "@/components/home/RacingSection";
-import DealerCTA from "@/components/home/DealerCTA";
+import BikeShowcase from "@/components/home/BikeShowcase";
+import TechStrip from "@/components/home/TechStrip";
+import RacingMoment from "@/components/home/RacingMoment";
+import TestRideCTA from "@/components/home/TestRideCTA";
 
 export default function HomePage() {
   return (
-    <>
+    <main className="bg-[#0A0A0A]">
       <HeroSection />
-      <FeaturedModel />
-      <ModelLineup />
-      <PerformanceStats />
-      <TechSection />
-      <RacingSection />
-      <DealerCTA />
-    </>
+      <BikeShowcase />
+      <TechStrip />
+      <RacingMoment />
+      <TestRideCTA />
+    </main>
   );
 }
