@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Reveal from "@/components/ui/Reveal";
 
 const pillars = [
   {
@@ -20,11 +21,11 @@ const pillars = [
 
 export default function TechStrip() {
   return (
-    <section className="w-full bg-[#0F0F0F] border-t border-b border-white/[0.06]">
+    <section className="w-full bg-[#0A0A0A]">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 py-20 md:py-28">
 
         {/* Header */}
-        <div className="flex items-end justify-between mb-16">
+        <Reveal className="flex items-end justify-between mb-16">
           <h2 className="font-display text-[clamp(32px,5vw,56px)] text-white leading-tight uppercase">
             Built different.<br />
             <span className="text-white/20">By design.</span>
@@ -35,12 +36,12 @@ export default function TechStrip() {
           >
             Technology →
           </Link>
-        </div>
+        </Reveal>
 
         {/* Three pillars */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.06]">
-          {pillars.map((pillar) => (
-            <div key={pillar.number} className="bg-[#0F0F0F] p-8 md:p-10">
+          {pillars.map((pillar, i) => (
+            <Reveal key={pillar.number} delay={i * 80} className="bg-[#0A0A0A] p-8 md:p-10">
               <div className="font-display text-[clamp(40px,5vw,64px)] text-white leading-none mb-3">
                 {pillar.number}
               </div>
@@ -50,7 +51,7 @@ export default function TechStrip() {
               <p className="text-sm text-white/30 leading-relaxed">
                 {pillar.detail}
               </p>
-            </div>
+            </Reveal>
           ))}
         </div>
 

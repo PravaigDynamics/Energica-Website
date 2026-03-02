@@ -339,6 +339,20 @@ h4, h5, h6 { font-size: var(--text-h4); }
   }
 }
 
+/* ── Scroll Reveal ──────────────────────────────────────── */
+/* Server renders opacity:1 (no FOUC). JS adds the class to reset,
+   then IntersectionObserver removes it to trigger the reveal. */
+.will-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── Section edge glow — adds depth between dark sections ── */
 /* Use class="section-top-glow" or "section-bottom-glow"     */
 .section-top-glow::before {

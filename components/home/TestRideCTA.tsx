@@ -1,10 +1,11 @@
 import Link from "next/link";
+import Reveal from "@/components/ui/Reveal";
 
 export default function TestRideCTA() {
   return (
     <section className="w-full bg-[#0A0A0A] py-28 md:py-40">
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
-        <div className="max-w-2xl">
+        <Reveal className="max-w-2xl">
 
           <p className="text-[10px] tracking-[0.4em] text-white/20 uppercase mb-6">
             Free · No commitment
@@ -25,7 +26,7 @@ export default function TestRideCTA() {
             Book a Test Ride
           </Link>
 
-        </div>
+        </Reveal>
       </div>
     </section>
   );

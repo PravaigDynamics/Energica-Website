@@ -79,6 +79,7 @@ export default function HeroSection() {
       <div className="absolute bottom-8 right-8 md:right-12 lg:right-20 z-20 flex flex-col items-center gap-2">
         <div className="w-px h-12 bg-white/20 relative overflow-hidden">
           <div
+            suppressHydrationWarning
             className="absolute top-0 left-0 w-full bg-[rgb(0,255,0)]"
             style={{
               height: "40%",

@@ -92,8 +92,18 @@ export default function BikeShowcase() {
   return (
     <section ref={sectionRef} className="relative bg-[#0A0A0A]">
 
+      {/* CONTINUOUS LEFT ACCENT — thin green thread running the full showcase height */}
+      <div
+        suppressHydrationWarning
+        className={`fixed left-5 md:left-9 top-0 bottom-0 z-29 w-px
+                    bg-gradient-to-b from-transparent via-[rgb(0,255,0)]/20 to-transparent
+                    transition-opacity duration-500 hidden md:block
+                    ${showDots ? "opacity-100" : "opacity-0"}`}
+      />
+
       {/* STICKY LEFT NAV DOTS */}
       <div
+        suppressHydrationWarning
         className={`fixed left-6 md:left-10 top-1/2 -translate-y-1/2 z-30
                     hidden md:flex flex-col items-start gap-4
                     transition-opacity duration-500
@@ -107,6 +117,7 @@ export default function BikeShowcase() {
             className="group flex items-center gap-3 cursor-none"
           >
             <div
+              suppressHydrationWarning
               className={`rounded-full transition-all duration-500 ${
                 i === activeIndex
                   ? "w-1.5 h-8 bg-white"
@@ -114,6 +125,7 @@ export default function BikeShowcase() {
               }`}
             />
             <span
+              suppressHydrationWarning
               className={`text-[9px] tracking-[0.3em] uppercase whitespace-nowrap transition-all duration-300 ${
                 i === activeIndex
                   ? "text-white"
