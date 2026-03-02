@@ -320,7 +320,7 @@ function PhoneMockup() {
   }, { scope: ref });
 
   return (
-    <div ref={ref} className="flex justify-center lg:justify-end">
+    <div ref={ref} className="flex justify-center lg:justify-start">
       <div className="relative w-[220px] h-[440px] sm:w-[240px] sm:h-[480px] rounded-[32px] border border-white/15 bg-[#0d0d0d] overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.6)]">
         {/* Status bar */}
         <div className="flex justify-between items-center px-4 pt-3.5 pb-2">
@@ -621,11 +621,11 @@ export default function TechContent() {
         <div className="max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center">
 
-            {/* LEFT — Phone mockup */}
-            <PhoneMockup />
-
-            {/* RIGHT — Header + features */}
+            {/* LEFT — Header + features (matches other TechSection pattern) */}
             <AppContent />
+
+            {/* RIGHT — Phone mockup visual */}
+            <PhoneMockup />
           </div>
         </div>
       </div>
