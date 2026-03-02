@@ -14,8 +14,7 @@ const pillars = [
   {
     number: "7",
     label: "MotoE Seasons",
-    detail:
-      "Exclusive supplier to the FIM Enel MotoE World Cup since 2019",
+    detail: "Exclusive supplier to the FIM Enel MotoE World Cup since 2019",
   },
 ];
 
@@ -45,7 +44,7 @@ export default function TechStrip() {
               <div className="font-display text-[clamp(40px,5vw,64px)] text-white leading-none mb-3">
                 {pillar.number}
               </div>
-              <div className="text-[10px] tracking-[0.3em] text-[#E30613] uppercase mb-4">
+              <div className="text-[10px] tracking-[0.3em] text-[rgb(0,255,0)] uppercase mb-4">
                 {pillar.label}
               </div>
               <p className="text-sm text-white/30 leading-relaxed">
@@ -55,7 +54,6 @@ export default function TechStrip() {
           ))}
         </div>
 
-        {/* Mobile tech link */}
         <div className="mt-10 md:hidden">
           <Link
             href="/technology"

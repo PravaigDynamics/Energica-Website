@@ -67,7 +67,7 @@ export default function HeroSection() {
             <span className="text-white/20">·</span>
             <Link
               href="/test-ride"
-              className="text-xs tracking-[0.25em] uppercase text-[#E30613] border-b border-[#E30613]/40 pb-0.5 hover:border-[#E30613] transition-colors duration-200"
+              className="text-xs tracking-[0.25em] uppercase text-[rgb(0,255,0)] border-b border-[rgb(0,255,0)]/40 pb-0.5 hover:border-[rgb(0,255,0)] transition-colors duration-200"
             >
               Book a test ride
             </Link>
@@ -79,7 +79,7 @@ export default function HeroSection() {
       <div className="absolute bottom-8 right-8 md:right-12 lg:right-20 z-20 flex flex-col items-center gap-2">
         <div className="w-px h-12 bg-white/20 relative overflow-hidden">
           <div
-            className="absolute top-0 left-0 w-full bg-white"
+            className="absolute top-0 left-0 w-full bg-[rgb(0,255,0)]"
             style={{
               height: "40%",
               animation: "scrollDown 2s ease-in-out infinite",

@@ -5,7 +5,6 @@ export default function RacingMoment() {
   return (
     <section className="relative w-full h-[70vh] md:h-screen overflow-hidden bg-black">
 
-      {/* Image */}
       <Image
         src="/images/Pagina Eva/homepage_forza_img-1536x837.jpg"
         alt="Energica Racing"
@@ -14,13 +13,11 @@ export default function RacingMoment() {
         sizes="100vw"
       />
 
-      {/* Gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
 
-      {/* Text — bottom left */}
       <div className="absolute bottom-12 md:bottom-20 left-0 right-0 z-10">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
-          <p className="text-[10px] tracking-[0.4em] text-[#E30613] uppercase mb-4">
+          <p className="text-[10px] tracking-[0.4em] text-[rgb(0,255,0)] uppercase mb-4">
             Racing Heritage
           </p>
           <h2 className="font-display text-[clamp(48px,9vw,112px)] text-white leading-none uppercase mb-6">
