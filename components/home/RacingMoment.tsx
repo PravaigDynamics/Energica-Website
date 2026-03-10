@@ -7,7 +7,7 @@ export default function RacingMoment() {
     <section className="relative w-full h-[70vh] md:h-screen overflow-hidden bg-[#0A0A0A]">
 
       <Image
-        src="/images/Pagina Eva/homepage_forza_img-1536x837.jpg"
+        src="/images/Immagini/energica-usa-incentives.jpg"
         alt="Energica Racing"
         fill
         className="object-cover opacity-60"
