@@ -53,7 +53,7 @@ export default function SpecsBar({ specs }: SpecsBarProps) {
     <div
       ref={barRef}
       data-specsbar
-      className="w-full bg-[#060606] border-t-2 border-b border-[rgb(0,255,0)]/60 border-b-white/[0.04]"
+      className="w-full bg-[#060606] border-t-2 border-b border-[#78BE20]/60 border-b-white/[0.04]"
     >
       <div className="max-w-[1600px] mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/[0.06]">
         {specs.map((spec) => {
@@ -76,7 +76,7 @@ export default function SpecsBar({ specs }: SpecsBarProps) {
                     spec.value
                   )}
                 </span>
-                <span className="font-display text-[rgb(0,255,0)] text-xl md:text-2xl ml-0.5">
+                <span className="font-display text-[#78BE20] text-xl md:text-2xl ml-0.5">
                   {spec.unit}
                 </span>
               </div>

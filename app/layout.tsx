@@ -1,46 +1,57 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, DM_Sans } from "next/font/google";
+import { Barlow_Condensed, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import Cursor from "@/components/ui/Cursor";
+import GrainOverlay from "@/components/ui/GrainOverlay";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import PageTransition from "@/components/ui/PageTransition";
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
+const barlowCondensed = Barlow_Condensed({
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
-  variable: "--font-bebas",
+  variable: "--font-barlow",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const ibmPlexSans = IBM_Plex_Sans({
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-ibm-sans",
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+  variable: "--font-ibm-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://energica-motor.com"),
   title: {
-    default: "ENERGICA — Italian Electric Superbikes",
+    default: "ENERGICA — Progress, Ridden.",
     template: "%s | ENERGICA",
   },
   description:
-    "Energica Motor Company — the world's most advanced electric motorcycles. Born in Modena, Italy. Engineered for riders who demand more.",
+    "Energica Motor Company. Built in Modena. Proven in MotoE. Seven seasons, one supplier. Electric motorcycles for riders who demand precision.",
   keywords: [
     "electric motorcycle",
     "electric superbike",
     "Energica",
     "Italian motorcycle",
-    "zero emissions",
     "MotoE",
+    "Modena",
+    "performance electric",
   ],
   openGraph: {
-    title: "ENERGICA — Italian Electric Superbikes",
+    title: "ENERGICA — Progress, Ridden.",
     description:
-      "Experience the pinnacle of electric performance. Made in Italy.",
+      "Built in Modena. Proven in MotoE. Seven seasons, one supplier.",
     siteName: "Energica Motor Company",
     locale: "en_US",
     type: "website",
@@ -53,13 +64,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bebasNeue.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${barlowCondensed.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}>
       <body className="antialiased">
         {/* Loading overlay — renders until window.load fires */}
         <LoadingScreen />
 
         {/* Lenis smooth scroll + GSAP ScrollTrigger sync */}
         <SmoothScroll />
+
+        {/* Cinematic grain texture overlay */}
+        <GrainOverlay />
 
         <Cursor />
         <Navigation />

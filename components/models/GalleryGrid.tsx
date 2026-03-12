@@ -66,7 +66,7 @@ export default function GalleryGrid({
             </div>
 
             {/* Red sweep line at bottom on hover */}
-            <div className="absolute inset-x-0 bottom-0 h-[2px] bg-[rgb(0,255,0)] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            <div className="absolute inset-x-0 bottom-0 h-[2px] bg-[#78BE20] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
           </div>
         );
       })}

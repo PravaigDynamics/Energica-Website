@@ -1,4 +1,4 @@
-﻿import { getModelById, models } from "@/data/models";
+import { getModelById, models } from "@/data/models";
 import { Container } from "@/components/ui/Container";
 import ModelHero from "@/components/models/ModelHero";
 import SpecsBar from "@/components/models/SpecsBar";
@@ -60,7 +60,7 @@ export default async function ModelPage({ params }: PageProps) {
         <Container className="py-[120px]">
           <div className="mb-[48px]">
             <p className="inline-flex items-center gap-3 mb-6">
-              <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+              <span className="w-6 h-px bg-[#78BE20]" />
               <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
                 Gallery
               </span>
@@ -81,7 +81,7 @@ export default async function ModelPage({ params }: PageProps) {
         <Container className="py-[120px]">
           <div className="mb-[48px]">
             <p className="inline-flex items-center gap-3 mb-6">
-              <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+              <span className="w-6 h-px bg-[#78BE20]" />
               <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
                 Full Specifications
               </span>

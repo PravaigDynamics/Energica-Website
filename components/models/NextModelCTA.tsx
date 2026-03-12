@@ -53,7 +53,7 @@ export default function NextModelCTA({ nextModel }: NextModelCTAProps) {
         aria-hidden
         className="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none"
         style={{
-          background: `radial-gradient(ellipse at right center, ${nextModel.colors[0]?.hex ?? "rgb(0,255,0)"}12 0%, transparent 60%)`,
+          background: `radial-gradient(ellipse at right center, ${nextModel.colors[0]?.hex ?? "#78BE20"}12 0%, transparent 60%)`,
         }}
       />
 
@@ -62,7 +62,7 @@ export default function NextModelCTA({ nextModel }: NextModelCTAProps) {
         {/* ── Left: text ─────────────────────────────────────── */}
         <div>
           <p className="nm-label inline-flex items-center gap-3 mb-8">
-            <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+            <span className="w-6 h-px bg-[#78BE20]" />
             <span className="text-[10px] uppercase tracking-[0.35em] text-white/30">
               Also from Energica
             </span>
@@ -85,7 +85,7 @@ export default function NextModelCTA({ nextModel }: NextModelCTAProps) {
               <div key={spec.label} className={i > 0 ? "pl-6 border-l border-white/10" : ""}>
                 <div className="flex items-baseline gap-1">
                   <span className="font-display text-3xl text-white">{spec.value}</span>
-                  <span className="font-display text-sm text-[rgb(0,255,0)]">{spec.unit}</span>
+                  <span className="font-display text-sm text-[#78BE20]">{spec.unit}</span>
                 </div>
                 <p className="text-[9px] uppercase tracking-widest text-white/25 mt-0.5">
                   {spec.label}

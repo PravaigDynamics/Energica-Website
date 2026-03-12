@@ -30,7 +30,7 @@ export function FeatureBlock({ number, title, body, tag, className }: FeatureBlo
       )}
       <div style={{ maxWidth: "var(--prose-max)" }}>
         {tag && (
-          <p className="text-[10px] uppercase tracking-[0.35em] text-[rgb(0,255,0)] mb-1">
+          <p className="text-[10px] uppercase tracking-[0.35em] text-[#78BE20] mb-1">
             {tag}
           </p>
         )}

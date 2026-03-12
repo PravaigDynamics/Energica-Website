@@ -24,7 +24,7 @@ const COUNTRIES = [
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 border-[rgb(0,255,0)] bg-[#080808]">
+    <footer className="border-t-2 border-[#78BE20] bg-[#080808]">
 
       {/* ── Top section ─────────────────────────────────────── */}
       <Container className="pt-16 pb-12">
@@ -44,7 +44,7 @@ export default function Footer() {
             </Link>
 
             {/* Tagline */}
-            <p className="text-[11px] uppercase tracking-[0.25em] text-[rgb(0,255,0)]/60 mb-3">
+            <p className="text-[11px] uppercase tracking-[0.25em] text-[#78BE20]/60 mb-3">
               Born Electric. Born Italian.
             </p>
             <p className="text-sm text-white/35 leading-relaxed max-w-xs">
@@ -60,7 +60,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 border border-white/[0.08] flex items-center justify-center text-[9px] font-mono text-white/35 hover:border-[rgb(0,255,0)]/50 hover:text-[rgb(0,255,0)] transition-all duration-200"
+                  className="w-9 h-9 border border-white/[0.08] flex items-center justify-center text-[9px] font-mono text-white/35 hover:border-[#78BE20]/50 hover:text-[#78BE20] transition-all duration-200"
                 >
                   {s.abbr}
                 </a>
@@ -125,7 +125,7 @@ export default function Footer() {
               </p>
               <Link
                 href="/test-ride"
-                className="inline-flex items-center gap-2 text-xs text-[rgb(0,255,0)]/70 hover:text-[rgb(0,255,0)] transition-colors duration-200"
+                className="inline-flex items-center gap-2 text-xs text-[#78BE20]/70 hover:text-[#78BE20] transition-colors duration-200"
               >
                 Book a test ride →
               </Link>
@@ -168,7 +168,7 @@ export default function Footer() {
             <div className="relative">
               <select
                 defaultValue="International (EN)"
-                className="appearance-none bg-transparent border border-white/[0.08] text-white/35 text-[10px] px-3 py-1.5 pr-6 focus:outline-none focus:border-[rgb(0,255,0)]/40 hover:border-white/20 transition-colors duration-200 cursor-pointer"
+                className="appearance-none bg-transparent border border-white/[0.08] text-white/35 text-[10px] px-3 py-1.5 pr-6 focus:outline-none focus:border-[#78BE20]/40 hover:border-white/20 transition-colors duration-200 cursor-pointer"
                 aria-label="Select region"
               >
                 {COUNTRIES.map((c) => (

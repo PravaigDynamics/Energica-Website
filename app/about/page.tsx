@@ -28,8 +28,8 @@ export default function AboutPage() {
 
         <Container className="relative z-10 w-full pb-16">
           <p className="inline-flex items-center gap-3 mb-4">
-            <span className="w-6 h-px bg-[rgb(0,255,0)]" />
-            <span className="text-[10px] uppercase tracking-[0.4em] text-[rgb(0,255,0)]/80">
+            <span className="w-6 h-px bg-[#78BE20]" />
+            <span className="text-[10px] uppercase tracking-[0.4em] text-[#78BE20]/80">
               About Energica
             </span>
           </p>
@@ -38,7 +38,7 @@ export default function AboutPage() {
             style={{ fontSize: "clamp(60px, 10vw, 140px)" }}
           >
             Born in<br />
-            <span className="text-[rgb(0,255,0)]">Modena.</span>
+            <span className="text-[#78BE20]">Modena.</span>
           </h1>
         </Container>
       </section>
@@ -49,7 +49,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
               <p className="inline-flex items-center gap-3 mb-6">
-                <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+                <span className="w-6 h-px bg-[#78BE20]" />
                 <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
                   Our Story
                 </span>
@@ -85,7 +85,7 @@ export default function AboutPage() {
                 { stat: "7", label: "Seasons as exclusive MotoE supplier" },
                 { stat: "4", label: "Road-legal models in production" },
               ].map((item) => (
-                <div key={item.stat} className="border-l-2 border-[rgb(0,255,0)] pl-6 py-2">
+                <div key={item.stat} className="border-l-2 border-[#78BE20] pl-6 py-2">
                   <p
                     className="font-display text-white"
                     style={{ fontSize: "clamp(40px, 5vw, 64px)" }}

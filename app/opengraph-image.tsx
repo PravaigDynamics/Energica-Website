@@ -29,7 +29,7 @@ export default function OGImage() {
             left: 0,
             right: 0,
             height: 4,
-            background: "rgb(0,255,0)",
+            background: "#78BE20",
           }}
         />
 
@@ -44,7 +44,7 @@ export default function OGImage() {
             gap: 10,
           }}
         >
-          <div style={{ width: 24, height: 2, background: "rgb(0,255,0)" }} />
+          <div style={{ width: 24, height: 2, background: "#78BE20" }} />
           <span style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", letterSpacing: "0.3em", textTransform: "uppercase" }}>
             Energica Motor Company
           </span>
@@ -69,7 +69,7 @@ export default function OGImage() {
           style={{
             width: 56,
             height: 2,
-            background: "rgb(0,255,0)",
+            background: "#78BE20",
             marginBottom: 20,
           }}
         />
@@ -99,7 +99,7 @@ export default function OGImage() {
           <span style={{ fontSize: 12, color: "rgba(255,255,255,0.18)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             Born Electric. Born Italian.
           </span>
-          <div style={{ width: 4, height: 4, borderRadius: "50%", background: "rgb(0,255,0)" }} />
+          <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#78BE20" }} />
           <span style={{ fontSize: 12, color: "rgba(255,255,255,0.18)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             Modena, Italy
           </span>

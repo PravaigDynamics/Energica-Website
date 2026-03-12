@@ -36,7 +36,7 @@ export default function ColorSelector({ colors }: ColorSelectorProps) {
       <div className="flex items-center justify-between mb-8">
         <div>
           <p className="inline-flex items-center gap-3 mb-3">
-            <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+            <span className="w-6 h-px bg-[#78BE20]" />
             <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
               Choose Your Colour
             </span>
@@ -63,7 +63,7 @@ export default function ColorSelector({ colors }: ColorSelectorProps) {
               className={cn(
                 "absolute inset-[-4px] rounded-full border transition-all duration-200",
                 i === active
-                  ? "border-[rgb(0,255,0)]"
+                  ? "border-[#78BE20]"
                   : "border-transparent group-hover:border-white/20"
               )}
             />
@@ -110,10 +110,10 @@ export default function ColorSelector({ colors }: ColorSelectorProps) {
         />
 
         {/* Corner accents */}
-        <div className="absolute top-0 left-0 w-5 h-5 border-t border-l border-[rgb(0,255,0)]/30 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-5 h-5 border-t border-r border-[rgb(0,255,0)]/30 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-5 h-5 border-b border-l border-[rgb(0,255,0)]/30 pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-5 h-5 border-b border-r border-[rgb(0,255,0)]/30 pointer-events-none" />
+        <div className="absolute top-0 left-0 w-5 h-5 border-t border-l border-[#78BE20]/30 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-5 h-5 border-t border-r border-[#78BE20]/30 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-5 h-5 border-b border-l border-[#78BE20]/30 pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-5 h-5 border-b border-r border-[#78BE20]/30 pointer-events-none" />
       </div>
 
       {/* Colour label row */}

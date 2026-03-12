@@ -58,11 +58,11 @@ function Field({
     <div className="flex flex-col gap-2">
       <label className="text-[10px] uppercase tracking-[0.25em] text-white/40">
         {label}
-        {required && <span className="text-[rgb(0,255,0)] ml-1">*</span>}
+        {required && <span className="text-[#78BE20] ml-1">*</span>}
       </label>
       {children}
       {error && (
-        <p className="text-[10px] text-[rgb(0,255,0)] flex items-center gap-1.5">
+        <p className="text-[10px] text-[#78BE20] flex items-center gap-1.5">
           <span>↑</span> {error}
         </p>
       )}
@@ -76,8 +76,8 @@ function fieldClass(hasError: boolean) {
     "w-full bg-[#0f0f0f] border text-white px-4 py-3.5 text-sm transition-colors duration-200",
     "placeholder:text-white/15 focus:outline-none",
     hasError
-      ? "border-[rgb(0,255,0)]/60 focus:border-[rgb(0,255,0)]"
-      : "border-white/[0.08] focus:border-[rgb(0,255,0)]/60 hover:border-white/20"
+      ? "border-[#78BE20]/60 focus:border-[#78BE20]"
+      : "border-white/[0.08] focus:border-[#78BE20]/60 hover:border-white/20"
   );
 }
 
@@ -98,7 +98,7 @@ function SuccessView({ email, onReset }: { email: string; onReset: () => void })
       {/* Animated checkmark */}
       <div className="mb-8">
         <svg viewBox="0 0 80 80" className="w-20 h-20 mx-auto">
-          <circle className="sv-circle" cx="40" cy="40" r="36" fill="none" stroke="rgb(0,255,0)" strokeWidth="2" />
+          <circle className="sv-circle" cx="40" cy="40" r="36" fill="none" stroke="#78BE20" strokeWidth="2" />
           <path
             className="sv-check"
             d="M 22 40 L 35 53 L 58 27"
@@ -110,7 +110,7 @@ function SuccessView({ email, onReset }: { email: string; onReset: () => void })
       </div>
 
       <div className="sv-text flex flex-col items-center gap-4">
-        <p className="text-[10px] uppercase tracking-[0.35em] text-[rgb(0,255,0)]/70">Request received</p>
+        <p className="text-[10px] uppercase tracking-[0.35em] text-[#78BE20]/70">Request received</p>
         <h2 className="font-display text-white leading-none" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
           You&rsquo;re all set.
         </h2>
@@ -199,12 +199,12 @@ export default function TestRideForm() {
         {/* Bottom text */}
         <div className="relative z-10 p-10 pb-14">
           <p className="inline-flex items-center gap-3 mb-4">
-            <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+            <span className="w-6 h-px bg-[#78BE20]" />
             <span className="text-[10px] uppercase tracking-[0.35em] text-white/40">Free · No Commitment</span>
           </p>
           <h2 className="font-display text-white leading-none mb-3" style={{ fontSize: "clamp(40px, 4vw, 64px)" }}>
             Feel the<br />
-            <span className="text-[rgb(0,255,0)]">difference.</span>
+            <span className="text-[#78BE20]">difference.</span>
           </h2>
           <p className="text-sm text-white/40 max-w-xs leading-relaxed">
             Words can&rsquo;t describe what it feels like to ride an Energica.
@@ -231,12 +231,12 @@ export default function TestRideForm() {
           <>
             <div className="tr-field mb-10">
               <p className="inline-flex items-center gap-3 mb-4">
-                <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+                <span className="w-6 h-px bg-[#78BE20]" />
                 <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">Book a Test Ride</span>
               </p>
               <h1 className="font-display text-white leading-none" style={{ fontSize: "clamp(42px, 5vw, 80px)" }}>
                 Request a<br />
-                <span className="text-[rgb(0,255,0)]">Test Ride</span>
+                <span className="text-[#78BE20]">Test Ride</span>
               </h1>
             </div>
 
@@ -335,7 +335,7 @@ export default function TestRideForm() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-4 bg-[rgb(0,255,0)] text-black font-display text-sm uppercase tracking-widest hover:bg-[rgb(0,220,0)] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                  className="w-full py-4 bg-[#78BE20] text-black font-display text-sm uppercase tracking-widest hover:bg-[#5a9018] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                 >
                   {loading ? (
                     <>

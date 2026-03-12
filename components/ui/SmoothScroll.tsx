@@ -23,7 +23,20 @@ export default function SmoothScroll() {
     (window as any).__lenis = lenis;
 
     // Keep ScrollTrigger in sync with Lenis scroll position
-    lenis.on("scroll", ScrollTrigger.update);
+    // Also emit scroll velocity for speed lines canvas + text blur
+    lenis.on("scroll", (e: { velocity: number }) => {
+      ScrollTrigger.update();
+      const vel = Math.abs(e.velocity);
+      // CSS variable for text blur effect
+      document.documentElement.style.setProperty(
+        "--scroll-blur",
+        `${Math.min(vel * 0.35, 2.5)}px`
+      );
+      // Custom event for SpeedCanvas and other velocity consumers
+      document.dispatchEvent(
+        new CustomEvent("scrollvelocity", { detail: vel })
+      );
+    });
 
     // Drive Lenis from GSAP's RAF loop
     const raf = (time: number) => lenis.raf(time * 1000);

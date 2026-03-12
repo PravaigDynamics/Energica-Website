@@ -20,21 +20,21 @@ type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-[rgb(0,255,0)] text-black hover:bg-[rgb(0,220,0)] active:scale-[0.97]",
+    "bg-[#78BE20] text-black hover:bg-[#5a9018] active:scale-[0.97] btn-electric",
   secondary:
     "border border-white/20 text-white hover:border-white/50 active:scale-[0.97]",
   outline:
-    "border border-[rgb(0,255,0)] text-[rgb(0,255,0)] hover:bg-[rgb(0,255,0)] hover:text-black active:scale-[0.97]",
+    "border border-[#78BE20] text-[#78BE20] hover:bg-[#78BE20] hover:text-black active:scale-[0.97]",
   ghost:
     "text-white/70 hover:text-white hover:bg-white/5 active:scale-[0.97]",
   gold:
-    "bg-[#C9A84C] text-[#0a0a0a] hover:bg-[#b8963d] font-bold active:scale-[0.97]",
+    "bg-[#C9A84C] text-[#0a0a0a] hover:bg-[#b8963d] font-bold active:scale-[0.97] btn-electric",
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "px-4 py-2 text-xs tracking-widest",
-  md: "px-6 py-3 text-sm tracking-widest",
-  lg: "px-8 py-4 text-base tracking-widest",
+  sm: "px-4 py-2 text-xs tracking-[0.15em]",
+  md: "px-6 py-3 text-sm tracking-[0.15em]",
+  lg: "px-8 py-4 text-sm tracking-[0.2em]",
 };
 
 const base =

@@ -80,7 +80,7 @@ export default function LoadingScreen() {
       <div className="w-28 h-px bg-white/10 overflow-hidden">
         <div
           ref={barRef}
-          className="h-full bg-[rgb(0,255,0)] origin-left"
+          className="h-full bg-[#78BE20] origin-left"
           style={{ transform: "scaleX(0)" }}
         />
       </div>

@@ -21,7 +21,7 @@ export default function TestRideCTA() {
 
           <Link
             href="/test-ride"
-            className="inline-flex items-center gap-4 px-10 py-4 bg-[rgb(0,255,0)] text-black text-xs tracking-[0.3em] uppercase font-medium hover:bg-[rgb(0,220,0)] transition-colors duration-200"
+            className="inline-flex items-center gap-4 px-10 py-4 bg-[#78BE20] text-black text-xs tracking-[0.3em] uppercase font-medium hover:bg-[#5a9018] transition-colors duration-200"
           >
             Book a Test Ride
           </Link>

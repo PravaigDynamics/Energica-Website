@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { PrimaryButton, SecondaryButton } from "@/components/ui/Button";
+import RacingHero from "@/components/racing/RacingHero";
 
 export const metadata: Metadata = {
   title: "Racing Heritage | Energica Motor Company",
@@ -20,45 +21,7 @@ export default function RacingPage() {
     <main className="bg-[#0a0a0a] text-white min-h-screen overflow-x-hidden">
 
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <section className="relative h-screen flex items-center overflow-hidden">
-        {/* Background image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/images/Pagina%20EGO/ego_mosaico_ANN4320.jpg"
-            alt="Energica Racing"
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/20" />
-
-        <Container className="relative z-10 w-full pt-20">
-          <p className="inline-flex items-center gap-3 mb-6">
-            <span className="w-6 h-px bg-[rgb(0,255,0)]" />
-            <span className="text-[10px] uppercase tracking-[0.4em] text-[rgb(0,255,0)]/80">
-              Racing Heritage
-            </span>
-          </p>
-          <h1
-            className="font-display text-white leading-none mb-6"
-            style={{ fontSize: "clamp(64px, 11vw, 160px)" }}
-          >
-            7 Seasons.<br />
-            <span className="text-[rgb(0,255,0)]">One Supplier.</span>
-          </h1>
-          <p className="text-[length:var(--text-body-lg)] text-white/55 max-w-[750px] leading-relaxed">
-            Since the FIM Enel MotoE World Cup began in 2019, Energica has been
-            the sole motorcycle supplier — every race, every round, every
-            championship.
-          </p>
-        </Container>
-
-        {/* Bottom gradient */}
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent pointer-events-none" />
-      </section>
+      <RacingHero />
 
       {/* ── STATS BAR ─────────────────────────────────────────── */}
       <section className="w-full bg-[#111] border-y border-white/[0.06]">
@@ -89,7 +52,7 @@ export default function RacingPage() {
             {/* Text */}
             <div>
               <p className="inline-flex items-center gap-3 mb-6">
-                <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+                <span className="w-6 h-px bg-[#78BE20]" />
                 <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
                   Born on the Track
                 </span>
@@ -122,8 +85,8 @@ export default function RacingPage() {
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[rgb(0,255,0)]" />
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[rgb(0,255,0)]" />
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#78BE20]" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#78BE20]" />
             </div>
           </div>
         </Container>
@@ -134,11 +97,11 @@ export default function RacingPage() {
         <Container>
           <div className="mb-14 text-center">
             <p className="inline-flex items-center gap-3 mb-4">
-              <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+              <span className="w-6 h-px bg-[#78BE20]" />
               <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
                 From Circuit to Street
               </span>
-              <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+              <span className="w-6 h-px bg-[#78BE20]" />
             </p>
             <h2
               className="font-display text-white leading-none"
@@ -165,7 +128,7 @@ export default function RacingPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="p-6 border border-white/[0.06] bg-[#0a0a0a] hover:border-[rgb(0,255,0)]/25 transition-colors duration-300"
+                className="p-6 border border-white/[0.06] bg-[#0a0a0a] hover:border-[#78BE20]/25 transition-colors duration-300"
               >
                 <h3 className="font-display text-white text-xl mb-3">
                   {item.title}

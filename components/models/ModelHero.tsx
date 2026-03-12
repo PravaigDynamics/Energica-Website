@@ -67,7 +67,7 @@ export default function ModelHero({ model }: ModelHeroProps) {
         aria-hidden
         className="absolute right-0 top-1/2 -translate-y-1/2 w-[65vw] h-[90vh] pointer-events-none"
         style={{
-          background: `radial-gradient(ellipse at 75% 50%, ${model.colors[0]?.hex ?? "rgb(0,255,0)"}18 0%, transparent 60%)`,
+          background: `radial-gradient(ellipse at 75% 50%, ${model.colors[0]?.hex ?? "#78BE20"}18 0%, transparent 60%)`,
         }}
       />
 
@@ -105,7 +105,7 @@ export default function ModelHero({ model }: ModelHeroProps) {
       {/* ── Vertical accent line (large screens) ────────────── */}
       <div
         aria-hidden
-        className="absolute left-14 top-1/2 -translate-y-1/2 w-[2px] h-40 bg-[rgb(0,255,0)] hidden xl:block z-[2]"
+        className="absolute left-14 top-1/2 -translate-y-1/2 w-[2px] h-40 bg-[#78BE20] hidden xl:block z-[2]"
         style={{ opacity: 0.6 }}
       />
 
@@ -113,7 +113,7 @@ export default function ModelHero({ model }: ModelHeroProps) {
       <div className="relative z-10 px-[clamp(24px,4vw,64px)] w-full max-w-2xl">
         {/* Eyebrow */}
         <p className="mh-eyebrow inline-flex items-center gap-3 mb-6">
-          <span className="w-8 h-px bg-[rgb(0,255,0)]" />
+          <span className="w-8 h-px bg-[#78BE20]" />
           <span className="text-[11px] uppercase tracking-[0.35em] text-white/35">
             Energica Motorcycles
           </span>
@@ -143,7 +143,7 @@ export default function ModelHero({ model }: ModelHeroProps) {
                 <span className="font-display text-3xl md:text-4xl text-white">
                   {spec.value}
                 </span>
-                <span className="font-display text-sm text-[rgb(0,255,0)]">{spec.unit}</span>
+                <span className="font-display text-sm text-[#78BE20]">{spec.unit}</span>
               </div>
               <p className="text-[9px] uppercase tracking-[0.25em] text-white/30 mt-0.5">
                 {spec.label}

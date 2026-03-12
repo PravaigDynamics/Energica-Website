@@ -77,8 +77,26 @@ function MegaMenu({
               onMouseEnter={() => setHovered(item.id)}
               onMouseLeave={() => setHovered(null)}
             >
-              {/* Bike image — design system v2 */}
-              <div className="relative w-full aspect-[16/9] rounded overflow-hidden bg-[#111]">
+              {/* Bike image — 3D tilt on hover */}
+              <div
+                className="relative w-full aspect-[16/9] rounded overflow-hidden bg-[#111] bike-glint"
+                style={{ perspective: "800px", transformStyle: "preserve-3d" }}
+                onMouseMove={(e) => {
+                  const el = e.currentTarget;
+                  const r = el.getBoundingClientRect();
+                  const nx = (e.clientX - r.left) / r.width - 0.5;
+                  const ny = (e.clientY - r.top)  / r.height - 0.5;
+                  el.style.transform = `rotateY(${nx * 12}deg) rotateX(${-ny * 8}deg)`;
+                  el.style.setProperty("--glint-x", `${(nx + 0.5) * 100}%`);
+                  el.style.setProperty("--glint-y", `${(ny + 0.5) * 100}%`);
+                  el.style.setProperty("--glint-opacity", "1");
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget;
+                  el.style.transform = "rotateY(0deg) rotateX(0deg)";
+                  el.style.setProperty("--glint-opacity", "0");
+                }}
+              >
                 <Image
                   src={item.image}
                   alt={item.name}
@@ -89,14 +107,14 @@ function MegaMenu({
                 {/* Green accent line on hover */}
                 <div
                   className={cn(
-                    "absolute bottom-0 left-0 h-[2px] bg-[rgb(0,255,0)] transition-all duration-300",
+                    "absolute bottom-0 left-0 h-[2px] bg-[#78BE20] transition-all duration-300",
                     hovered === item.id ? "w-full" : "w-0"
                   )}
                 />
               </div>
 
               <div>
-                <p className="font-display text-xl text-white group-hover:text-[rgb(0,255,0)] transition-colors duration-200">
+                <p className="font-display text-xl text-white group-hover:text-[#78BE20] transition-colors duration-200">
                   {item.name}
                 </p>
                 <p className="text-sm text-white/40 mt-0.5 font-light">
@@ -107,7 +125,7 @@ function MegaMenu({
               {/* Arrow indicator */}
               <span
                 className={cn(
-                  "absolute top-4 right-4 text-[rgb(0,255,0)] text-xs transition-all duration-200",
+                  "absolute top-4 right-4 text-[#78BE20] text-xs transition-all duration-200",
                   hovered === item.id
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 -translate-x-2"
@@ -169,7 +187,7 @@ function MobileOverlay({
             href={link.href}
             onClick={onClose}
             className={cn(
-              "font-display text-6xl text-white hover:text-[rgb(0,255,0)] transition-all duration-300",
+              "font-display text-6xl text-white hover:text-[#78BE20] transition-all duration-300",
               "border-b border-white/5 pb-4",
               "transform transition-all duration-500",
               open ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
@@ -197,14 +215,14 @@ function MobileOverlay({
         <Link
           href="/dealers"
           onClick={onClose}
-          className="block text-center py-4 border border-[rgb(0,255,0)] text-white font-display text-lg tracking-widest hover:bg-[rgb(0,255,0)] hover:text-black transition-colors duration-200"
+          className="block text-center py-4 border border-[#78BE20] text-white font-display text-lg tracking-widest hover:bg-[#78BE20] hover:text-black transition-colors duration-200"
         >
           FIND A DEALER
         </Link>
         <Link
           href="/test-ride"
           onClick={onClose}
-          className="block text-center py-4 bg-[rgb(0,255,0)] text-black font-display text-lg tracking-widest hover:bg-[rgb(0,220,0)] transition-colors duration-200"
+          className="block text-center py-4 bg-[#78BE20] text-black font-display text-lg tracking-widest hover:bg-[#5a9018] transition-colors duration-200"
         >
           BOOK TEST RIDE
         </Link>
@@ -214,6 +232,24 @@ function MobileOverlay({
         © 2024 Energica Motor Company
       </p>
     </div>
+  );
+}
+
+/* ── Split nav link — per-character hover lift ───────────── */
+function SplitLabel({ label }: { label: string }) {
+  return (
+    <span className="nav-split-link inline-flex" aria-label={label}>
+      {label.split("").map((char, i) => (
+        <span
+          key={i}
+          className="nav-char"
+          style={{ transitionDelay: `${i * 18}ms` }}
+          aria-hidden="true"
+        >
+          {char === " " ? "\u00A0" : char}
+        </span>
+      ))}
+    </span>
   );
 }
 
@@ -292,14 +328,15 @@ export default function Navigation() {
                   onMouseLeave={handleModelsLeave}
                   onClick={() => setMegaOpen((v) => !v)}
                   className={cn(
-                    "text-sm font-medium uppercase tracking-widest transition-colors duration-200 flex items-center gap-1 cursor-none",
-                    megaOpen ? "text-[rgb(0,255,0)]" : "text-white/70 hover:text-white"
+                    "text-xs uppercase tracking-[0.2em] transition-colors duration-200 flex items-center gap-1 cursor-none",
+                    megaOpen ? "text-[#78BE20]" : "text-white/60 hover:text-white"
                   )}
+                  style={{ fontFamily: "var(--font-ibm-mono)" }}
                 >
-                  {item.label}
+                  <SplitLabel label={item.label} />
                   <span
                     className={cn(
-                      "text-xs transition-transform duration-200",
+                      "text-xs transition-transform duration-200 ml-0.5",
                       megaOpen ? "rotate-180" : "rotate-0"
                     )}
                   >
@@ -310,9 +347,10 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm font-medium uppercase tracking-widest text-white/70 hover:text-white transition-colors duration-200"
+                  className="text-xs uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors duration-200"
+                  style={{ fontFamily: "var(--font-ibm-mono)" }}
                 >
-                  {item.label}
+                  <SplitLabel label={item.label} />
                 </Link>
               )
             )}
@@ -322,13 +360,17 @@ export default function Navigation() {
           <div className="hidden lg:flex items-center gap-3">
             <Link
               href="/dealers"
-              className="px-4 py-2 text-xs font-medium uppercase tracking-widest border border-[rgb(0,255,0)] text-white hover:bg-[rgb(0,255,0)] hover:text-black transition-all duration-200"
+              data-magnetic
+              className="px-4 py-2 text-xs uppercase tracking-[0.15em] border border-[#78BE20] text-white hover:bg-[#78BE20] hover:text-black transition-all duration-200"
+              style={{ fontFamily: "var(--font-ibm-mono)" }}
             >
               Find a Dealer
             </Link>
             <Link
               href="/test-ride"
-              className="px-4 py-2 text-xs font-medium uppercase tracking-widest bg-[rgb(0,255,0)] text-black hover:bg-[rgb(0,220,0)] transition-all duration-200"
+              data-magnetic
+              className="px-4 py-2 text-xs uppercase tracking-[0.15em] bg-[#78BE20] text-black hover:bg-[#5a9018] transition-all duration-200 btn-electric"
+              style={{ fontFamily: "var(--font-ibm-mono)" }}
             >
               Book Test Ride
             </Link>

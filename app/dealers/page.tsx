@@ -133,14 +133,14 @@ export default function DealersPage() {
       {/* ── Page header ─────────────────────────────────────── */}
       <Container className="py-[120px] border-b border-white/[0.04]">
         <p className="inline-flex items-center gap-3 mb-6">
-          <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+          <span className="w-6 h-px bg-[#78BE20]" />
           <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
             {totalDealers}+ Authorised Locations
           </span>
         </p>
         <h1 className="font-display text-white leading-none mb-6" style={{ fontSize: "clamp(56px, 10vw, 140px)" }}>
           Find a<br />
-          <span className="text-[rgb(0,255,0)]">Dealer</span>
+          <span className="text-[#78BE20]">Dealer</span>
         </h1>
         <p className="text-[length:var(--text-body)] text-white/45 max-w-[750px] leading-relaxed mb-[32px]">
           Visit an authorised Energica dealer to see, touch, and ride our motorcycles. Our specialists are ready to help you configure your perfect match.
@@ -158,7 +158,7 @@ export default function DealersPage() {
               <div key={region.region} className="mb-14">
                 {/* Region header */}
                 <div className="flex items-center gap-4 mb-6 pb-4 border-b border-white/[0.05]">
-                  <span className="w-2 h-2 rounded-full bg-[rgb(0,255,0)]" />
+                  <span className="w-2 h-2 rounded-full bg-[#78BE20]" />
                   <h2 className="font-display text-2xl text-white">{region.region}</h2>
                   <span className="ml-auto text-[10px] uppercase tracking-widest text-white/25">
                     {region.dealers.length} dealers
@@ -170,13 +170,13 @@ export default function DealersPage() {
                   {region.dealers.map((dealer) => (
                     <div
                       key={dealer.name}
-                      className="group p-5 border border-white/[0.06] bg-[#0d0d0d] hover:border-[rgb(0,255,0)]/25 transition-all duration-200"
+                      className="group p-5 border border-white/[0.06] bg-[#0d0d0d] hover:border-[#78BE20]/25 transition-all duration-200"
                     >
                       {/* Country badge */}
                       <p className="text-[9px] uppercase tracking-widest text-white/20 mb-2">{dealer.country}</p>
 
                       {/* Name */}
-                      <h3 className="font-display text-white text-lg leading-tight mb-1 group-hover:text-[rgb(0,255,0)] transition-colors duration-200">
+                      <h3 className="font-display text-white text-lg leading-tight mb-1 group-hover:text-[#78BE20] transition-colors duration-200">
                         {dealer.city}
                       </h3>
                       <p className="text-xs text-white/35 mb-4">{dealer.name}</p>
@@ -187,14 +187,14 @@ export default function DealersPage() {
                           href={`tel:${dealer.phone.replace(/\s/g, "")}`}
                           className="flex items-center gap-2 text-xs text-white/40 hover:text-white/70 transition-colors"
                         >
-                          <span className="text-[rgb(0,255,0)]/50">↗</span>
+                          <span className="text-[#78BE20]/50">↗</span>
                           {dealer.phone}
                         </a>
                         <a
                           href={`mailto:${dealer.email}`}
                           className="flex items-center gap-2 text-xs text-white/40 hover:text-white/70 transition-colors"
                         >
-                          <span className="text-[rgb(0,255,0)]/50">@</span>
+                          <span className="text-[#78BE20]/50">@</span>
                           {dealer.email}
                         </a>
                       </div>
@@ -205,7 +205,7 @@ export default function DealersPage() {
                           href={`https://maps.google.com/?q=${dealer.mapsQuery}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[9px] uppercase tracking-widest text-[rgb(0,255,0)]/70 hover:text-[rgb(0,255,0)] transition-colors"
+                          className="text-[9px] uppercase tracking-widest text-[#78BE20]/70 hover:text-[#78BE20] transition-colors"
                         >
                           View on Map →
                         </a>
@@ -250,12 +250,12 @@ export default function DealersPage() {
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
                 {/* Pin icon */}
                 <div className="relative">
-                  <div className="w-12 h-12 rounded-full border-2 border-[rgb(0,255,0)]/40 flex items-center justify-center bg-[rgb(0,255,0)]/10">
-                    <div className="w-3 h-3 rounded-full bg-[rgb(0,255,0)]" />
+                  <div className="w-12 h-12 rounded-full border-2 border-[#78BE20]/40 flex items-center justify-center bg-[#78BE20]/10">
+                    <div className="w-3 h-3 rounded-full bg-[#78BE20]" />
                   </div>
                   {/* Pulse rings */}
-                  <div className="absolute inset-[-8px] rounded-full border border-[rgb(0,255,0)]/20 animate-ping" style={{ animationDuration: "2s" }} />
-                  <div className="absolute inset-[-16px] rounded-full border border-[rgb(0,255,0)]/10 animate-ping" style={{ animationDuration: "2s", animationDelay: "0.5s" }} />
+                  <div className="absolute inset-[-8px] rounded-full border border-[#78BE20]/20 animate-ping" style={{ animationDuration: "2s" }} />
+                  <div className="absolute inset-[-16px] rounded-full border border-[#78BE20]/10 animate-ping" style={{ animationDuration: "2s", animationDelay: "0.5s" }} />
                 </div>
 
                 <div className="text-center px-8">

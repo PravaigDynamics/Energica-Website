@@ -1,72 +1,92 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 
 const bikes = [
   {
     id: "experia",
     index: "01",
     name: "Experia",
-    tagline: "Born to be wind.",
+    tagline: "420 km. One charge.",
     category: "Grand Tourer",
     stat: { value: "420", unit: "km", label: "City Range" },
-    accent: "#4A9EFF",
+    accent: "#78BE20",
     href: "/models/experia",
-    image: "/images/Pagina Experia/Energica_Experia.png",
+    image: "/images/experia-showcase.png",
   },
   {
     id: "esseesse9",
     index: "02",
     name: "EsseEsse9+",
-    tagline: "The Naked Champion.",
+    tagline: "200 Nm. From zero.",
     category: "Naked Sport",
     stat: { value: "200", unit: "Nm", label: "Wheel Torque" },
-    accent: "#FF6B2B",
+    accent: "#78BE20",
     href: "/models/esseesse9",
-    image: "/images/Pagina SS9/ss9-1.png",
+    image: "/images/ss9-showcase.png",
   },
   {
     id: "eva-ribelle",
     index: "03",
     name: "Eva Ribelle",
-    tagline: "Redefine every road.",
+    tagline: "107 HP. Italian design.",
     category: "Street Fighter",
     stat: { value: "107", unit: "HP", label: "Peak Power" },
-    accent: "rgb(0,255,0)",
+    accent: "#78BE20",
     href: "/models/eva-ribelle",
-    image: "/images/Pagina Eva/Eva-Ribelle-1.png",
+    image: "/images/eva-showcase.jpg",
   },
   {
     id: "ego",
     index: "04",
     name: "Ego+",
-    tagline: "Track tested. Street legal.",
+    tagline: "145 HP. MotoE-derived. Road legal.",
     category: "Supersport",
     stat: { value: "2.6", unit: "s", label: "0–100 km/h" },
-    accent: "#C0C0C0",
+    accent: "#78BE20",
     href: "/models/ego",
-    image: "/images/Pagina EGO/Ego-1.png",
+    image: "/images/ego-showcase.png",
   },
 ];
 
 export default function BikeShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const prevIndexRef = useRef(0);
+  const sectionRef   = useRef<HTMLDivElement>(null);
+  const activeRef    = useRef(0);
+  const textRefs     = useRef<(HTMLDivElement | null)[]>([]);
 
-  const stickyRef   = useRef<HTMLDivElement>(null);
-  const activeRef   = useRef(0);
-  const imageRefs   = useRef<(HTMLDivElement | null)[]>([]);  // outer wrapper — transition target
-  const parallaxRefs = useRef<(HTMLDivElement | null)[]>([]); // inner div — mouse parallax target
-  const textRefs    = useRef<(HTMLDivElement | null)[]>([]);
-
-  /* ── Initial GSAP state ─────────────────────────────────── */
+  /* ── Text animation on index change ──────────────────────── */
   useEffect(() => {
-    imageRefs.current.forEach((el, i) => {
-      if (!el) return;
-      gsap.set(el, { opacity: i === 0 ? 1 : 0, x: 0, scale: 1 });
-    });
+    const prev = prevIndexRef.current;
+    const next = activeIndex;
+    if (prev === next) return;
+    prevIndexRef.current = next;
+
+    const dir = next > prev ? 1 : -1;
+    const prevTxt = textRefs.current[prev];
+    const nextTxt = textRefs.current[next];
+
+    if (prevTxt) {
+      gsap.killTweensOf(prevTxt);
+      gsap.killTweensOf(Array.from(prevTxt.children));
+      gsap.to(prevTxt, { y: dir * -28, opacity: 0, duration: 0.22, ease: "power3.in" });
+    }
+    if (nextTxt) {
+      const kids = Array.from(nextTxt.children);
+      gsap.killTweensOf(nextTxt);
+      gsap.killTweensOf(kids);
+      gsap.set(nextTxt, { y: dir * 36, opacity: 0 });
+      gsap.set(kids, { y: 16, opacity: 0 });
+      gsap.to(nextTxt, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out", delay: 0.08 });
+      gsap.to(kids, { y: 0, opacity: 1, stagger: 0.04, duration: 0.32, ease: "power2.out", delay: 0.12 });
+    }
+  }, [activeIndex]);
+
+  /* ── Initial text state ──────────────────────────────────── */
+  useEffect(() => {
     textRefs.current.forEach((el, i) => {
       if (!el) return;
       gsap.set(el, { opacity: i === 0 ? 1 : 0, y: 0 });
@@ -74,149 +94,99 @@ export default function BikeShowcase() {
     });
   }, []);
 
-  /* ── Transition: kill any running tween then start new one ─ */
-  const runTransition = (nextIdx: number, prevIdx: number) => {
-    const dir     = nextIdx > prevIdx ? 1 : -1;
-    const prevImg = imageRefs.current[prevIdx];
-    const nextImg = imageRefs.current[nextIdx];
-    const prevTxt = textRefs.current[prevIdx];
-    const nextTxt = textRefs.current[nextIdx];
-
-    /* Kill any in-flight tweens so the new transition starts immediately */
-    [prevImg, nextImg, prevTxt, nextTxt].forEach(el => el && gsap.killTweensOf(el));
-    if (prevTxt) gsap.killTweensOf(Array.from(prevTxt.children));
-    if (nextTxt) gsap.killTweensOf(Array.from(nextTxt.children));
-
-    /* Also reset parallax on the incoming bike's inner div */
-    const nextPar = parallaxRefs.current[nextIdx];
-    if (nextPar) gsap.set(nextPar, { x: 0, y: 0 });
-
-    const tl = gsap.timeline();
-
-    /* Image out → scale-down + slide */
-    if (prevImg) tl.to(prevImg, { x: dir * -80, scale: 0.88, opacity: 0, duration: 0.28, ease: "power3.in" }, 0);
-    /* Image in  → from opposite side */
-    if (nextImg) {
-      gsap.set(nextImg, { x: dir * 100, scale: 1.07, opacity: 0 });
-      tl.to(nextImg, { x: 0, scale: 1, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.03);
-    }
-
-    /* Text out */
-    if (prevTxt) tl.to(prevTxt, { y: dir * -40, opacity: 0, duration: 0.2, ease: "power3.in" }, 0);
-    /* Text in — parent then children stagger */
-    if (nextTxt) {
-      const kids = Array.from(nextTxt.children);
-      gsap.set(nextTxt, { y: dir * 50, opacity: 0 });
-      gsap.set(kids, { y: 22, opacity: 0 });
-      tl.to(nextTxt, { y: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.08);
-      tl.to(kids,    { y: 0, opacity: 1, stagger: 0.045, duration: 0.35, ease: "power2.out" }, 0.12);
-    }
-  };
-
-  /* ── ScrollTrigger: pin + snap ──────────────────────────── */
+  /* ── CSS sticky scroll tracking (NO GSAP ScrollTrigger) ──── */
   useEffect(() => {
-    const sticky = stickyRef.current;
-    if (!sticky) return;
+    const section = sectionRef.current;
+    if (!section) return;
 
-    const st = ScrollTrigger.create({
-      trigger: sticky,
-      start: "top top",
-      end: `+=${(bikes.length - 1) * window.innerHeight}`,
-      pin: true,
-      pinSpacing: true,
-      anticipatePin: 1,
-      snap: {
-        snapTo: 1 / (bikes.length - 1),
-        duration: { min: 0.12, max: 0.22 },   // fast snap
-        delay: 0,
-        ease: "power3.inOut",
-      },
-      onUpdate(self) {
-        const idx = Math.min(
-          Math.round(self.progress * (bikes.length - 1)),
-          bikes.length - 1
-        );
-        if (idx !== activeRef.current) {
-          const prev = activeRef.current;
-          activeRef.current = idx;
-          setActiveIndex(idx);
-          runTransition(idx, prev);
-        }
-      },
-    });
-
-    return () => st.kill();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  /* ── Mouse parallax (desktop only) — inner div, no conflict ─ */
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth  - 0.5) * 28;
-      const y = (e.clientY / window.innerHeight - 0.5) * 14;
-      parallaxRefs.current.forEach((el, i) => {
-        if (!el) return;
-        gsap.to(el, {
-          x: i === activeRef.current ? x : 0,
-          y: i === activeRef.current ? y : 0,
-          duration: i === activeRef.current ? 1.1 : 0.6,
-          ease: "power2.out",
-          overwrite: true,
-        });
-      });
+    const handleScroll = () => {
+      const rect      = section.getBoundingClientRect();
+      const totalScroll = section.offsetHeight - window.innerHeight;
+      // How far past the top of the section we are (clamped 0–totalScroll)
+      const scrolled  = Math.max(0, Math.min(-rect.top, totalScroll));
+      const progress  = totalScroll > 0 ? scrolled / totalScroll : 0;
+      const idx       = Math.min(
+        Math.round(progress * (bikes.length - 1)),
+        bikes.length - 1
+      );
+      if (idx !== activeRef.current) {
+        activeRef.current = idx;
+        setActiveIndex(idx);
+      }
     };
-    window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Also hook into Lenis if available
+    const lenis = (window as any).__lenis;
+    if (lenis) lenis.on("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      const l = (window as any).__lenis;
+      if (l) l.off("scroll", handleScroll);
+    };
   }, []);
 
-  /* ── Dot/progress navigation ─────────────────────────────── */
+  /* ── Dot navigation ───────────────────────────────────────── */
   const goTo = (i: number) => {
-    const sticky = stickyRef.current;
-    if (!sticky) return;
-    const targetY = sticky.offsetTop + i * window.innerHeight;
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const totalScroll = section.offsetHeight - window.innerHeight;
+    const progress    = i / (bikes.length - 1);
+    const targetY     = section.offsetTop + progress * totalScroll;
+
     const lenis = (window as any).__lenis;
-    if (lenis) lenis.scrollTo(targetY, { duration: 0.55 });
+    if (lenis) lenis.scrollTo(targetY, { duration: 0.8 });
     else window.scrollTo({ top: targetY, behavior: "smooth" });
   };
 
   const activeBike = bikes[activeIndex];
 
   return (
-    <div className="bg-[#0A0A0A]">
-      <div ref={stickyRef} className="relative h-screen overflow-hidden bg-[#0A0A0A]">
+    /* Outer section: tall enough to scroll through all 4 bikes */
+    <div
+      ref={sectionRef}
+      className="bg-[#0A0A0A]"
+      style={{ height: `${bikes.length * 100}vh` }}
+    >
+      {/* Inner sticky panel: stays at top while outer scrolls */}
+      <div className="sticky top-0 h-screen overflow-hidden bg-[#0A0A0A]">
 
         {/* ── BIKE IMAGES ── */}
         {bikes.map((bike, i) => (
           <div
             key={bike.id}
-            ref={el => { imageRefs.current[i] = el; }}
             className="absolute inset-y-0 right-0 w-full md:w-[70%]"
-            style={{ opacity: 0 }}
+            data-cursor-view
+            style={{
+              opacity:       i === activeIndex ? 1 : 0,
+              transform:     i === activeIndex ? "scale(1)" : "scale(1.05)",
+              transition:    "opacity 0.55s ease, transform 0.65s cubic-bezier(0.16,1,0.3,1)",
+              zIndex:        i === activeIndex ? 1 : 0,
+              pointerEvents: i === activeIndex ? "auto" : "none",
+            }}
           >
-            {/* Separate inner div for mouse parallax — no transform conflict */}
-            <div
-              ref={el => { parallaxRefs.current[i] = el; }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={bike.image}
-                alt={bike.name}
-                fill
-                className="object-contain object-center"
-                sizes="(max-width: 768px) 100vw, 70vw"
-                priority={i === 0}
-              />
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={bike.image}
+              alt={bike.name}
+              style={{
+                position: "absolute", inset: 0,
+                width: "100%", height: "100%",
+                objectFit: "contain", objectPosition: "center",
+              }}
+            />
           </div>
         ))}
 
         {/* ── Gradients ── */}
         <div
-          className="absolute inset-0 hidden md:block pointer-events-none z-[1]"
+          className="absolute inset-0 hidden md:block pointer-events-none z-[2]"
           style={{ background: "linear-gradient(to right, #0A0A0A 30%, rgba(10,10,10,0.65) 52%, transparent)" }}
         />
         <div
-          className="absolute inset-0 md:hidden pointer-events-none z-[1]"
+          className="absolute inset-0 md:hidden pointer-events-none z-[2]"
           style={{ background: "linear-gradient(to top, #0A0A0A 38%, rgba(10,10,10,0.55) 62%, transparent)" }}
         />
 
@@ -242,43 +212,29 @@ export default function BikeShowcase() {
                   key={bike.id}
                   ref={el => { textRefs.current[i] = el; }}
                   className="absolute top-0 left-0 w-full"
-                  style={{ opacity: 0 }}
                   aria-hidden={i !== activeIndex}
                 >
-                  {/* Index + Category */}
-                  <div className="flex items-center gap-3 mb-4 md:mb-5">
-                    <span className="font-mono text-[10px] tracking-[0.45em] text-white/20">
+                  <div className="flex items-center gap-3 mb-5 md:mb-6">
+                    <span style={{ fontFamily: "var(--font-ibm-mono)", fontSize: "10px", letterSpacing: "0.45em", color: "rgba(255,255,255,0.2)" }}>
                       {bike.index}
                     </span>
                     <div className="w-5 h-px bg-white/15" />
-                    <span
-                      className="text-[9px] tracking-[0.4em] uppercase font-medium"
-                      style={{ color: bike.accent }}
-                    >
-                      {bike.category}
-                    </span>
+                    <span className="mono-tag">{bike.category}</span>
                   </div>
 
-                  {/* Name */}
                   <h2 className="font-display text-[clamp(44px,9vw,124px)] text-white leading-[0.88] uppercase tracking-tight mb-3">
                     {bike.name}
                   </h2>
 
-                  {/* Accent bar */}
                   <div className="h-[2px] w-12 mb-4 md:mb-5" style={{ backgroundColor: bike.accent }} />
 
-                  {/* Tagline */}
-                  <p className="text-sm md:text-lg text-white/35 mb-5 md:mb-7 italic font-light leading-snug">
-                    &ldquo;{bike.tagline}&rdquo;
+                  <p className="text-sm md:text-base text-white/50 mb-5 md:mb-7 font-light leading-relaxed tracking-wide" style={{ fontFamily: "var(--font-ibm-sans)" }}>
+                    {bike.tagline}
                   </p>
 
-                  {/* Stat */}
                   <div className="mb-7 md:mb-9">
                     <div className="flex items-baseline gap-2 mb-1">
-                      <span
-                        className="font-display text-[clamp(42px,7vw,92px)] leading-none"
-                        style={{ color: bike.accent }}
-                      >
+                      <span className="font-display text-[clamp(42px,7vw,92px)] leading-none" style={{ color: bike.accent }}>
                         {bike.stat.value}
                       </span>
                       <span className="text-xl md:text-2xl text-white/35 font-light">
@@ -290,7 +246,6 @@ export default function BikeShowcase() {
                     </p>
                   </div>
 
-                  {/* CTA */}
                   <Link href={bike.href} className="inline-flex items-center gap-3 group">
                     <span
                       className="h-px w-8 group-hover:w-16 transition-all duration-300"
@@ -349,7 +304,7 @@ export default function BikeShowcase() {
                   />
                   {i === activeIndex && (
                     <div
-                      className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full transition-colors duration-300"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full"
                       style={{ backgroundColor: activeBike.accent }}
                     />
                   )}
@@ -363,7 +318,7 @@ export default function BikeShowcase() {
         </div>
 
         {/* ── LEFT NAV DOTS ── */}
-        <div className="fixed left-6 md:left-10 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col items-start gap-4">
+        <div className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col items-start gap-4">
           {bikes.map((bike, i) => (
             <button
               key={bike.id}
@@ -374,8 +329,8 @@ export default function BikeShowcase() {
               <div
                 className="rounded-full transition-all duration-300"
                 style={{
-                  width:  i === activeIndex ? "6px"  : "4px",
-                  height: i === activeIndex ? "32px" : "12px",
+                  width:           i === activeIndex ? "6px"  : "4px",
+                  height:          i === activeIndex ? "32px" : "12px",
                   backgroundColor: i === activeIndex ? activeBike.accent : "rgba(255,255,255,0.18)",
                 }}
               />
@@ -392,8 +347,8 @@ export default function BikeShowcase() {
 
         {/* ── LEFT ACCENT LINE ── */}
         <div
-          className="fixed left-5 md:left-9 top-0 bottom-0 z-[29] w-px hidden md:block"
-          style={{ background: "linear-gradient(to bottom, transparent, rgba(0,255,0,0.18), transparent)" }}
+          className="absolute left-5 md:left-9 top-0 bottom-0 z-[29] w-px hidden md:block"
+          style={{ background: "linear-gradient(to bottom, transparent, rgba(120, 190, 32, 0.18), transparent)" }}
         />
 
       </div>

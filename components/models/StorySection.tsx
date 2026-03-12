@@ -80,13 +80,13 @@ export default function StorySection({ model }: StorySectionProps) {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
               {/* Corner accents */}
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[rgb(0,255,0)]" />
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[rgb(0,255,0)]" />
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#78BE20]" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#78BE20]" />
             </div>
 
             {/* Callout stat box */}
             {model.callout && (
-              <div className="story-callout mt-6 p-6 border-l-[3px] border-[rgb(0,255,0)] bg-[rgb(0,255,0)]/[0.05]">
+              <div className="story-callout mt-6 p-6 border-l-[3px] border-[#78BE20] bg-[#78BE20]/[0.05]">
                 <p
                   className="font-display text-white leading-none mb-2"
                   style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
@@ -105,7 +105,7 @@ export default function StorySection({ model }: StorySectionProps) {
             {/* Section header */}
             <div className="story-para">
               <p className="inline-flex items-center gap-3 mb-5">
-                <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+                <span className="w-6 h-px bg-[#78BE20]" />
                 <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
                   The Story
                 </span>
@@ -119,7 +119,7 @@ export default function StorySection({ model }: StorySectionProps) {
             </div>
 
             {/* Divider */}
-            <div className="w-12 h-px bg-[rgb(0,255,0)]/40" />
+            <div className="w-12 h-px bg-[#78BE20]/40" />
 
             {/* Story paragraphs */}
             {paragraphs.map((para, i) => (
@@ -137,7 +137,7 @@ export default function StorySection({ model }: StorySectionProps) {
                 <div key={spec.label}>
                   <span className="font-display text-xl text-white">
                     {spec.value}
-                    <span className="text-[rgb(0,255,0)] ml-0.5 text-sm">{spec.unit}</span>
+                    <span className="text-[#78BE20] ml-0.5 text-sm">{spec.unit}</span>
                   </span>
                   <p className="text-[9px] uppercase tracking-widest text-white/25 mt-0.5">
                     {spec.label}

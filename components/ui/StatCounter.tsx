@@ -62,7 +62,7 @@ export function StatCounter({
           {decimals > 0 ? count.toFixed(decimals) : Math.round(count)}
         </span>
         {unit && (
-          <span className="font-display text-2xl text-[rgb(0,255,0)] mb-1">
+          <span className="font-display text-2xl text-[#78BE20] mb-1">
             {unit}
           </span>
         )}

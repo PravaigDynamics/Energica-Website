@@ -6,8 +6,8 @@
   --bg-primary:    #0a0a0a;
   --bg-secondary:  #111111;
   --bg-card:       #161616;
-  --accent-green:  rgb(0, 255, 0);
-  --accent-red:    rgb(0, 255, 0); /* aliased — all red refs now resolve to green */
+  --accent-green:  #78BE20;
+  --accent-red:    #78BE20; /* aliased — all red refs now resolve to brand green */
   --accent-gold:   #C9A84C;
   --text-primary:  #ffffff;
   --text-muted:    #6B7280;
@@ -82,9 +82,10 @@ html {
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
+  font-family: var(--font-ibm-sans), 'IBM Plex Sans', system-ui, sans-serif;
+  font-weight: 300;
   font-size: var(--text-body);
-  line-height: 1.6;
+  line-height: 1.65;
   overflow-x: hidden;
   cursor: none; /* custom cursor active */
   -webkit-font-smoothing: antialiased;
@@ -93,24 +94,28 @@ body {
 
 /* ── Typography ──────────────────────────────────────────── */
 .font-display {
-  font-family: var(--font-bebas), 'Bebas Neue', sans-serif;
-  letter-spacing: 0.02em;
+  font-family: var(--font-barlow), 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.font-mono {
+  font-family: var(--font-ibm-mono), 'IBM Plex Mono', monospace;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-bebas), 'Bebas Neue', sans-serif;
-  line-height: 1.1;           /* tight but not completely flush */
-  letter-spacing: 0.02em;
-  font-weight: 700;           /* bold for all headings baseline */
+  font-family: var(--font-barlow), 'Barlow Condensed', sans-serif;
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  font-weight: 800;
 }
 
 h3 {
-  font-weight: 600;           /* semi-bold — slightly lighter than h1/h2 */
+  font-weight: 700;
 }
 
 /* Design-system type scale — override per element where needed */
 h1 { font-size: var(--text-h1); text-transform: uppercase; }
-h2 { font-size: var(--text-h2); }
+h2 { font-size: var(--text-h2); text-transform: uppercase; }
 h3 { font-size: var(--text-h3); }
 h4, h5, h6 { font-size: var(--text-h4); }
 
@@ -140,11 +145,11 @@ h4, h5, h6 { font-size: var(--text-h4); }
 }
 
 .gradient-green {
-  background: linear-gradient(135deg, rgb(0,255,0) 0%, rgb(0,180,0) 100%);
+  background: linear-gradient(135deg, #78BE20 0%, #5a9018 100%);
 }
 
 .gradient-text-green {
-  background: linear-gradient(135deg, rgb(0,255,0) 0%, rgb(0,200,80) 100%);
+  background: linear-gradient(135deg, #78BE20 0%, #9ad930 100%);
 }
 
 .border-subtle {
@@ -305,8 +310,8 @@ h4, h5, h6 { font-size: var(--text-h4); }
 
 /* ── Performance stat green glow pulse ──────────────────── */
 @keyframes glow-pulse {
-  0%, 100% { text-shadow: 0 0 48px rgba(0, 255, 0, 0.14); }
-  50%       { text-shadow: 0 0 72px rgba(0, 255, 0, 0.30); }
+  0%, 100% { text-shadow: 0 0 48px rgba(120, 190, 32, 0.20); }
+  50%       { text-shadow: 0 0 72px rgba(120, 190, 32, 0.40); }
 }
 .animate-glow-pulse {
   animation: glow-pulse 3s ease-in-out infinite;
@@ -323,7 +328,6 @@ h4, h5, h6 { font-size: var(--text-h4); }
 }
 
 /* ── Mobile typography guards ───────────────────────────── */
-/* Prevent Bebas Neue from overflowing on narrow viewports  */
 @media (max-width: 640px) {
   .font-display,
   h1, h2, h3 {
@@ -363,8 +367,8 @@ h4, h5, h6 { font-size: var(--text-h4); }
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0, 255, 0, 0.12) 30%,
-    rgba(0, 255, 0, 0.12) 70%,
+    rgba(120, 190, 32, 0.15) 30%,
+    rgba(120, 190, 32, 0.15) 70%,
     transparent 100%
   );
   pointer-events: none;
@@ -382,4 +386,151 @@ h4, h5, h6 { font-size: var(--text-h4); }
     transparent 100%
   );
   pointer-events: none;
+}
+
+/* ── Brand accent line (42×2.5px, Energica Green) ──────── */
+.brand-line {
+  display: block;
+  width: 42px;
+  height: 2.5px;
+  background: #78BE20;
+  flex-shrink: 0;
+}
+
+/* ── Mono tag / eyebrow badge ───────────────────────────── */
+.mono-tag {
+  display: inline-block;
+  font-family: var(--font-ibm-mono), 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid #78BE20;
+  border-radius: 3px;
+  padding: 3px 8px;
+  color: #78BE20;
+  line-height: 1;
+}
+
+/* ── Scroll velocity blur ───────────────────────────────── */
+.scroll-blurable {
+  transition: filter 0.15s ease;
+  filter: blur(var(--scroll-blur, 0px));
+}
+
+/* ── Custom cursor CSS variables ────────────────────────── */
+:root {
+  --cursor-ring-size: 40px;
+  --cursor-ring-color: rgba(255, 255, 255, 0.55);
+  --cursor-dot-color: #fff;
+  --scroll-blur: 0px;
+  --glint-x: 50%;
+  --glint-y: 50%;
+  --glint-opacity: 0;
+  --anim-scale: 1;
+}
+
+/* ── Cursor click burst ──────────────────────────────────── */
+@keyframes cursorBurst {
+  0%   { transform: scale(1);   opacity: 1; }
+  60%  { transform: scale(1.5); opacity: 0.4; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.cursor-burst::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  animation: cursorBurst 0.35s var(--ease-expo) forwards;
+  pointer-events: none;
+}
+
+/* ── Bike image glint (spec light following mouse) ──────── */
+.bike-glint {
+  position: relative;
+}
+.bike-glint::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 140px at var(--glint-x, 50%) var(--glint-y, 50%),
+    rgba(255, 255, 255, 0.09) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  opacity: var(--glint-opacity, 0);
+  transition: opacity 0.4s ease;
+}
+
+/* ── Electric CTA sweep ──────────────────────────────────── */
+.btn-electric {
+  position: relative;
+  overflow: hidden;
+}
+.btn-electric::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.28) 45%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.28) 55%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  transition: background-position 0.6s var(--ease-expo);
+  pointer-events: none;
+}
+.btn-electric:hover::before {
+  background-position: 200% 0;
+}
+
+/* ── Nav character split hover ──────────────────────────── */
+.nav-char {
+  display: inline-block;
+  transition: transform 0.22s var(--ease-expo), color 0.22s ease;
+}
+.nav-split-link:hover .nav-char {
+  transform: translateY(-3px);
+}
+
+/* ── Drag gallery cursor ────────────────────────────────── */
+.drag-track {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.drag-track:active {
+  cursor: grabbing;
+}
+
+/* ── prefers-reduced-motion: kill all motion ─────────────── */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --anim-scale: 0;
+    --scroll-blur: 0px;
+  }
+  .nav-split-link:hover .nav-char {
+    transform: none;
+  }
+  .btn-electric::before {
+    display: none;
+  }
+  .bike-glint::after {
+    display: none;
+  }
+  .will-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .is-revealed {
+    opacity: 1;
+    transform: none;
+  }
 }

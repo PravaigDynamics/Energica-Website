@@ -12,7 +12,7 @@ export default function NotFound() {
     <main className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-center px-8 pt-20">
 
       {/* Error label */}
-      <p className="text-[10px] uppercase tracking-[0.4em] text-[rgb(0,255,0)]/60 mb-6">
+      <p className="text-[10px] uppercase tracking-[0.4em] text-[#78BE20]/60 mb-6">
         Error 404
       </p>
 
@@ -46,7 +46,7 @@ export default function NotFound() {
       </div>
 
       {/* Red decorative line */}
-      <div className="mt-16 w-16 h-px bg-[rgb(0,255,0)]/30" />
+      <div className="mt-16 w-16 h-px bg-[#78BE20]/30" />
     </main>
   );
 }

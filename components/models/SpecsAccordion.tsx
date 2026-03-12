@@ -89,14 +89,14 @@ export default function SpecsAccordion({ specs }: SpecsAccordionProps) {
             >
               {/* Left: number tag + label */}
               <span className="flex items-center gap-4">
-                <span className="font-display text-sm text-white/10 group-hover:text-[rgb(0,255,0)]/30 transition-colors duration-200 w-5 text-right">
+                <span className="font-display text-sm text-white/10 group-hover:text-[#78BE20]/30 transition-colors duration-200 w-5 text-right">
                   {(SECTION_ORDER.indexOf(key) + 1).toString().padStart(2, "0")}
                 </span>
                 <span
                   className={cn(
                     "font-display text-xl transition-colors duration-200",
                     isOpen
-                      ? "text-[rgb(0,255,0)]"
+                      ? "text-[#78BE20]"
                       : "text-white group-hover:text-white/80"
                   )}
                 >
@@ -107,7 +107,7 @@ export default function SpecsAccordion({ specs }: SpecsAccordionProps) {
               {/* Right: plus / close icon */}
               <span
                 className={cn(
-                  "text-[rgb(0,255,0)] text-xl transition-transform duration-300 flex-shrink-0 ml-4",
+                  "text-[#78BE20] text-xl transition-transform duration-300 flex-shrink-0 ml-4",
                   isOpen ? "rotate-45" : "rotate-0"
                 )}
               >

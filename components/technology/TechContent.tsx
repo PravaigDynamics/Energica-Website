@@ -22,20 +22,20 @@ function HeroRings() {
   const nodes = (r: number, count: number, cls: string) =>
     Array.from({ length: count }).map((_, i) => {
       const a = (i / count) * Math.PI * 2;
-      return <circle key={i} cx={200 + Math.cos(a) * r} cy={200 + Math.sin(a) * r} r="3" fill="rgb(0,255,0)" className={cls} />;
+      return <circle key={i} cx={200 + Math.cos(a) * r} cy={200 + Math.sin(a) * r} r="3" fill="#78BE20" className={cls} />;
     });
 
   return (
     <svg ref={ref} viewBox="0 0 400 400" className="w-full h-full" aria-hidden>
       <circle cx="200" cy="200" r="190" fill="none" stroke="rgba(255,255,255,0.02)" strokeWidth="1" />
       <circle className="hr-ring-3" cx="200" cy="200" r="170" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeDasharray="8 16" />
-      <circle className="hr-ring-2" cx="200" cy="200" r="130" fill="none" stroke="rgba(0,255,0,0.12)" strokeWidth="1" strokeDasharray="4 8" />
+      <circle className="hr-ring-2" cx="200" cy="200" r="130" fill="none" stroke="rgba(120, 190, 32, 0.12)" strokeWidth="1" strokeDasharray="4 8" />
       <circle className="hr-ring-1" cx="200" cy="200" r="90" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" strokeDasharray="2 6" />
       {nodes(170, 6, "hr-node")}
       {nodes(130, 8, "hr-node")}
       {nodes(90, 4, "hr-node")}
-      <circle className="hr-pulse" cx="200" cy="200" r="30" fill="none" stroke="rgba(0,255,0,0.3)" strokeWidth="1" />
-      <circle cx="200" cy="200" r="10" fill="rgb(0,255,0)" opacity="0.8" />
+      <circle className="hr-pulse" cx="200" cy="200" r="30" fill="none" stroke="rgba(120, 190, 32, 0.3)" strokeWidth="1" />
+      <circle cx="200" cy="200" r="10" fill="#78BE20" opacity="0.8" />
       <circle cx="200" cy="200" r="4" fill="white" />
     </svg>
   );
@@ -78,7 +78,7 @@ function MotorDiagram() {
     const x1 = r(200 + Math.cos(a) * r1), y1 = r(200 + Math.sin(a) * r1);
     const mx = r(200 + Math.cos(a + 0.3) * 140), my = r(200 + Math.sin(a + 0.3) * 140);
     const x2 = r(200 + Math.cos(a + 0.6) * r2), y2 = r(200 + Math.sin(a + 0.6) * r2);
-    return { i, d: `M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`, color: i % 2 === 0 ? "rgb(0,255,0)" : "rgba(139,184,212,0.5)" };
+    return { i, d: `M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`, color: i % 2 === 0 ? "#78BE20" : "rgba(139,184,212,0.5)" };
   });
 
   return (
@@ -90,7 +90,7 @@ function MotorDiagram() {
       {/* 12 stator teeth — pre-rounded coords avoid SSR/client float mismatch */}
       {statorTeeth.map(({ i, isCoil, x1, y1, x2, y2 }) => (
         <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-          stroke={isCoil ? "rgb(0,255,0)" : "rgba(255,255,255,0.1)"}
+          stroke={isCoil ? "#78BE20" : "rgba(255,255,255,0.1)"}
           strokeWidth={isCoil ? "5" : "8"}
         />
       ))}
@@ -113,18 +113,18 @@ function MotorDiagram() {
           const mx = 200 + Math.cos(a) * 84, my = 200 + Math.sin(a) * 84;
           return (
             <rect key={i} x={mx - 10} y={my - 5} width="20" height="10" rx="2"
-              fill={i % 2 === 0 ? "rgb(0,255,0)" : "#1a3a5c"} opacity="0.85"
+              fill={i % 2 === 0 ? "#78BE20" : "#1a3a5c"} opacity="0.85"
               transform={`rotate(${(i / 8) * 360}, ${mx}, ${my})`} />
           );
         })}
         {/* Shaft */}
         <circle cx="200" cy="200" r="24" fill="#111" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
         <circle cx="200" cy="200" r="14" fill="#1a1a1a" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-        <circle cx="200" cy="200" r="5" fill="rgb(0,255,0)" />
+        <circle cx="200" cy="200" r="5" fill="#78BE20" />
       </g>
       {/* Labels */}
       <text x="200" y="20" textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="8" letterSpacing="3" fontFamily="monospace">STATOR WINDING</text>
-      <text x="200" y="390" textAnchor="middle" fill="rgba(0,255,0,0.5)" fontSize="8" letterSpacing="3" fontFamily="monospace">PMASynRM · 96% PEAK EFFICIENCY</text>
+      <text x="200" y="390" textAnchor="middle" fill="rgba(120, 190, 32, 0.5)" fontSize="8" letterSpacing="3" fontFamily="monospace">PMASynRM · 96% PEAK EFFICIENCY</text>
     </svg>
   );
 }
@@ -139,7 +139,7 @@ function BatteryGrid() {
     if (cells) {
       gsap.set(cells, { fill: "#111111" });
       gsap.to(cells, {
-        fill: "rgb(0,255,0)",
+        fill: "#78BE20",
         duration: 0.25,
         stagger: { each: 0.055, from: "end" },
         ease: "power1.out",
@@ -175,7 +175,7 @@ function BatteryGrid() {
       <text className="bg-num" x="190" y="215" textAnchor="middle"
         fill="white" fontSize="40" fontFamily="monospace" fontWeight="700">0.0</text>
       <text x="190" y="234" textAnchor="middle"
-        fill="rgba(0,255,0,0.7)" fontSize="9" letterSpacing="4" fontFamily="monospace">kWh TOTAL CAPACITY</text>
+        fill="rgba(120, 190, 32, 0.7)" fontSize="9" letterSpacing="4" fontFamily="monospace">kWh TOTAL CAPACITY</text>
       <text x="190" y="252" textAnchor="middle"
         fill="rgba(255,255,255,0.15)" fontSize="8" letterSpacing="2" fontFamily="monospace">24 INDIVIDUALLY MONITORED CELLS</text>
     </svg>
@@ -230,14 +230,14 @@ function ChargingCurve() {
       <text x="224" y="288" textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="8" letterSpacing="3" fontFamily="monospace">TIME</text>
       <text x="14" y="144" textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="8" letterSpacing="3" fontFamily="monospace" transform="rotate(-90,14,144)">SOC</text>
       {/* 80% reference */}
-      <line x1="58" y1="124" x2="390" y2="124" stroke="rgba(0,255,0,0.2)" strokeWidth="1" strokeDasharray="4 4" />
-      <text x="394" y="124" dominantBaseline="middle" fill="rgba(0,255,0,0.5)" fontSize="8" fontFamily="monospace">80%</text>
+      <line x1="58" y1="124" x2="390" y2="124" stroke="rgba(120, 190, 32, 0.2)" strokeWidth="1" strokeDasharray="4 4" />
+      <text x="394" y="124" dominantBaseline="middle" fill="rgba(120, 190, 32, 0.5)" fontSize="8" fontFamily="monospace">80%</text>
       {/* Charging curve: fast rise from 0→80%, then gentle taper */}
       <path className="cc-curve"
         d="M 58 244 C 100 243, 140 126, 180 124 S 280 124, 330 124 S 370 128, 390 136"
-        fill="none" stroke="rgb(0,255,0)" strokeWidth="2.5" strokeLinecap="round" />
+        fill="none" stroke="#78BE20" strokeWidth="2.5" strokeLinecap="round" />
       {/* 80% endpoint */}
-      <circle className="cc-dot" cx="330" cy="124" r="5" fill="rgb(0,255,0)" />
+      <circle className="cc-dot" cx="330" cy="124" r="5" fill="#78BE20" />
       <line x1="330" y1="124" x2="330" y2="244" stroke="rgba(255,255,255,0.06)" strokeWidth="1" strokeDasharray="2 4" />
       <text className="cc-label" x="330" y="260" textAnchor="middle"
         fill="rgba(255,255,255,0.3)" fontSize="8" fontFamily="monospace">≈40 min</text>
@@ -259,14 +259,14 @@ function AppHeader() {
     <div ref={ref} className="flex flex-col justify-center">
       <p className="app-text inline-flex items-center gap-3 mb-6">
         <span className="font-display text-5xl text-white/[0.06]">04</span>
-        <span className="w-8 h-px bg-[rgb(0,255,0)]/40" />
+        <span className="w-8 h-px bg-[#78BE20]/40" />
         <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">Tech Pillar</span>
       </p>
       <h2 className="app-text font-display text-white leading-none mb-2"
           style={{ fontSize: "clamp(36px, 4.5vw, 64px)" }}>
         My Energica App
       </h2>
-      <p className="app-text text-[10px] uppercase tracking-widest text-[rgb(0,255,0)]/70 mb-5">
+      <p className="app-text text-[10px] uppercase tracking-widest text-[#78BE20]/70 mb-5">
         iOS &amp; Android · Bluetooth + 4G
       </p>
       <p className="app-text text-base text-white/50 leading-[1.8] max-w-lg">
@@ -365,7 +365,7 @@ function AppRight() {
               <circle
                 ref={batteryCircleRef}
                 cx="40" cy="40" r="34" fill="none"
-                stroke="rgb(0,255,0)" strokeWidth="5"
+                stroke="#78BE20" strokeWidth="5"
                 strokeDasharray={DASH}
                 strokeDashoffset={DASH}
                 strokeLinecap="round"
@@ -391,7 +391,7 @@ function AppRight() {
                 onClick={() => setActiveMode(i)}
                 className={`py-1 text-center text-[5.5px] tracking-wider rounded transition-colors duration-200 ${
                   i === activeMode
-                    ? "bg-[rgb(0,255,0)] text-black"
+                    ? "bg-[#78BE20] text-black"
                     : "bg-white/[0.04] text-white/25 hover:bg-white/[0.08] hover:text-white/40"
                 }`}
               >
@@ -423,7 +423,7 @@ function AppRight() {
         <div className="flex flex-col">
           {appFeatures.map((f) => (
             <div key={f.label} className="apr-row flex items-center gap-3 py-2.5 border-b border-white/[0.05]">
-              <span className="w-7 h-7 rounded border border-white/10 flex items-center justify-center text-[rgb(0,255,0)] text-xs flex-shrink-0">
+              <span className="w-7 h-7 rounded border border-white/10 flex items-center justify-center text-[#78BE20] text-xs flex-shrink-0">
                 {f.icon}
               </span>
               <span className="text-sm text-white/60 whitespace-nowrap">{f.label}</span>
@@ -488,11 +488,11 @@ function ThrottleGraph() {
       {/* Electric line (perfectly linear) */}
       <path className="tg-electric"
         d="M 50 188 L 360 50"
-        fill="none" stroke="rgb(0,255,0)" strokeWidth="2.5" strokeLinecap="round" />
+        fill="none" stroke="#78BE20" strokeWidth="2.5" strokeLinecap="round" />
       {/* Legend */}
       <g className="tg-label">
-        <line x1="160" y1="238" x2="190" y2="238" stroke="rgb(0,255,0)" strokeWidth="2.5" />
-        <text x="196" y="241" fill="rgba(0,255,0,0.8)" fontSize="9" fontFamily="monospace">ELECTRIC (LINEAR)</text>
+        <line x1="160" y1="238" x2="190" y2="238" stroke="#78BE20" strokeWidth="2.5" />
+        <text x="196" y="241" fill="rgba(120, 190, 32, 0.8)" fontSize="9" fontFamily="monospace">ELECTRIC (LINEAR)</text>
         <line x1="160" y1="256" x2="190" y2="256" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="5 4" />
         <text x="196" y="259" fill="rgba(255,255,255,0.25)" fontSize="9" fontFamily="monospace">ICE (VARIABLE)</text>
       </g>
@@ -524,14 +524,14 @@ function SafetyCards() {
   return (
     <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {SAFETY_FEATURES.map((f) => (
-        <div key={f.num} className="sf-card group p-6 border border-white/[0.06] bg-[#0f0f0f] hover:border-[rgb(0,255,0)]/30 transition-colors duration-300">
+        <div key={f.num} className="sf-card group p-6 border border-white/[0.06] bg-[#0f0f0f] hover:border-[#78BE20]/30 transition-colors duration-300">
           <div className="flex items-start justify-between mb-4">
-            <span className="font-display text-[rgb(0,255,0)]/30 text-4xl leading-none group-hover:text-[rgb(0,255,0)]/50 transition-colors duration-300">
+            <span className="font-display text-[#78BE20]/30 text-4xl leading-none group-hover:text-[#78BE20]/50 transition-colors duration-300">
               {f.num}
             </span>
           </div>
           <h3 className="font-display text-white text-xl mb-1">{f.title}</h3>
-          <p className="text-[9px] uppercase tracking-widest text-[rgb(0,255,0)]/60 mb-3">{f.sub}</p>
+          <p className="text-[9px] uppercase tracking-widest text-[#78BE20]/60 mb-3">{f.sub}</p>
           <p className="text-sm text-white/40 leading-relaxed">{f.body}</p>
         </div>
       ))}
@@ -563,13 +563,13 @@ function TechSection({
       <div>
         <span className="inline-flex items-center gap-3 mb-6">
           <span className="font-display text-5xl text-white/[0.06]">{num}</span>
-          <span className="w-8 h-px bg-[rgb(0,255,0)]/40" />
+          <span className="w-8 h-px bg-[#78BE20]/40" />
           <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">Tech Pillar</span>
         </span>
         <h2 className="font-display text-white leading-none mb-2" style={{ fontSize: "clamp(36px, 4.5vw, 64px)" }}>
           {title}
         </h2>
-        <p className="text-[10px] uppercase tracking-widest text-[rgb(0,255,0)]/70 mb-5">{sub}</p>
+        <p className="text-[10px] uppercase tracking-widest text-[#78BE20]/70 mb-5">{sub}</p>
         <p className="text-base text-white/50 leading-[1.8] max-w-lg">{body}</p>
       </div>
       {stats && (
@@ -578,7 +578,7 @@ function TechSection({
             <div key={s.label}>
               <div className="flex items-baseline gap-1">
                 <span className="font-display text-3xl text-white">{s.value}</span>
-                <span className="font-display text-sm text-[rgb(0,255,0)]">{s.unit}</span>
+                <span className="font-display text-sm text-[#78BE20]">{s.unit}</span>
               </div>
               <p className="text-[9px] uppercase tracking-widest text-white/25 mt-0.5">{s.label}</p>
             </div>
@@ -628,12 +628,12 @@ export default function TechContent() {
 
         <div className="relative z-10 max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px]">
           <p className="th-eyebrow inline-flex items-center gap-3 mb-8">
-            <span className="w-6 h-px bg-[rgb(0,255,0)]" />
+            <span className="w-6 h-px bg-[#78BE20]" />
             <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">Under the fairing</span>
           </p>
           <h1 className="th-h1 font-display text-white leading-none mb-8" style={{ fontSize: "clamp(60px, 11vw, 160px)" }}>
             <span className="block">OUR</span>
-            <span className="block text-[rgb(0,255,0)]">TECHNOLOGY</span>
+            <span className="block text-[#78BE20]">TECHNOLOGY</span>
           </h1>
           <p className="th-body text-lg text-white/40 max-w-md leading-relaxed">
             Every Energica is built around proprietary technology — not repurposed automotive parts.
@@ -643,7 +643,7 @@ export default function TechContent() {
           {/* Jump-links */}
           <div className="mt-12 flex flex-wrap gap-3">
             {["Motor", "Battery", "Charging", "App", "Ride By Wire", "Safety"].map((t) => (
-              <span key={t} className="px-4 py-2 border border-white/10 text-[10px] uppercase tracking-widest text-white/40 hover:border-[rgb(0,255,0)]/40 hover:text-white/60 transition-colors duration-200 cursor-pointer">
+              <span key={t} className="px-4 py-2 border border-white/10 text-[10px] uppercase tracking-widest text-white/40 hover:border-[#78BE20]/40 hover:text-white/60 transition-colors duration-200 cursor-pointer">
                 {t}
               </span>
             ))}
@@ -723,13 +723,13 @@ export default function TechContent() {
           <div className="mb-14">
             <p className="inline-flex items-center gap-3 mb-6">
               <span className="font-display text-5xl text-white/[0.06]">06</span>
-              <span className="w-8 h-px bg-[rgb(0,255,0)]/40" />
+              <span className="w-8 h-px bg-[#78BE20]/40" />
               <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">Tech Pillar</span>
             </p>
             <h2 className="font-display text-white leading-none mb-2" style={{ fontSize: "clamp(36px, 4.5vw, 64px)" }}>
               Safety Suite
             </h2>
-            <p className="text-[10px] uppercase tracking-widest text-[rgb(0,255,0)]/70 mb-5">
+            <p className="text-[10px] uppercase tracking-widest text-[#78BE20]/70 mb-5">
               Co-developed with Bosch Motorsport
             </p>
             <p className="text-base text-white/50 leading-[1.8] max-w-2xl">
@@ -750,7 +750,7 @@ export default function TechContent() {
             <p className="text-white/40 text-base">Book a free test ride at your nearest dealer.</p>
           </div>
           <div className="flex gap-4 flex-shrink-0">
-            <Link href="/test-ride" className="px-8 py-4 bg-[rgb(0,255,0)] text-black font-display text-sm uppercase tracking-widest hover:bg-[rgb(0,220,0)] transition-colors duration-200">
+            <Link href="/test-ride" className="px-8 py-4 bg-[#78BE20] text-black font-display text-sm uppercase tracking-widest hover:bg-[#5a9018] transition-colors duration-200">
               Book Test Ride
             </Link>
             <Link href="/models" className="px-8 py-4 border border-white/20 text-white font-display text-sm uppercase tracking-widest hover:border-white/50 transition-colors duration-200">

@@ -82,14 +82,14 @@ export const models: BikeModel[] = [
   {
     id: "experia",
     name: "Experia",
-    tagline: "Born to be wind",
-    headline: "Europe's First Electric Green Tourer",
+    tagline: "Further, quieter, faster.",
+    headline: "22.5 kWh. 420 km. One charge.",
     description:
-      "Purpose-driven performance meets long-distance capability. The Experia redefines what an electric tourer can be — with 420 km of city range, rapid DC charging, and Italian craftsmanship built for the open road.",
+      "Built on a decade of MotoE engineering. The Experia carries 22.5 kWh — the largest battery of any production electric motorcycle — and turns every public DC network into a fuel station.",
     storyParagraphs: [
-      "New High-Tech Platform built on a decade of MotoE engineering. The Experia represents Energica's most ambitious project — a machine that proves electric touring doesn't mean compromise.",
-      "With 22.5 kWh of onboard energy, the Experia holds the title for the largest battery capacity of any production electric motorcycle. That translates to real-world range: 420 km of city riding, 256 km combined, without stopping to charge.",
-      "DC fast charging via CCS Combo means 80% in under 40 minutes at any public network across Europe and beyond. The Experia turns the entire charging grid into your personal fuel station.",
+      "A decade of MotoE engineering produced the platform. The Experia is not a compromise — it is a decision. Same motor architecture as the race machines. Different mission.",
+      "22.5 kWh gross. 420 km city range. 256 km combined. These are measured numbers, not marketing estimates. The largest battery of any production electric motorcycle, period.",
+      "CCS Combo DC fast charging. 0 to 80% in under 40 minutes. Every public rapid network in Europe and beyond. The charging grid is your infrastructure.",
     ],
     callout: {
       stat: "22.5 kWh",
@@ -169,14 +169,14 @@ export const models: BikeModel[] = [
   {
     id: "esseesse9",
     name: "EsseEsse9+",
-    tagline: "The Naked Champion",
-    headline: "Pure. Naked. Electrifying.",
+    tagline: "Naked. No apologies.",
+    headline: "200 Nm. From zero.",
     description:
-      "The most aggressive electric naked on the market. Born from racing DNA, the EsseEsse9+ delivers supercar acceleration and relentless torque in a stripped-down package that demands attention.",
+      "Stripped of everything unnecessary. The EsseEsse9+ delivers 200 Nm of wheel torque at 0 rpm and reaches 100 km/h in 3.2 seconds. Same motor architecture as the MotoE race machines.",
     storyParagraphs: [
-      "The EsseEsse9+ is aggression made tangible. Every component stripped to its essential function, every curve sculpted for air and authority.",
-      "200 Nm of wheel torque hits at 0 rpm and never backs down. The 0–100 km/h sprint in 3.2 seconds is clinical, repeatable, and addictive — without the drama of a combustion engine between your knees.",
-      "This is Energica's racing heritage riding on public roads. The SS9 shares its motor architecture with the MotoE race machines — the same platform that has powered every FIM Enel MotoE grid since 2019.",
+      "Every component has a function. Nothing is decorative. The EsseEsse9+ is Energica's most direct expression of what the motor platform can do when weight and restraint are the design brief.",
+      "200 Nm at the wheel. Available from 0 rpm. The 0–100 km/h sprint takes 3.2 seconds. It is clinical, repeatable, and quiet.",
+      "The motor shares its architecture with the MotoE race machines — the same platform that has powered every FIM Enel MotoE grid since 2019. This is that technology on a public road.",
     ],
     callout: {
       stat: "200 Nm",
@@ -257,18 +257,18 @@ export const models: BikeModel[] = [
   {
     id: "eva-ribelle",
     name: "Eva Ribelle",
-    tagline: "The Rebel",
-    headline: "Redefine Every Road.",
+    tagline: "Italian design. Electric advantage.",
+    headline: "107 HP. Built in Modena.",
     description:
-      "Where Italian design meets electric power. The Eva Ribelle is a statement — sculpted for those who refuse to follow. Every line, every curve, an act of rebellion against the ordinary.",
+      "Italian design, Modena engineering, MotoE motor platform. The Eva Ribelle carries 107 HP and 200 Nm — same drivetrain as the race machines — inside a body shaped by Italian design masters.",
     storyParagraphs: [
-      "Eva Ribelle means Eva the Rebel. A name that carries a philosophy. This is a motorcycle built not to fit in but to stand out — on every road, in every city, in every photograph.",
-      "The same 107 HP motor and 21.5 kWh battery as the EsseEsse9+ lives within a body shaped by Italian design masters. Form and function in equal measure.",
-      "Three colourways, each its own character. Rebel Black for the urban anarchist. RS Edition for the track-day convert. Tricolore for those who wear their Italian pride.",
+      "Eva Ribelle. The name is a design decision. This motorcycle is built for riders who choose their machine deliberately — not for spectacle, but for what it does when the road gets interesting.",
+      "107 HP. 200 Nm at the wheel. 261 km city range. Same motor architecture as the MotoE race machines. Same DC fast charge infrastructure as the Experia. Different silhouette.",
+      "Three colourways. Rebel Black. RS Edition. Tricolore. Each is the same motorcycle underneath. The choice is yours.",
     ],
     callout: {
       stat: "107 HP",
-      label: "Pure Italian electric performance",
+      label: "MotoE-derived platform. Road legal.",
     },
     heroImage: "/images/Pagina%20Eva/Eva-Ribelle-1.png",
     lifestyleImages: [
@@ -344,14 +344,14 @@ export const models: BikeModel[] = [
   {
     id: "ego",
     name: "Ego+",
-    tagline: "Track Tested. Street Legal.",
-    headline: "Born on the Circuit.",
+    tagline: "Derived from racing. Proven on track.",
+    headline: "145 HP. MotoE architecture. Road legal.",
     description:
-      "MotoE-derived technology for the road. The Ego+ carries championship-winning DNA from the FIM Enel MotoE World Cup — raw, uncompromising, and built to make the streets your personal circuit.",
+      "Seven MotoE seasons produced this motor. 145 HP. 0–100 in 2.6 seconds. Öhlins suspension, Brembo brakes, race-derived chassis geometry. Street registered.",
     storyParagraphs: [
-      "Seven seasons of MotoE. One motorcycle built from everything Energica learned on the grid. The Ego+ is the closest thing to a race bike you can ride to work — and park legally.",
-      "145 HP. 0–100 in 2.6 seconds. A top speed of 200 km/h. These are numbers borrowed from the race track, delivered in a package that passes every road-legal test.",
-      "The Ego+ doesn't compromise. Full Öhlins suspension. Brembo brakes front and rear. A chassis geometry tuned on the same circuits where MotoE champions trained.",
+      "Seven seasons of MotoE. One motor platform. The Ego+ is built from what Energica learned on the grid — not inspired by it. The same architecture. Different application.",
+      "145 HP. 215 Nm at the wheel. 0–100 km/h in 2.6 seconds. 200 km/h top speed. These numbers were earned on circuits, then certified for public roads.",
+      "Öhlins suspension front and rear. Brembo M4.32 radial brakes. Chassis geometry tuned on the same circuits where MotoE champions compete. Road legal. No exceptions.",
     ],
     callout: {
       stat: "145 HP",

@@ -1,16 +1,23 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useScramble } from "@/lib/use-scramble";
 
 export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [scrambleTrigger, setScrambleTrigger] = useState(false);
+
+  const h1Ref = useScramble("PROGRESS,\nRIDDEN.", scrambleTrigger);
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.play().catch(() => {});
     }
+    // Trigger scramble after 700ms (video loads or fallback)
+    const t = setTimeout(() => setScrambleTrigger(true), 700);
+    return () => clearTimeout(t);
   }, []);
 
   return (
@@ -49,25 +56,32 @@ export default function HeroSection() {
       <div className="absolute bottom-0 left-0 right-0 z-20 pb-16 md:pb-20">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
 
-          <p className="text-[10px] md:text-xs tracking-[0.4em] text-white/50 uppercase mb-4">
-            Made in Italy · 100% Electric
-          </p>
+          <span className="mono-tag mb-5 block">Modena, Italy · Est. 2009</span>
 
-          <h1 className="font-display text-[clamp(36px,8vw,96px)] text-white leading-none uppercase tracking-tight mb-6">
-            Born Electric.<br />Born Italian.
+          <h1
+            ref={h1Ref as React.RefObject<HTMLHeadingElement>}
+            className="font-display text-[clamp(52px,9vw,112px)] text-white leading-none uppercase tracking-wide mb-3 whitespace-pre-line"
+          >
+            {scrambleTrigger ? "PROGRESS,\nRIDDEN." : "·········\n·······"}
           </h1>
+
+          <p className="text-sm text-white/40 font-light tracking-wide mb-7 max-w-md" style={{ fontFamily: "var(--font-ibm-sans)" }}>
+            Built in Modena. Proven in MotoE.<br className="hidden md:block" />Seven seasons, one supplier.
+          </p>
 
           <div className="flex items-center gap-6">
             <Link
               href="/models"
               className="text-xs tracking-[0.25em] uppercase text-white border-b border-white/40 pb-0.5 hover:border-white transition-colors duration-200"
+              style={{ fontFamily: "var(--font-ibm-mono)" }}
             >
               Explore the lineup
             </Link>
             <span className="text-white/20">·</span>
             <Link
               href="/test-ride"
-              className="text-xs tracking-[0.25em] uppercase text-[rgb(0,255,0)] border-b border-[rgb(0,255,0)]/40 pb-0.5 hover:border-[rgb(0,255,0)] transition-colors duration-200"
+              className="text-xs tracking-[0.25em] uppercase text-[#78BE20] border-b border-[#78BE20]/40 pb-0.5 hover:border-[#78BE20] transition-colors duration-200"
+              style={{ fontFamily: "var(--font-ibm-mono)" }}
             >
               Book a test ride
             </Link>
@@ -80,7 +94,7 @@ export default function HeroSection() {
         <div className="w-px h-12 bg-white/20 relative overflow-hidden">
           <div
             suppressHydrationWarning
-            className="absolute top-0 left-0 w-full bg-[rgb(0,255,0)]"
+            className="absolute top-0 left-0 w-full bg-[#78BE20]"
             style={{
               height: "40%",
               animation: "scrollDown 2s ease-in-out infinite",

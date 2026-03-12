@@ -18,7 +18,7 @@ export default function ModelsPage() {
       <Container className="py-[120px]">
         <SectionReveal>
           <span className="flex items-center gap-3 mb-6">
-            <span className="w-8 h-px bg-[rgb(0,255,0)]" />
+            <span className="w-8 h-px bg-[#78BE20]" />
             <span className="text-xs uppercase tracking-[0.3em] text-white/40">
               Our Lineup
             </span>
@@ -44,7 +44,7 @@ export default function ModelsPage() {
             <SectionReveal key={model.id} delay={i * 80}>
               <Link
                 href={`/models/${model.id}`}
-                className="group flex flex-col h-full bg-[#111] border border-white/5 hover:border-[rgb(0,255,0)]/30 transition-all duration-300 overflow-hidden"
+                className="group flex flex-col h-full bg-[#111] border border-white/5 hover:border-[#78BE20]/30 transition-all duration-300 overflow-hidden"
               >
                 {/* Image */}
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#0d0d0d]">
@@ -58,7 +58,7 @@ export default function ModelsPage() {
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
-                      background: `radial-gradient(ellipse at center, ${model.colors[0]?.hex ?? "rgb(0,255,0)"}15 0%, transparent 70%)`,
+                      background: `radial-gradient(ellipse at center, ${model.colors[0]?.hex ?? "#78BE20"}15 0%, transparent 70%)`,
                     }}
                   />
                 </div>
@@ -67,12 +67,12 @@ export default function ModelsPage() {
                 <div className="flex flex-col flex-1 p-8">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h2 className="font-display text-4xl text-white group-hover:text-[rgb(0,255,0)] transition-colors">
+                      <h2 className="font-display text-4xl text-white group-hover:text-[#78BE20] transition-colors">
                         {model.name}
                       </h2>
                       <p className="text-white/40 text-sm mt-1">{model.tagline}</p>
                     </div>
-                    <span className="text-[rgb(0,255,0)] opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300 mt-2">
+                    <span className="text-[#78BE20] opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300 mt-2">
                       →
                     </span>
                   </div>
@@ -87,7 +87,7 @@ export default function ModelsPage() {
                       <div key={spec.label}>
                         <p className="font-display text-xl text-white">
                           {spec.value}
-                          <span className="text-xs text-[rgb(0,255,0)] ml-1">
+                          <span className="text-xs text-[#78BE20] ml-1">
                             {spec.unit}
                           </span>
                         </p>
