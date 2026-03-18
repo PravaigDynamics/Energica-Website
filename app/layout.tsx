@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     template: "%s | ENERGICA",
   },
   description:
-    "Energica Motor Company. Built in Modena. Proven in MotoE. Seven seasons, one supplier. Electric motorcycles for riders who demand precision.",
+    "Energica Motor Company. Built in Modena. Proven in MotoE. Four seasons, one supplier. Electric motorcycles for riders who demand precision.",
   keywords: [
     "electric motorcycle",
     "electric superbike",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ENERGICA — Progress, Ridden.",
     description:
-      "Built in Modena. Proven in MotoE. Seven seasons, one supplier.",
+      "Built in Modena. Proven in MotoE. Four seasons, one supplier.",
     siteName: "Energica Motor Company",
     locale: "en_US",
     type: "website",

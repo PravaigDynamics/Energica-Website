@@ -66,7 +66,7 @@ export default function HeroSection() {
           </h1>
 
           <p className="text-sm text-white/40 font-light tracking-wide mb-7 max-w-md" style={{ fontFamily: "var(--font-ibm-sans)" }}>
-            Built in Modena. Proven in MotoE.<br className="hidden md:block" />Seven seasons, one supplier.
+            Built in Modena. Proven in MotoE.<br className="hidden md:block" />Four seasons, one supplier.
           </p>
 
           <div className="flex items-center gap-6">
