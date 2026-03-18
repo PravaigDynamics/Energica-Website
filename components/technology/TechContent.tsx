@@ -230,221 +230,21 @@ function ChargingCurve() {
       <text x="224" y="288" textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="8" letterSpacing="3" fontFamily="monospace">TIME</text>
       <text x="14" y="144" textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="8" letterSpacing="3" fontFamily="monospace" transform="rotate(-90,14,144)">SOC</text>
       {/* 80% reference */}
-      <line x1="58" y1="124" x2="390" y2="124" stroke="rgba(120, 190, 32, 0.2)" strokeWidth="1" strokeDasharray="4 4" />
-      <text x="394" y="124" dominantBaseline="middle" fill="rgba(120, 190, 32, 0.5)" fontSize="8" fontFamily="monospace">80%</text>
+      <line x1="58" y1="84" x2="390" y2="84" stroke="rgba(120, 190, 32, 0.2)" strokeWidth="1" strokeDasharray="4 4" />
+      <text x="394" y="84" dominantBaseline="middle" fill="rgba(120, 190, 32, 0.5)" fontSize="8" fontFamily="monospace">80%</text>
       {/* Charging curve: fast rise from 0→80%, then gentle taper */}
       <path className="cc-curve"
-        d="M 58 244 C 100 243, 140 126, 180 124 S 280 124, 330 124 S 370 128, 390 136"
+        d="M 58 244 C 100 243, 140 86, 180 84 S 280 84, 330 84 S 370 88, 390 96"
         fill="none" stroke="#78BE20" strokeWidth="2.5" strokeLinecap="round" />
       {/* 80% endpoint */}
-      <circle className="cc-dot" cx="330" cy="124" r="5" fill="#78BE20" />
-      <line x1="330" y1="124" x2="330" y2="244" stroke="rgba(255,255,255,0.06)" strokeWidth="1" strokeDasharray="2 4" />
+      <circle className="cc-dot" cx="330" cy="84" r="5" fill="#78BE20" />
+      <line x1="330" y1="84" x2="330" y2="244" stroke="rgba(255,255,255,0.06)" strokeWidth="1" strokeDasharray="2 4" />
       <text className="cc-label" x="330" y="260" textAnchor="middle"
         fill="rgba(255,255,255,0.3)" fontSize="8" fontFamily="monospace">≈40 min</text>
     </svg>
   );
 }
 
-/* ─────────────────────────────────────────────────────────
-   App section — left column: heading text only
-───────────────────────────────────────────────────────── */
-function AppHeader() {
-  const ref = useRef<HTMLDivElement>(null);
-  useGSAP(() => {
-    gsap.from(".app-text", { y: 24, opacity: 0, stagger: 0.08, duration: 0.9, ease: "power3.out",
-      scrollTrigger: { trigger: ref.current, start: "top 78%" } });
-  }, { scope: ref });
-
-  return (
-    <div ref={ref} className="flex flex-col justify-center">
-      <p className="app-text inline-flex items-center gap-3 mb-6">
-        <span className="font-display text-5xl text-white/[0.06]">04</span>
-        <span className="w-8 h-px bg-[#78BE20]/40" />
-        <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">Tech Pillar</span>
-      </p>
-      <h2 className="app-text font-display text-white leading-none mb-2"
-          style={{ fontSize: "clamp(36px, 4.5vw, 64px)" }}>
-        My Energica App
-      </h2>
-      <p className="app-text text-[10px] uppercase tracking-widest text-[#78BE20]/70 mb-5">
-        iOS &amp; Android · Bluetooth + 4G
-      </p>
-      <p className="app-text text-base text-white/50 leading-[1.8] max-w-lg">
-        Your motorcycle in your pocket. The My Energica app connects via Bluetooth for local
-        control and 4G for remote monitoring. Real-time range, state of charge, and trip data —
-        plus remote diagnostics, scheduled charging, and OTA firmware updates.
-      </p>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────
-   App section — right column: phone + features + buttons
-───────────────────────────────────────────────────────── */
-const appFeatures = [
-  { icon: "⟳", label: "Real-time range prediction" },
-  { icon: "◈", label: "Riding mode selector" },
-  { icon: "⌁", label: "Live charging status" },
-  { icon: "◉", label: "Trip & telemetry logs" },
-  { icon: "◷", label: "Scheduled charging timer" },
-];
-
-/* ─────────────────────────────────────────────────────────
-   App right column: phone mockup + features + store buttons
-───────────────────────────────────────────────────────── */
-function AppRight() {
-  const ref = useRef<HTMLDivElement>(null);
-  const batteryCircleRef = useRef<SVGCircleElement>(null);
-  const [batteryPct, setBatteryPct] = useState(0);
-  const [rangePct, setRangePct] = useState(0);
-  const [activeMode, setActiveMode] = useState(2); // default SPORT (index 2)
-
-  // strokeDasharray=160 → offset 160 = 0%, offset 40 = 75%
-  const DASH = 160;
-  const TARGET_PCT = 75;
-  const TARGET_RANGE = 315;
-
-  useGSAP(() => {
-    // Phone slide-in
-    gsap.from(".apr-phone", { y: 40, opacity: 0, duration: 1.1, ease: "power3.out",
-      scrollTrigger: { trigger: ref.current, start: "top 80%" } });
-    // Feature rows slide-in
-    gsap.from(".apr-row", { x: 16, opacity: 0, stagger: 0.07, duration: 0.55, ease: "power3.out",
-      scrollTrigger: { trigger: ref.current, start: "top 70%" } });
-
-    // Battery circle fill animation
-    const circle = batteryCircleRef.current;
-    if (circle) {
-      gsap.set(circle, { strokeDashoffset: DASH }); // start empty
-      gsap.to(circle, {
-        strokeDashoffset: DASH - (DASH * TARGET_PCT) / 100, // → 40
-        duration: 1.8, ease: "power2.out",
-        scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
-      });
-    }
-
-    // Percentage counter 0 → 75
-    const pctProxy = { val: 0 };
-    gsap.to(pctProxy, {
-      val: TARGET_PCT, duration: 1.8, ease: "power2.out",
-      onUpdate: () => setBatteryPct(Math.round(pctProxy.val)),
-      scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
-    });
-
-    // Range counter 0 → 315
-    const rangeProxy = { val: 0 };
-    gsap.to(rangeProxy, {
-      val: TARGET_RANGE, duration: 1.6, ease: "power2.out",
-      onUpdate: () => setRangePct(Math.round(rangeProxy.val)),
-      scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
-    });
-  }, { scope: ref });
-
-  return (
-    /* Phone (left) + Features/buttons (right) — side by side within the right grid column */
-    <div ref={ref} className="flex flex-col sm:flex-row gap-8 lg:gap-10 items-start">
-
-      {/* ── Phone mockup ── */}
-      <div className="apr-phone flex-shrink-0 relative w-[180px] h-[360px] rounded-[28px] border border-white/15 bg-[#0d0d0d] overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.7)]">
-        {/* Status bar */}
-        <div className="flex justify-between items-center px-3 pt-3 pb-1.5">
-          <span className="text-[7px] text-white/35 font-mono">9:41</span>
-          <div className="w-10 h-2 bg-white/10 rounded-full" />
-          <span className="text-[7px] text-white/35 font-mono">■■■</span>
-        </div>
-        {/* App header */}
-        <div className="px-3 pt-1 pb-2.5 border-b border-white/[0.06]">
-          <p className="text-[6px] uppercase tracking-[0.3em] text-white/25 mb-0.5">MY ENERGICA</p>
-          <p className="font-display text-white text-base leading-none">Experia</p>
-        </div>
-        {/* Battery circle — animated */}
-        <div className="flex flex-col items-center py-4">
-          <div className="relative w-16 h-16">
-            <svg viewBox="0 0 80 80" className="w-full h-full -rotate-90">
-              <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="5" />
-              <circle
-                ref={batteryCircleRef}
-                cx="40" cy="40" r="34" fill="none"
-                stroke="#78BE20" strokeWidth="5"
-                strokeDasharray={DASH}
-                strokeDashoffset={DASH}
-                strokeLinecap="round"
-              />
-            </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <p className="font-display text-white text-base leading-none" suppressHydrationWarning>
-                {batteryPct}%
-              </p>
-              <p className="text-[5px] text-white/25 tracking-widest">CHARGED</p>
-            </div>
-          </div>
-          <p className="text-[7px] text-white/25 mt-1" suppressHydrationWarning>
-            {rangePct} km remaining
-          </p>
-        </div>
-        {/* Modes — interactive */}
-        <div className="px-2.5 mb-2.5">
-          <div className="grid grid-cols-3 gap-1">
-            {["URBAN", "ECO", "SPORT"].map((m, i) => (
-              <button
-                key={m}
-                onClick={() => setActiveMode(i)}
-                className={`py-1 text-center text-[5.5px] tracking-wider rounded transition-colors duration-200 ${
-                  i === activeMode
-                    ? "bg-[#78BE20] text-black"
-                    : "bg-white/[0.04] text-white/25 hover:bg-white/[0.08] hover:text-white/40"
-                }`}
-              >
-                {m}
-              </button>
-            ))}
-          </div>
-        </div>
-        {/* Metrics */}
-        <div className="px-2.5 grid grid-cols-2 gap-1">
-          {(["RANGE", "SPEED", "BATT TEMP", "CHARGE ETA"] as const).map((lbl, idx) => {
-            const staticVals = ["315 km", "0 km/h", "22°C", "3h 40m"];
-            const displayVal = idx === 0 ? `${rangePct} km` : staticVals[idx];
-            return (
-              <div key={lbl} className="bg-white/[0.03] rounded p-1.5">
-                <p className="font-display text-white text-xs leading-none" suppressHydrationWarning>
-                  {displayVal}
-                </p>
-                <p className="text-[5px] text-white/20 mt-0.5 tracking-widest">{lbl}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* ── Features + buttons — vertically centred beside phone ── */}
-      <div className="flex flex-col justify-center self-stretch">
-        {/* Feature list */}
-        <div className="flex flex-col">
-          {appFeatures.map((f) => (
-            <div key={f.label} className="apr-row flex items-center gap-3 py-2.5 border-b border-white/[0.05]">
-              <span className="w-7 h-7 rounded border border-white/10 flex items-center justify-center text-[#78BE20] text-xs flex-shrink-0">
-                {f.icon}
-              </span>
-              <span className="text-sm text-white/60 whitespace-nowrap">{f.label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Store buttons */}
-        <div className="apr-row flex gap-2 mt-6">
-          <div className="px-4 py-2 border border-white/10 text-white/40 text-[9px] uppercase tracking-widest hover:border-white/30 hover:text-white/60 transition-colors duration-200 cursor-pointer whitespace-nowrap">
-            App Store
-          </div>
-          <div className="px-4 py-2 border border-white/10 text-white/40 text-[9px] uppercase tracking-widest hover:border-white/30 hover:text-white/60 transition-colors duration-200 cursor-pointer whitespace-nowrap">
-            Google Play
-          </div>
-        </div>
-      </div>
-
-    </div>
-  );
-}
 
 /* ─────────────────────────────────────────────────────────
    SVG: Throttle response graph
@@ -688,20 +488,6 @@ export default function TechContent() {
         ]}
         visual={<ChargingCurve />}
       />
-
-      {/* ── 04 APP ──────────────────────────────────────────── */}
-      <div className="border-t border-white/[0.04]">
-        <div className="max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-start">
-
-            {/* LEFT — Text only */}
-            <AppHeader />
-
-            {/* RIGHT — Phone + features + store buttons */}
-            <AppRight />
-          </div>
-        </div>
-      </div>
 
       {/* ── 05 RIDE BY WIRE ─────────────────────────────────── */}
       <TechSection
