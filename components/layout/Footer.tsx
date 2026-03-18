@@ -146,7 +146,7 @@ export default function Footer() {
           {/* Copyright + legal */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <p className="text-[10px] text-white/20">
-              © {new Date().getFullYear()} Energica Motor Company S.p.A. — Modena, Italy
+              © {new Date().getFullYear()} ENERGICA PTE LTD — Modena, Italy
             </p>
             <div className="hidden sm:block w-px h-3 bg-white/10" />
             <div className="flex flex-wrap gap-4">
