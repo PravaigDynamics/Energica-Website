@@ -42,7 +42,7 @@ const bikes = [
     id: "ego",
     index: "04",
     name: "Ego+",
-    tagline: "147 HP. MotoE-derived. Road legal.",
+    tagline: "169 HP. MotoE-derived. Road legal.",
     category: "Supersport",
     stat: { value: "2.6", unit: "s", label: "0–100 km/h" },
     accent: "#78BE20",
