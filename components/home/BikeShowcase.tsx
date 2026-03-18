@@ -15,6 +15,10 @@ const bikes = [
     accent: "#78BE20",
     href: "/models/experia",
     image: "/images/Pagina Experia/Energica_Experia.png",
+    imagePosition: "62% 64%",
+    imageScale: 1.22,
+    glowX: "68%",
+    glowY: "58%",
   },
   {
     id: "esseesse9",
@@ -26,6 +30,10 @@ const bikes = [
     accent: "#78BE20",
     href: "/models/esseesse9",
     image: "/images/Pagina SS9/ss9_mosaico_ANN4384.jpg",
+    imagePosition: "58% 60%",
+    imageScale: 1.12,
+    glowX: "65%",
+    glowY: "55%",
   },
   {
     id: "eva-ribelle",
@@ -37,6 +45,10 @@ const bikes = [
     accent: "#78BE20",
     href: "/models/eva-ribelle",
     image: "/images/Pagina Eva/evaribelle-tricolore_670x377.png",
+    imagePosition: "60% 62%",
+    imageScale: 1.18,
+    glowX: "66%",
+    glowY: "56%",
   },
   {
     id: "ego",
@@ -48,6 +60,10 @@ const bikes = [
     accent: "#78BE20",
     href: "/models/ego",
     image: "/images/Pagina SS9/egoplus-black-red-frame-resize-5.png",
+    imagePosition: "64% 62%",
+    imageScale: 1.2,
+    glowX: "70%",
+    glowY: "55%",
   },
 ];
 
@@ -94,7 +110,7 @@ export default function BikeShowcase() {
     });
   }, []);
 
-  /* ── CSS sticky scroll tracking (NO GSAP ScrollTrigger) ──── */
+  /* ── CSS sticky scroll tracking ──────────────────────────── */
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -102,7 +118,6 @@ export default function BikeShowcase() {
     const handleScroll = () => {
       const rect      = section.getBoundingClientRect();
       const totalScroll = section.offsetHeight - window.innerHeight;
-      // How far past the top of the section we are (clamped 0–totalScroll)
       const scrolled  = Math.max(0, Math.min(-rect.top, totalScroll));
       const progress  = totalScroll > 0 ? scrolled / totalScroll : 0;
       const idx       = Math.min(
@@ -116,7 +131,6 @@ export default function BikeShowcase() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Also hook into Lenis if available
     const lenis = (window as any).__lenis;
     if (lenis) lenis.on("scroll", handleScroll);
 
@@ -131,11 +145,9 @@ export default function BikeShowcase() {
   const goTo = (i: number) => {
     const section = sectionRef.current;
     if (!section) return;
-
     const totalScroll = section.offsetHeight - window.innerHeight;
     const progress    = i / (bikes.length - 1);
     const targetY     = section.offsetTop + progress * totalScroll;
-
     const lenis = (window as any).__lenis;
     if (lenis) lenis.scrollTo(targetY, { duration: 0.8 });
     else window.scrollTo({ top: targetY, behavior: "smooth" });
@@ -144,50 +156,95 @@ export default function BikeShowcase() {
   const activeBike = bikes[activeIndex];
 
   return (
-    /* Outer section: tall enough to scroll through all 4 bikes */
     <div
       ref={sectionRef}
       className="bg-[#0A0A0A]"
       style={{ height: `${bikes.length * 100}vh` }}
     >
-      {/* Inner sticky panel: stays at top while outer scrolls */}
       <div className="sticky top-0 h-screen overflow-hidden bg-[#0A0A0A]">
 
         {/* ── BIKE IMAGES ── */}
         {bikes.map((bike, i) => (
           <div
             key={bike.id}
-            className="absolute inset-y-0 right-0 w-full md:w-[70%]"
+            className="absolute inset-y-0 right-0 w-full md:w-[76%] overflow-hidden"
             data-cursor-view
             style={{
               opacity:       i === activeIndex ? 1 : 0,
-              transform:     i === activeIndex ? "scale(1)" : "scale(1.05)",
-              transition:    "opacity 0.55s ease, transform 0.65s cubic-bezier(0.16,1,0.3,1)",
+              transform:     i === activeIndex ? "scale(1)" : "scale(1.04)",
+              transition:    "opacity 0.6s ease, transform 0.75s cubic-bezier(0.16,1,0.3,1)",
               zIndex:        i === activeIndex ? 1 : 0,
               pointerEvents: i === activeIndex ? "auto" : "none",
             }}
           >
+            {/* Atmospheric glow behind bike */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: `radial-gradient(ellipse 55% 60% at ${bike.glowX} ${bike.glowY}, rgba(120,190,32,0.13) 0%, rgba(120,190,32,0.04) 40%, transparent 70%)`,
+                zIndex: 0,
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* Bike image */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={bike.image}
               alt={bike.name}
               style={{
-                position: "absolute", inset: 0,
-                width: "100%", height: "100%",
-                objectFit: "contain", objectPosition: "center",
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                objectPosition: bike.imagePosition,
+                transform: `scale(${bike.imageScale})`,
+                transformOrigin: bike.imagePosition,
+                zIndex: 1,
+              }}
+            />
+
+            {/* Ground fade — anchors bike to the floor */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: "28%",
+                background: "linear-gradient(to top, #0A0A0A 0%, rgba(10,10,10,0.6) 55%, transparent 100%)",
+                zIndex: 2,
+                pointerEvents: "none",
+              }}
+            />
+
+            {/* Top fade */}
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: "18%",
+                background: "linear-gradient(to bottom, #0A0A0A 0%, transparent 100%)",
+                zIndex: 2,
+                pointerEvents: "none",
               }}
             />
           </div>
         ))}
 
-        {/* ── Gradients ── */}
+        {/* ── Left text gradient (desktop) ── */}
         <div
           className="absolute inset-0 hidden md:block pointer-events-none z-[2]"
-          style={{ background: "linear-gradient(to right, #0A0A0A 30%, rgba(10,10,10,0.65) 52%, transparent)" }}
+          style={{ background: "linear-gradient(to right, #0A0A0A 26%, rgba(10,10,10,0.72) 44%, rgba(10,10,10,0.1) 64%, transparent 100%)" }}
         />
+        {/* ── Mobile bottom gradient ── */}
         <div
           className="absolute inset-0 md:hidden pointer-events-none z-[2]"
-          style={{ background: "linear-gradient(to top, #0A0A0A 38%, rgba(10,10,10,0.55) 62%, transparent)" }}
+          style={{ background: "linear-gradient(to top, #0A0A0A 40%, rgba(10,10,10,0.5) 65%, transparent)" }}
         />
 
         {/* ── TOP LABEL ── */}
@@ -206,7 +263,7 @@ export default function BikeShowcase() {
         {/* ── TEXT BLOCKS ── */}
         <div className="absolute inset-0 z-10 flex md:items-center items-end pb-20 md:pb-0">
           <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 w-full">
-            <div className="relative md:max-w-[46%]" style={{ height: "clamp(320px, 50vh, 490px)" }}>
+            <div className="relative md:max-w-[44%]" style={{ height: "clamp(320px, 50vh, 490px)" }}>
               {bikes.map((bike, i) => (
                 <div
                   key={bike.id}
