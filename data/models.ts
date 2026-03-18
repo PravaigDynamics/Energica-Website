@@ -345,16 +345,16 @@ export const models: BikeModel[] = [
     id: "ego",
     name: "Ego",
     tagline: "Derived from racing. Proven on track.",
-    headline: "145 HP. MotoE architecture. Road legal.",
+    headline: "147 HP. MotoE architecture. Road legal.",
     description:
-      "Seven MotoE seasons produced this motor. 145 HP. 0–100 in 2.6 seconds. Öhlins suspension, Brembo brakes, race-derived chassis geometry. Street registered.",
+      "Seven MotoE seasons produced this motor. 147 HP. 0–100 in 2.6 seconds. Öhlins suspension, Brembo brakes, race-derived chassis geometry. Street registered.",
     storyParagraphs: [
       "Seven seasons of MotoE. One motor platform. The Ego is built from what Energica learned on the grid — not inspired by it. The same architecture. Different application.",
-      "145 HP. 215 Nm at the wheel. 0–100 km/h in 2.6 seconds. 200 km/h top speed. These numbers were earned on circuits, then certified for public roads.",
+      "147 HP. 215 Nm at the wheel. 0–100 km/h in 2.6 seconds. 200 km/h top speed. These numbers were earned on circuits, then certified for public roads.",
       "Öhlins suspension front and rear. Brembo M4.32 radial brakes. Chassis geometry tuned on the same circuits where MotoE champions compete. Road legal. No exceptions.",
     ],
     callout: {
-      stat: "145 HP",
+      stat: "147 HP",
       label: "MotoE-derived peak power — road legal",
     },
     heroImage: "/images/Pagina%20EGO/Ego-1.png",
@@ -390,7 +390,7 @@ export const models: BikeModel[] = [
     specs: {
       motor: {
         type: "Permanent Magnet Assisted Synchronous Reluctance (PMASynRM)",
-        power: "107 kW / 145 HP peak",
+        power: "110 kW / 147 HP peak",
         torque: "215 Nm at wheel",
         topSpeed: "200 km/h",
         acceleration: "0–100 km/h in 2.6 sec",
