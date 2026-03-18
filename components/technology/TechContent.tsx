@@ -177,7 +177,7 @@ function BatteryGrid() {
       <text x="190" y="234" textAnchor="middle"
         fill="rgba(120, 190, 32, 0.7)" fontSize="9" letterSpacing="4" fontFamily="monospace">kWh TOTAL CAPACITY</text>
       <text x="190" y="252" textAnchor="middle"
-        fill="rgba(255,255,255,0.15)" fontSize="8" letterSpacing="2" fontFamily="monospace">24 INDIVIDUALLY MONITORED CELLS</text>
+        fill="rgba(255,255,255,0.15)" fontSize="8" letterSpacing="2" fontFamily="monospace">84 INDIVIDUALLY MONITORED CELLS</text>
     </svg>
   );
 }
@@ -636,7 +636,6 @@ export default function TechContent() {
             <span className="block text-[#78BE20]">TECHNOLOGY</span>
           </h1>
           <p className="th-body text-lg text-white/40 max-w-md leading-relaxed">
-            Every Energica is built around proprietary technology — not repurposed automotive parts.
             From motor to BMS to software, we control every variable.
           </p>
 
@@ -668,7 +667,7 @@ export default function TechContent() {
       <TechSection
         num="02" title="Battery System"
         sub="22.5 kWh lithium polymer — largest of any production electric motorcycle"
-        body="Custom lithium polymer cells arranged in a structural aluminium pack. Each of the 24 cells is individually monitored by Energica's proprietary BMS — optimising charge rate, thermal management, and longevity simultaneously. The pack doubles as a stressed chassis member, reducing weight elsewhere."
+        body="Custom lithium polymer cells arranged in a structural aluminium pack. Each of the 84 cells is individually monitored by the BMS — optimising charge rate, thermal management, and longevity simultaneously. The pack doubles as a stressed chassis member, reducing weight elsewhere."
         stats={[
           { value: "22.5", unit: "kWh", label: "Total Capacity" },
           { value: "420", unit: "km", label: "City Range" },
