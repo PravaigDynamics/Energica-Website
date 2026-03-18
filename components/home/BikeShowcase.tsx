@@ -15,10 +15,6 @@ const bikes = [
     accent: "#78BE20",
     href: "/models/experia",
     image: "/images/Pagina Experia/Energica_Experia.png",
-    imagePosition: "62% 54%",
-    imageScale: 1.18,
-    glowX: "68%",
-    glowY: "58%",
   },
   {
     id: "esseesse9",
@@ -30,10 +26,6 @@ const bikes = [
     accent: "#78BE20",
     href: "/models/esseesse9",
     image: "/images/Pagina SS9/ss9_mosaico_ANN4384.jpg",
-    imagePosition: "58% 60%",
-    imageScale: 1.12,
-    glowX: "65%",
-    glowY: "55%",
   },
   {
     id: "eva-ribelle",
@@ -45,10 +37,6 @@ const bikes = [
     accent: "#78BE20",
     href: "/models/eva-ribelle",
     image: "/images/Pagina Eva/evaribelle-tricolore_670x377.png",
-    imagePosition: "60% 62%",
-    imageScale: 1.18,
-    glowX: "66%",
-    glowY: "56%",
   },
   {
     id: "ego",
@@ -60,10 +48,6 @@ const bikes = [
     accent: "#78BE20",
     href: "/models/ego",
     image: "/images/Pagina SS9/egoplus-black-red-frame-resize-5.png",
-    imagePosition: "64% 58%",
-    imageScale: 1.28,
-    glowX: "70%",
-    glowY: "55%",
   },
 ];
 
@@ -116,11 +100,11 @@ export default function BikeShowcase() {
     if (!section) return;
 
     const handleScroll = () => {
-      const rect      = section.getBoundingClientRect();
+      const rect        = section.getBoundingClientRect();
       const totalScroll = section.offsetHeight - window.innerHeight;
-      const scrolled  = Math.max(0, Math.min(-rect.top, totalScroll));
-      const progress  = totalScroll > 0 ? scrolled / totalScroll : 0;
-      const idx       = Math.min(
+      const scrolled    = Math.max(0, Math.min(-rect.top, totalScroll));
+      const progress    = totalScroll > 0 ? scrolled / totalScroll : 0;
+      const idx         = Math.min(
         Math.round(progress * (bikes.length - 1)),
         bikes.length - 1
       );
@@ -163,88 +147,134 @@ export default function BikeShowcase() {
     >
       <div className="sticky top-0 h-screen overflow-hidden bg-[#0A0A0A]">
 
-        {/* ── BIKE IMAGES ── */}
-        {bikes.map((bike, i) => (
+        {/* ── FIXED IMAGE FRAME ───────────────────────────────────
+            All bikes render into this exact same box.
+            Position: right side, vertically centred, fixed size.
+        ── */}
+        <div
+          className="absolute hidden md:block"
+          style={{
+            right: "2%",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "62%",
+            height: "78%",
+            zIndex: 1,
+          }}
+        >
+          {/* Atmospheric green glow — sits behind all bike images */}
           <div
-            key={bike.id}
-            className="absolute inset-y-0 right-0 w-full md:w-[76%] overflow-hidden"
-            data-cursor-view
             style={{
-              opacity:       i === activeIndex ? 1 : 0,
-              transform:     i === activeIndex ? "scale(1)" : "scale(1.04)",
-              transition:    "opacity 0.6s ease, transform 0.75s cubic-bezier(0.16,1,0.3,1)",
-              zIndex:        i === activeIndex ? 1 : 0,
-              pointerEvents: i === activeIndex ? "auto" : "none",
+              position: "absolute",
+              inset: 0,
+              background: "radial-gradient(ellipse 70% 65% at 58% 55%, rgba(120,190,32,0.11) 0%, rgba(120,190,32,0.03) 50%, transparent 75%)",
+              pointerEvents: "none",
             }}
-          >
-            {/* Atmospheric glow behind bike */}
+          />
+
+          {/* Bottom ground fade */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: "22%",
+              background: "linear-gradient(to top, #0A0A0A 0%, rgba(10,10,10,0.5) 60%, transparent 100%)",
+              zIndex: 3,
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Top fade */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              height: "12%",
+              background: "linear-gradient(to bottom, #0A0A0A 0%, transparent 100%)",
+              zIndex: 3,
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Each bike image — same box, same objectFit, same position */}
+          {bikes.map((bike, i) => (
             <div
+              key={bike.id}
               style={{
                 position: "absolute",
                 inset: 0,
-                background: `radial-gradient(ellipse 55% 60% at ${bike.glowX} ${bike.glowY}, rgba(120,190,32,0.13) 0%, rgba(120,190,32,0.04) 40%, transparent 70%)`,
-                zIndex: 0,
-                pointerEvents: "none",
+                opacity:       i === activeIndex ? 1 : 0,
+                transform:     i === activeIndex ? "scale(1)" : "scale(1.03)",
+                transition:    "opacity 0.6s ease, transform 0.75s cubic-bezier(0.16,1,0.3,1)",
+                zIndex:        i === activeIndex ? 2 : 0,
+                pointerEvents: i === activeIndex ? "auto" : "none",
               }}
-            />
+              data-cursor-view
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={bike.image}
+                alt={bike.name}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  objectPosition: "center bottom",
+                  display: "block",
+                }}
+              />
+            </div>
+          ))}
+        </div>
 
-            {/* Bike image */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={bike.image}
-              alt={bike.name}
+        {/* ── MOBILE: full-width image (stacked layout) ── */}
+        <div className="absolute inset-0 md:hidden" style={{ zIndex: 1 }}>
+          {bikes.map((bike, i) => (
+            <div
+              key={bike.id}
               style={{
                 position: "absolute",
                 inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                objectPosition: bike.imagePosition,
-                transform: `scale(${bike.imageScale})`,
-                transformOrigin: bike.imagePosition,
-                zIndex: 1,
+                opacity:    i === activeIndex ? 1 : 0,
+                transition: "opacity 0.6s ease",
+                zIndex:     i === activeIndex ? 1 : 0,
               }}
-            />
-
-            {/* Ground fade — anchors bike to the floor */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: "28%",
-                background: "linear-gradient(to top, #0A0A0A 0%, rgba(10,10,10,0.6) 55%, transparent 100%)",
-                zIndex: 2,
-                pointerEvents: "none",
-              }}
-            />
-
-            {/* Top fade */}
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: "18%",
-                background: "linear-gradient(to bottom, #0A0A0A 0%, transparent 100%)",
-                zIndex: 2,
-                pointerEvents: "none",
-              }}
-            />
-          </div>
-        ))}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={bike.image}
+                alt={bike.name}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  objectPosition: "center 55%",
+                }}
+              />
+            </div>
+          ))}
+          {/* Mobile bottom gradient */}
+          <div
+            className="pointer-events-none"
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to top, #0A0A0A 40%, rgba(10,10,10,0.5) 65%, transparent)",
+              zIndex: 2,
+            }}
+          />
+        </div>
 
         {/* ── Left text gradient (desktop) ── */}
         <div
           className="absolute inset-0 hidden md:block pointer-events-none z-[2]"
-          style={{ background: "linear-gradient(to right, #0A0A0A 30%, rgba(10,10,10,0.85) 46%, rgba(10,10,10,0.2) 60%, transparent 100%)" }}
-        />
-        {/* ── Mobile bottom gradient ── */}
-        <div
-          className="absolute inset-0 md:hidden pointer-events-none z-[2]"
-          style={{ background: "linear-gradient(to top, #0A0A0A 40%, rgba(10,10,10,0.5) 65%, transparent)" }}
+          style={{ background: "linear-gradient(to right, #0A0A0A 32%, rgba(10,10,10,0.88) 44%, rgba(10,10,10,0.15) 58%, transparent 100%)" }}
         />
 
         {/* ── TOP LABEL ── */}
