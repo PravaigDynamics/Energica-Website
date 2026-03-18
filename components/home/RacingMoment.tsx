@@ -21,10 +21,10 @@ export default function RacingMoment() {
           <Reveal>
             <span className="mono-tag mb-5 inline-block">Racing Heritage</span>
             <h2 className="font-display text-[clamp(36px,9vw,112px)] text-white leading-none uppercase mb-4">
-              7 Seasons.<br />One Supplier.
+              4 Seasons.<br />One Supplier.
             </h2>
             <p className="text-sm text-white/40 mb-6 font-light" style={{ fontFamily: "var(--font-ibm-sans)" }}>
-              Zero compromises.
+              No Compromises.
             </p>
             <Link href="/racing" className="inline-flex items-center gap-3 group">
               <div className="w-8 h-px bg-white/40 group-hover:w-12 transition-all duration-300" />

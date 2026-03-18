@@ -119,7 +119,7 @@ export default function RacingPage() {
               },
               {
                 title: "Battery Management",
-                body: "Race-spec thermal management and BMS algorithms, tested across 7 seasons of competitive motorsport.",
+                body: "Race-spec thermal management and BMS algorithms, tested across 4 seasons of competitive motorsport.",
               },
               {
                 title: "Bosch MSC Electronics",

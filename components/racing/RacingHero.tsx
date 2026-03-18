@@ -43,7 +43,7 @@ export default function RacingHero() {
           className="font-display text-white leading-none mb-6"
           style={{ fontSize: "clamp(64px, 11vw, 160px)" }}
         >
-          7 Seasons.<br />
+          4 Seasons.<br />
           <span className="text-[#78BE20]">One Supplier.</span>
         </h1>
         <p className="text-[length:var(--text-body-lg)] text-white/55 max-w-[750px] leading-relaxed" style={{ fontFamily: "var(--font-ibm-sans)", fontWeight: 300 }}>
