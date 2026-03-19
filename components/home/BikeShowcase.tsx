@@ -280,10 +280,10 @@ export default function BikeShowcase() {
         {/* ── TOP LABEL ── */}
         <div className="absolute top-0 left-0 right-0 z-20 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 pt-14">
           <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
-            <p className="text-[10px] tracking-[0.45em] text-white/25 uppercase">The Lineup</p>
+            <p className="text-[10px] tracking-[0.45em] text-white/50 uppercase">The Lineup</p>
             <Link
               href="/models"
-              className="text-[10px] tracking-[0.3em] text-white/25 uppercase hover:text-white transition-colors duration-200"
+              className="text-[10px] tracking-[0.3em] text-white/50 uppercase hover:text-white transition-colors duration-200"
             >
               View all →
             </Link>
@@ -302,10 +302,10 @@ export default function BikeShowcase() {
                   aria-hidden={i !== activeIndex}
                 >
                   <div className="flex items-center gap-3 mb-5 md:mb-6">
-                    <span style={{ fontFamily: "var(--font-ibm-mono)", fontSize: "10px", letterSpacing: "0.45em", color: "rgba(255,255,255,0.2)" }}>
+                    <span style={{ fontFamily: "var(--font-ibm-mono)", fontSize: "11px", letterSpacing: "0.45em", color: "rgba(255,255,255,0.55)" }}>
                       {bike.index}
                     </span>
-                    <div className="w-5 h-px bg-white/15" />
+                    <div className="w-5 h-px bg-white/40" />
                     <span className="mono-tag">{bike.category}</span>
                   </div>
 
@@ -315,7 +315,7 @@ export default function BikeShowcase() {
 
                   <div className="h-[2px] w-12 mb-4 md:mb-5" style={{ backgroundColor: bike.accent }} />
 
-                  <p className="text-sm md:text-base text-white/50 mb-5 md:mb-7 font-light leading-relaxed tracking-wide" style={{ fontFamily: "var(--font-ibm-sans)" }}>
+                  <p className="text-sm md:text-base text-white/65 mb-5 md:mb-7 font-light leading-relaxed tracking-wide" style={{ fontFamily: "var(--font-ibm-sans)" }}>
                     {bike.tagline}
                   </p>
 
@@ -324,11 +324,11 @@ export default function BikeShowcase() {
                       <span className="font-display text-[clamp(42px,7vw,92px)] leading-none" style={{ color: bike.accent }}>
                         {bike.stat.value}
                       </span>
-                      <span className="text-xl md:text-2xl text-white/35 font-light">
+                      <span className="text-xl md:text-2xl text-white/60 font-light">
                         {bike.stat.unit}
                       </span>
                     </div>
-                    <p className="text-[9px] tracking-[0.45em] text-white/25 uppercase">
+                    <p className="text-[11px] tracking-[0.4em] text-white/50 uppercase" style={{ fontFamily: "var(--font-ibm-mono)" }}>
                       {bike.stat.label}
                     </p>
                   </div>
@@ -398,7 +398,7 @@ export default function BikeShowcase() {
                 </button>
               ))}
             </div>
-            <span className="hidden md:block text-[9px] tracking-[0.35em] text-white/20 uppercase whitespace-nowrap">
+            <span className="hidden md:block text-[10px] tracking-[0.35em] text-white/50 uppercase whitespace-nowrap" style={{ fontFamily: "var(--font-ibm-mono)" }}>
               {activeBike.index} — {activeBike.name}
             </span>
           </div>
@@ -418,7 +418,7 @@ export default function BikeShowcase() {
                 style={{
                   width:           i === activeIndex ? "6px"  : "4px",
                   height:          i === activeIndex ? "32px" : "12px",
-                  backgroundColor: i === activeIndex ? activeBike.accent : "rgba(255,255,255,0.18)",
+                  backgroundColor: i === activeIndex ? activeBike.accent : "rgba(255,255,255,0.35)",
                 }}
               />
               <span
