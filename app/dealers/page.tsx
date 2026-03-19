@@ -134,7 +134,7 @@ export default function DealersPage() {
       <Container className="py-[120px] border-b border-white/[0.04]">
         <p className="inline-flex items-center gap-3 mb-6">
           <span className="w-6 h-px bg-[#78BE20]" />
-          <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
+          <span className="text-[10px] uppercase tracking-[0.35em] text-white/60">
             {totalDealers}+ Authorised Locations
           </span>
         </p>
@@ -142,7 +142,7 @@ export default function DealersPage() {
           Find a<br />
           <span className="text-[#78BE20]">Dealer</span>
         </h1>
-        <p className="text-[length:var(--text-body)] text-white/45 max-w-[750px] leading-relaxed mb-[32px]">
+        <p className="text-[length:var(--text-body)] text-white/70 max-w-[750px] leading-relaxed mb-[32px]">
           Visit an authorised Energica dealer to see, touch, and ride our motorcycles. Our specialists are ready to help you configure your perfect match.
         </p>
         <PrimaryButton href="/test-ride">Book Test Ride →</PrimaryButton>
@@ -160,7 +160,7 @@ export default function DealersPage() {
                 <div className="flex items-center gap-4 mb-6 pb-4 border-b border-white/[0.05]">
                   <span className="w-2 h-2 rounded-full bg-[#78BE20]" />
                   <h2 className="font-display text-2xl text-white">{region.region}</h2>
-                  <span className="ml-auto text-[10px] uppercase tracking-widest text-white/25">
+                  <span className="ml-auto text-[10px] uppercase tracking-widest text-white/50">
                     {region.dealers.length} dealers
                   </span>
                 </div>
@@ -173,26 +173,26 @@ export default function DealersPage() {
                       className="group p-5 border border-white/[0.06] bg-[#0d0d0d] hover:border-[#78BE20]/25 transition-all duration-200"
                     >
                       {/* Country badge */}
-                      <p className="text-[9px] uppercase tracking-widest text-white/20 mb-2">{dealer.country}</p>
+                      <p className="text-[9px] uppercase tracking-widest text-white/45 mb-2">{dealer.country}</p>
 
                       {/* Name */}
                       <h3 className="font-display text-white text-lg leading-tight mb-1 group-hover:text-[#78BE20] transition-colors duration-200">
                         {dealer.city}
                       </h3>
-                      <p className="text-xs text-white/35 mb-4">{dealer.name}</p>
+                      <p className="text-xs text-white/55 mb-4">{dealer.name}</p>
 
                       {/* Contact details */}
                       <div className="space-y-1.5 mb-4">
                         <a
                           href={`tel:${dealer.phone.replace(/\s/g, "")}`}
-                          className="flex items-center gap-2 text-xs text-white/40 hover:text-white/70 transition-colors"
+                          className="flex items-center gap-2 text-xs text-white/60 hover:text-white transition-colors"
                         >
                           <span className="text-[#78BE20]/50">↗</span>
                           {dealer.phone}
                         </a>
                         <a
                           href={`mailto:${dealer.email}`}
-                          className="flex items-center gap-2 text-xs text-white/40 hover:text-white/70 transition-colors"
+                          className="flex items-center gap-2 text-xs text-white/60 hover:text-white transition-colors"
                         >
                           <span className="text-[#78BE20]/50">@</span>
                           {dealer.email}
@@ -211,7 +211,7 @@ export default function DealersPage() {
                         </a>
                         <Link
                           href="/test-ride"
-                          className="text-[9px] uppercase tracking-widest text-white/25 hover:text-white/50 transition-colors ml-auto"
+                          className="text-[9px] uppercase tracking-widest text-white/50 hover:text-white transition-colors ml-auto"
                         >
                           Book Ride
                         </Link>
@@ -271,7 +271,7 @@ export default function DealersPage() {
                   {[["12", "Countries"], [totalDealers.toString(), "Dealers"], ["200+", "Cities"]].map(([val, lbl]) => (
                     <div key={lbl} className="text-center">
                       <p className="font-display text-2xl text-white">{val}</p>
-                      <p className="text-[9px] uppercase tracking-widest text-white/25">{lbl}</p>
+                      <p className="text-[9px] uppercase tracking-widest text-white/50">{lbl}</p>
                     </div>
                   ))}
                 </div>
@@ -279,7 +279,7 @@ export default function DealersPage() {
 
               {/* Bottom bar */}
               <div className="absolute bottom-0 left-0 right-0 px-6 py-4 border-t border-white/[0.05] bg-[#080808]/80 backdrop-blur-sm">
-                <p className="text-[9px] uppercase tracking-widest text-white/20 text-center">
+                <p className="text-[9px] uppercase tracking-widest text-white/40 text-center">
                   To enable the live map, add a Google Maps embed or Mapbox integration
                 </p>
               </div>

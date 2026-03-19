@@ -44,10 +44,10 @@ export default function Footer() {
             </Link>
 
             {/* Tagline */}
-            <p className="text-[11px] uppercase tracking-[0.25em] text-[#78BE20]/60 mb-3">
+            <p className="text-[11px] uppercase tracking-[0.25em] text-[#78BE20]/85 mb-3">
               Born Electric. Born Italian.
             </p>
-            <p className="text-sm text-white/35 leading-relaxed max-w-xs">
+            <p className="text-sm text-white/60 leading-relaxed max-w-xs">
               The world&rsquo;s most advanced electric motorcycles, engineered in Modena, Italy since 2009.
             </p>
 
@@ -60,7 +60,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 border border-white/[0.08] flex items-center justify-center text-[9px] font-mono text-white/35 hover:border-[#78BE20]/50 hover:text-[#78BE20] transition-all duration-200"
+                  className="w-9 h-9 border border-white/[0.12] flex items-center justify-center text-[9px] font-mono text-white/55 hover:border-[#78BE20]/60 hover:text-[#78BE20] transition-all duration-200"
                 >
                   {s.abbr}
                 </a>
@@ -70,7 +70,7 @@ export default function Footer() {
 
           {/* ── Models ────────────────────────────────────────── */}
           <div>
-            <h4 className="text-[9px] uppercase tracking-[0.3em] text-white/25 mb-5">Models</h4>
+            <h4 className="text-[10px] uppercase tracking-[0.3em] text-white/50 mb-5">Models</h4>
             <ul className="flex flex-col gap-3">
               {footerLinks.models.map((link) => (
                 <li key={link.href}>
@@ -87,7 +87,7 @@ export default function Footer() {
 
           {/* ── Company ───────────────────────────────────────── */}
           <div>
-            <h4 className="text-[9px] uppercase tracking-[0.3em] text-white/25 mb-5">Company</h4>
+            <h4 className="text-[10px] uppercase tracking-[0.3em] text-white/50 mb-5">Company</h4>
             <ul className="flex flex-col gap-3">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
@@ -104,7 +104,7 @@ export default function Footer() {
 
           {/* ── Support ───────────────────────────────────────── */}
           <div>
-            <h4 className="text-[9px] uppercase tracking-[0.3em] text-white/25 mb-5">Support</h4>
+            <h4 className="text-[10px] uppercase tracking-[0.3em] text-white/50 mb-5">Support</h4>
             <ul className="flex flex-col gap-3">
               {footerLinks.support.map((link) => (
                 <li key={link.href}>
@@ -120,12 +120,12 @@ export default function Footer() {
 
             {/* Newsletter nudge */}
             <div className="mt-8 pt-6 border-t border-white/[0.05]">
-              <p className="text-[10px] uppercase tracking-widest text-white/25 mb-3">
+              <p className="text-[10px] uppercase tracking-widest text-white/50 mb-3">
                 Stay Updated
               </p>
               <Link
                 href="/test-ride"
-                className="inline-flex items-center gap-2 text-xs text-[#78BE20]/70 hover:text-[#78BE20] transition-colors duration-200"
+                className="inline-flex items-center gap-2 text-xs text-[#78BE20]/90 hover:text-[#78BE20] transition-colors duration-200"
               >
                 Book a test ride →
               </Link>
@@ -145,7 +145,7 @@ export default function Footer() {
 
           {/* Copyright + legal */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <p className="text-[10px] text-white/20">
+            <p className="text-[10px] text-white/45">
               © {new Date().getFullYear()} ENERGICA PTE LTD — Modena, Italy
             </p>
             <div className="hidden sm:block w-px h-3 bg-white/10" />
@@ -154,7 +154,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-[10px] text-white/20 hover:text-white/45 transition-colors duration-200"
+                  className="text-[10px] text-white/45 hover:text-white transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
@@ -164,11 +164,11 @@ export default function Footer() {
 
           {/* Country / language selector */}
           <div className="relative flex items-center gap-2">
-            <span className="text-[9px] uppercase tracking-widest text-white/20">Region</span>
+            <span className="text-[9px] uppercase tracking-widest text-white/45">Region</span>
             <div className="relative">
               <select
                 defaultValue="International (EN)"
-                className="appearance-none bg-transparent border border-white/[0.08] text-white/35 text-[10px] px-3 py-1.5 pr-6 focus:outline-none focus:border-[#78BE20]/40 hover:border-white/20 transition-colors duration-200 cursor-pointer"
+                className="appearance-none bg-transparent border border-white/[0.15] text-white/60 text-[10px] px-3 py-1.5 pr-6 focus:outline-none focus:border-[#78BE20]/60 hover:border-white/30 transition-colors duration-200 cursor-pointer"
                 aria-label="Select region"
               >
                 {COUNTRIES.map((c) => (
@@ -177,7 +177,7 @@ export default function Footer() {
                   </option>
                 ))}
               </select>
-              <span className="absolute right-2 top-1/2 -translate-y-1/2 text-white/25 pointer-events-none text-[8px]">▾</span>
+              <span className="absolute right-2 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none text-[8px]">▾</span>
             </div>
           </div>
         </div>

@@ -65,7 +65,7 @@ export default function HeroSection() {
             {scrambleTrigger ? "PROGRESS,\nRIDDEN." : "·········\n·······"}
           </h1>
 
-          <p className="text-sm text-white/40 font-light tracking-wide mb-7 max-w-md" style={{ fontFamily: "var(--font-ibm-sans)" }}>
+          <p className="text-sm text-white/65 font-light tracking-wide mb-7 max-w-md" style={{ fontFamily: "var(--font-ibm-sans)" }}>
             Built in Modena. Proven in MotoE.<br className="hidden md:block" />Four seasons, one supplier.
           </p>
 
@@ -102,7 +102,7 @@ export default function HeroSection() {
           />
         </div>
         <span
-          className="text-[9px] tracking-[0.3em] text-white/30 uppercase mt-4"
+          className="text-[9px] tracking-[0.3em] text-white/55 uppercase mt-4"
           style={{ writingMode: "vertical-rl" }}
         >
           Scroll

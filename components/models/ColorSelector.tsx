@@ -37,7 +37,7 @@ export default function ColorSelector({ colors }: ColorSelectorProps) {
         <div>
           <p className="inline-flex items-center gap-3 mb-3">
             <span className="w-6 h-px bg-[#78BE20]" />
-            <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
+            <span className="text-[10px] uppercase tracking-[0.35em] text-white/60">
               Choose Your Colour
             </span>
           </p>
@@ -122,10 +122,10 @@ export default function ColorSelector({ colors }: ColorSelectorProps) {
           className="w-2.5 h-2.5 rounded-full"
           style={{ backgroundColor: colors[active]?.hex }}
         />
-        <span className="text-[10px] uppercase tracking-[0.25em] text-white/40">
+        <span className="text-[10px] uppercase tracking-[0.25em] text-white/65">
           {colors[active]?.name}
         </span>
-        <span className="ml-auto text-[10px] text-white/20">
+        <span className="ml-auto text-[10px] text-white/45">
           {active + 1} / {colors.length}
         </span>
       </div>

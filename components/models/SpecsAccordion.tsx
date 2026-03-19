@@ -37,7 +37,7 @@ function humanLabel(key: string): string {
 function SpecRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between py-3 border-b border-white/[0.05] group">
-      <span className="text-sm text-white/40 group-hover:text-white/60 transition-colors shrink-0 pr-4">
+      <span className="text-sm text-white/60 group-hover:text-white/80 transition-colors shrink-0 pr-4">
         {label}
       </span>
       <span className="text-sm text-white text-right max-w-xs leading-snug">{value}</span>
@@ -89,7 +89,7 @@ export default function SpecsAccordion({ specs }: SpecsAccordionProps) {
             >
               {/* Left: number tag + label */}
               <span className="flex items-center gap-4">
-                <span className="font-display text-sm text-white/10 group-hover:text-[#78BE20]/30 transition-colors duration-200 w-5 text-right">
+                <span className="font-display text-sm text-white/30 group-hover:text-[#78BE20]/60 transition-colors duration-200 w-5 text-right">
                   {(SECTION_ORDER.indexOf(key) + 1).toString().padStart(2, "0")}
                 </span>
                 <span

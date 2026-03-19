@@ -23,7 +23,7 @@ export default function RacingMoment() {
             <h2 className="font-display text-[clamp(36px,9vw,112px)] text-white leading-none uppercase mb-4">
               4 Seasons.<br />One Supplier.
             </h2>
-            <p className="text-sm text-white/40 mb-6 font-light" style={{ fontFamily: "var(--font-ibm-sans)" }}>
+            <p className="text-sm text-white/65 mb-6 font-light" style={{ fontFamily: "var(--font-ibm-sans)" }}>
               No Compromises.
             </p>
             <Link href="/racing" className="inline-flex items-center gap-3 group">

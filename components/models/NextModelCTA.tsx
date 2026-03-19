@@ -63,7 +63,7 @@ export default function NextModelCTA({ nextModel }: NextModelCTAProps) {
         <div>
           <p className="nm-label inline-flex items-center gap-3 mb-8">
             <span className="w-6 h-px bg-[#78BE20]" />
-            <span className="text-[10px] uppercase tracking-[0.35em] text-white/30">
+            <span className="text-[10px] uppercase tracking-[0.35em] text-white/55">
               Also from Energica
             </span>
           </p>
@@ -87,7 +87,7 @@ export default function NextModelCTA({ nextModel }: NextModelCTAProps) {
                   <span className="font-display text-3xl text-white">{spec.value}</span>
                   <span className="font-display text-sm text-[#78BE20]">{spec.unit}</span>
                 </div>
-                <p className="text-[9px] uppercase tracking-widest text-white/25 mt-0.5">
+                <p className="text-[9px] uppercase tracking-widest text-white/50 mt-0.5">
                   {spec.label}
                 </p>
               </div>

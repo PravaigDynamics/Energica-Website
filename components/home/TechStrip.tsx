@@ -34,12 +34,12 @@ export default function TechStrip() {
             <span className="mono-tag mb-4 inline-block">Engineering</span>
             <h2 className="font-display text-[clamp(28px,5vw,56px)] text-white leading-tight uppercase">
               The numbers<br />
-              <span className="text-white/25">are real.</span>
+              <span className="text-white/45">are real.</span>
             </h2>
           </div>
           <Link
             href="/technology"
-            className="text-[10px] tracking-[0.3em] text-white/30 uppercase hover:text-white transition-colors hidden md:block"
+            className="text-[10px] tracking-[0.3em] text-white/55 uppercase hover:text-white transition-colors hidden md:block"
             style={{ fontFamily: "var(--font-ibm-mono)" }}
           >
             Technology →
@@ -63,7 +63,7 @@ export default function TechStrip() {
         <div className="mt-10 md:hidden">
           <Link
             href="/technology"
-            className="text-[10px] tracking-[0.3em] text-white/30 uppercase"
+            className="text-[10px] tracking-[0.3em] text-white/55 uppercase"
             style={{ fontFamily: "var(--font-ibm-mono)" }}
           >
             Technology →

@@ -45,7 +45,7 @@ export default function TechStatPillar({
       </div>
       <div className="mono-tag mb-4 inline-block">{label}</div>
       <p
-        className="text-sm text-white/35 leading-relaxed"
+        className="text-sm text-white/60 leading-relaxed"
         style={{ fontFamily: "var(--font-ibm-sans)", fontWeight: 300 }}
       >
         {detail}

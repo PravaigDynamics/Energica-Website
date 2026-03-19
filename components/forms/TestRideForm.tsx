@@ -56,7 +56,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-[10px] uppercase tracking-[0.25em] text-white/40">
+      <label className="text-[10px] uppercase tracking-[0.25em] text-white/65">
         {label}
         {required && <span className="text-[#78BE20] ml-1">*</span>}
       </label>
@@ -110,7 +110,7 @@ function SuccessView({ email, onReset }: { email: string; onReset: () => void })
       </div>
 
       <div className="sv-text flex flex-col items-center gap-4">
-        <p className="text-[10px] uppercase tracking-[0.35em] text-[#78BE20]/70">Request received</p>
+        <p className="text-[10px] uppercase tracking-[0.35em] text-[#78BE20]/90">Request received</p>
         <h2 className="font-display text-white leading-none" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
           You&rsquo;re all set.
         </h2>
@@ -119,12 +119,12 @@ function SuccessView({ email, onReset }: { email: string; onReset: () => void })
           Check your inbox at{" "}
           <span className="text-white/60">{email}</span>.
         </p>
-        <p className="text-sm text-white/30 mt-2">
+        <p className="text-sm text-white/55 mt-2">
           Your nearest dealer will reach out directly to confirm the time and location.
         </p>
         <button
           onClick={onReset}
-          className="mt-8 text-[10px] uppercase tracking-widest text-white/25 hover:text-white/50 transition-colors duration-200 border border-white/10 hover:border-white/25 px-6 py-3"
+          className="mt-8 text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors duration-200 border border-white/20 hover:border-white/50 px-6 py-3"
         >
           Submit Another Request
         </button>
@@ -200,7 +200,7 @@ export default function TestRideForm() {
         <div className="relative z-10 p-10 pb-14">
           <p className="inline-flex items-center gap-3 mb-4">
             <span className="w-6 h-px bg-[#78BE20]" />
-            <span className="text-[10px] uppercase tracking-[0.35em] text-white/40">Free · No Commitment</span>
+            <span className="text-[10px] uppercase tracking-[0.35em] text-white/65">Free · No Commitment</span>
           </p>
           <h2 className="font-display text-white leading-none mb-3" style={{ fontSize: "clamp(40px, 4vw, 64px)" }}>
             Feel the<br />
@@ -216,7 +216,7 @@ export default function TestRideForm() {
             {[["Free", "No cost"], ["24h", "Confirmation"], ["200+", "Locations"]].map(([val, lbl]) => (
               <div key={lbl}>
                 <p className="font-display text-xl text-white">{val}</p>
-                <p className="text-[9px] uppercase tracking-widest text-white/30">{lbl}</p>
+                <p className="text-[9px] uppercase tracking-widest text-white/55">{lbl}</p>
               </div>
             ))}
           </div>
@@ -232,7 +232,7 @@ export default function TestRideForm() {
             <div className="tr-field mb-10">
               <p className="inline-flex items-center gap-3 mb-4">
                 <span className="w-6 h-px bg-[#78BE20]" />
-                <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">Book a Test Ride</span>
+                <span className="text-[10px] uppercase tracking-[0.35em] text-white/60">Book a Test Ride</span>
               </p>
               <h1 className="font-display text-white leading-none" style={{ fontSize: "clamp(42px, 5vw, 80px)" }}>
                 Request a<br />
@@ -293,7 +293,7 @@ export default function TestRideForm() {
                       <option value="">Select a model</option>
                       {MODELS.map((m) => <option key={m.value} value={m.value}>{m.label}</option>)}
                     </select>
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none text-xs">▾</span>
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/55 pointer-events-none text-xs">▾</span>
                   </div>
                 </Field>
               </div>
@@ -313,7 +313,7 @@ export default function TestRideForm() {
                         </optgroup>
                       ))}
                     </select>
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none text-xs">▾</span>
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/55 pointer-events-none text-xs">▾</span>
                   </div>
                 </Field>
               </div>
@@ -346,7 +346,7 @@ export default function TestRideForm() {
                     "Request Test Ride →"
                   )}
                 </button>
-                <p className="text-[9px] uppercase tracking-widest text-white/20 text-center mt-3">
+                <p className="text-[9px] uppercase tracking-widest text-white/45 text-center mt-3">
                   Free · No commitment · Response within 24 hours
                 </p>
               </div>

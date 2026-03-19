@@ -50,7 +50,7 @@ export default function AboutPage() {
             <div>
               <p className="inline-flex items-center gap-3 mb-6">
                 <span className="w-6 h-px bg-[#78BE20]" />
-                <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
+                <span className="text-[10px] uppercase tracking-[0.35em] text-white/60">
                   Our Story
                 </span>
               </p>

@@ -35,7 +35,7 @@ export default function RacingPage() {
                 >
                   {s.num}
                 </p>
-                <p className="text-[10px] uppercase tracking-[0.3em] text-white/30 mt-2">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-white/55 mt-2">
                   {s.label}
                 </p>
               </div>
@@ -53,7 +53,7 @@ export default function RacingPage() {
             <div>
               <p className="inline-flex items-center gap-3 mb-6">
                 <span className="w-6 h-px bg-[#78BE20]" />
-                <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
+                <span className="text-[10px] uppercase tracking-[0.35em] text-white/60">
                   Born on the Track
                 </span>
               </p>

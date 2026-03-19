@@ -7,7 +7,7 @@ export default function TestRideCTA() {
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
         <Reveal className="max-w-2xl">
 
-          <p className="text-[10px] tracking-[0.4em] text-white/20 uppercase mb-6">
+          <p className="text-[10px] tracking-[0.4em] text-white/50 uppercase mb-6">
             Free · No commitment
           </p>
 
@@ -15,7 +15,7 @@ export default function TestRideCTA() {
             Words won&apos;t<br />do it justice.
           </h2>
 
-          <p className="text-white/30 text-lg mb-12">
+          <p className="text-white/60 text-lg mb-12">
             Ride one. 200+ authorised locations worldwide.
           </p>
 
