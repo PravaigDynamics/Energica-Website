@@ -454,7 +454,7 @@ export default function TechContent() {
       <TechSection
         num="01" title="PMASynRM Motor"
         sub="Permanent Magnet Assisted Synchronous Reluctance Motor"
-        body="Energica's proprietary motor combines the efficiency of a permanent magnet design with the reliability of a reluctance motor. Maximum torque from zero RPM — no heat throttling, no brushes, no compromise. Peak efficiency exceeds 96%, meaning almost all stored energy reaches the rear wheel."
+        body="Energica's proprietary motor combines the efficiency of a permanent magnet design with the reliability of a reluctance motor. Maximum torque from a standstill — no heat throttling, no brushes, no compromise. Peak efficiency exceeds 96%, meaning almost all stored energy reaches the rear wheel."
         stats={[
           { value: "145", unit: "HP", label: "Peak Power" },
           { value: "96", unit: "%", label: "Peak Efficiency" },
@@ -493,7 +493,7 @@ export default function TechContent() {
       <TechSection
         num="05" title="Ride By Wire"
         sub="Linear, lag-free throttle response from 0 rpm"
-        body="Because an electric motor delivers full torque at zero RPM, Energica's Ride By Wire system maintains perfectly linear throttle mapping — what you ask for is exactly what you get, at any speed. The graph compares electric delivery (green) against a typical internal combustion power curve. No powerband, no hesitation, no surprises."
+        body="Because an electric motor delivers full torque from the first revolution, Energica's Ride By Wire system maintains perfectly linear throttle mapping — what you ask for is exactly what you get, at any speed. The graph compares electric delivery (green) against a typical internal combustion power curve. No powerband, no hesitation, no surprises."
         stats={[
           { value: "0", unit: "rpm", label: "Full Torque From" },
           { value: "<10", unit: "ms", label: "Throttle Response" },

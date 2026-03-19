@@ -68,7 +68,7 @@ export default function AboutPage() {
               </p>
               <p className="text-white/50 text-base leading-[1.8] mb-4">
                 In 2019, we were named the exclusive motorcycle supplier to the FIM
-                Enel MotoE World Cup — a role we held for seven consecutive seasons,
+                Enel MotoE World Cup — a role we held for four seasons,
                 proving our technology against the most demanding conditions in
                 professional motorsport.
               </p>

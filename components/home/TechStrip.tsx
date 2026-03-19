@@ -7,7 +7,7 @@ const pillars = [
     targetValue: 96,
     suffix: "%",
     label: "Peak Motor Efficiency",
-    detail: "PMASynRM — full torque from zero RPM, zero transmission loss",
+    detail: "PMASynRM — full torque from standstill, no transmission loss",
   },
   {
     targetValue: 40,
@@ -16,7 +16,7 @@ const pillars = [
     detail: "CCS Combo — every public rapid network in Europe and beyond",
   },
   {
-    targetValue: 7,
+    targetValue: 4,
     suffix: "",
     label: "MotoE Seasons",
     detail: "Exclusive supplier to the FIM Enel MotoE World Cup since 2019",

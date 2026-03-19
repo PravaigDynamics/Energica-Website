@@ -170,7 +170,7 @@ export const models: BikeModel[] = [
     id: "esseesse9",
     name: "EsseEsse9",
     tagline: "Naked. No apologies.",
-    headline: "200 Nm. From zero.",
+    headline: "200 Nm. Instant.",
     description:
       "Stripped of everything unnecessary. The EsseEsse9 delivers 200 Nm of wheel torque at 0 rpm and reaches 100 km/h in 3.2 seconds. Same motor architecture as the MotoE race machines.",
     storyParagraphs: [

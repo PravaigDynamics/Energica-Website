@@ -7,11 +7,11 @@ import RacingHero from "@/components/racing/RacingHero";
 export const metadata: Metadata = {
   title: "Racing Heritage | Energica Motor Company",
   description:
-    "Energica — exclusive supplier to the FIM Enel MotoE World Cup for 7 consecutive seasons. Championship-winning technology on road-legal machines.",
+    "Energica — exclusive supplier to the FIM Enel MotoE World Cup for 4 seasons. Championship-winning technology on road-legal machines.",
 };
 
 const STATS = [
-  { num: "7", label: "MotoE Seasons" },
+  { num: "4", label: "MotoE Seasons" },
   { num: "1", label: "Exclusive Supplier" },
   { num: "22+", label: "Race Rounds" },
 ];

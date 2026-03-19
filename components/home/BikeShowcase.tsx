@@ -20,7 +20,7 @@ const bikes = [
     id: "esseesse9",
     index: "02",
     name: "EsseEsse9",
-    tagline: "200 Nm. From zero.",
+    tagline: "200 Nm. Instant.",
     category: "Naked Sport",
     stat: { value: "200", unit: "Nm", label: "Wheel Torque" },
     accent: "#78BE20",
