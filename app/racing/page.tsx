@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { PrimaryButton, SecondaryButton } from "@/components/ui/Button";
 import RacingHero from "@/components/racing/RacingHero";
+import MotoAmericaSection from "@/components/racing/MotoAmericaSection";
 
 export const metadata: Metadata = {
   title: "Racing Heritage | Energica Motor Company",
@@ -91,6 +92,9 @@ export default function RacingPage() {
           </div>
         </Container>
       </section>
+
+      {/* ── MOTOAMERICA ───────────────────────────────────────── */}
+      <MotoAmericaSection />
 
       {/* ── TECHNOLOGY TRANSFER ───────────────────────────────── */}
       <section className="w-full bg-[#0d0d0d] py-[120px] border-t border-white/[0.04]">

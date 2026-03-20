@@ -1,0 +1,251 @@
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { StatCounter } from "@/components/ui/StatCounter";
+import { PrimaryButton, SecondaryButton } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const PHOTOS = [
+  "/images/MotoAmerica/BJNB1829_3_P.jpg",
+  "/images/MotoAmerica/BJNB1846_3_P.jpg",
+  "/images/MotoAmerica/BJNB2279_3_P.jpg",
+  "/images/MotoAmerica/BJNB2669_3_P.jpg",
+  "/images/MotoAmerica/BJNB2683_3_P.jpg",
+  "/images/MotoAmerica/BJNB2689_3_P.jpg",
+];
+
+export default function MotoAmericaSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".ma-eyebrow", {
+        y: 24,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".ma-eyebrow", start: "top 88%" },
+      });
+      gsap.from(".ma-headline", {
+        y: 40,
+        opacity: 0,
+        duration: 0.85,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".ma-headline", start: "top 88%" },
+      });
+      gsap.from(".ma-para", {
+        y: 30,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.75,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".ma-copy", start: "top 82%" },
+      });
+      gsap.from(".ma-cta", {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".ma-cta", start: "top 90%" },
+      });
+      gsap.from(".ma-hero-img", {
+        scale: 1.05,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".ma-hero-img", start: "top 82%" },
+      });
+      gsap.from(".ma-cell", {
+        y: 50,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 0.85,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".ma-grid", start: "top 78%" },
+      });
+    },
+    { scope: sectionRef }
+  );
+
+  return (
+    <section ref={sectionRef} className="w-full border-t border-white/[0.04]">
+
+      {/* ── STORY PANEL ─────────────────────────────────────────── */}
+      <div className="w-full py-[120px] bg-[#0a0a0a]">
+        <Container>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* Text */}
+            <div>
+              <p className="ma-eyebrow inline-flex items-center gap-3 mb-6">
+                <span className="w-6 h-px bg-[#78BE20]" />
+                <span className="text-[10px] uppercase tracking-[0.35em] text-white/60 font-mono">
+                  MotoAmerica · 2023–2024
+                </span>
+              </p>
+
+              <h2
+                className="ma-headline font-display text-white leading-[0.92] mb-6"
+                style={{ fontSize: "clamp(40px, 6vw, 80px)" }}
+              >
+                First Electric.<br />
+                <span className="text-[#78BE20]">Super Hooligan.</span>
+              </h2>
+
+              <div className="ma-copy space-y-4 mb-8">
+                <p className="ma-para text-white/50 text-base leading-[1.8] max-w-[600px]">
+                  In 2023, the Eva Ribelle became the first electric motorcycle
+                  to compete in the MotoAmerica Super Hooligan National
+                  Championship — a production-based class where raw character
+                  matters as much as lap time.
+                </p>
+                <p className="ma-para text-white/50 text-base leading-[1.8] max-w-[600px]">
+                  Returning in 2024, the program proved that electric torque
+                  and MotoAmerica competition are not contradictions.
+                  They are the same sentence.
+                </p>
+              </div>
+
+              <div className="ma-cta flex flex-wrap gap-4">
+                <PrimaryButton href="/models/eva-ribelle">
+                  Discover the Eva Ribelle
+                </PrimaryButton>
+                <SecondaryButton href="/racing">
+                  Racing Heritage
+                </SecondaryButton>
+              </div>
+            </div>
+
+            {/* Featured photo */}
+            <div className="ma-hero-img relative aspect-[4/3] overflow-hidden bg-[#111]">
+              <Image
+                src={PHOTOS[0]}
+                alt="Eva Ribelle — MotoAmerica Super Hooligan Championship"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              {/* Corner accents */}
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#78BE20]" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#78BE20]" />
+              <div className="absolute bottom-4 left-4">
+                <span className="mono-tag">Super Hooligan National Championship</span>
+              </div>
+            </div>
+
+          </div>
+        </Container>
+      </div>
+
+      {/* ── STATS STRIP ─────────────────────────────────────────── */}
+      <div className="w-full bg-[#111] border-y border-white/[0.06]">
+        <Container className="py-14">
+          <div className="grid grid-cols-3 gap-8 text-center">
+            <div className="flex flex-col items-center gap-2">
+              <StatCounter value={2} label="" className="items-center" />
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/55">
+                Seasons Racing
+              </p>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <div className="flex items-end justify-center gap-1">
+                <span
+                  className="font-display text-white tabular-nums leading-none"
+                  style={{ fontSize: "clamp(48px, 7vw, 96px)" }}
+                >
+                  1
+                </span>
+                <span
+                  className="font-display text-[#78BE20] leading-none mb-1"
+                  style={{ fontSize: "clamp(20px, 3vw, 40px)" }}
+                >
+                  st
+                </span>
+              </div>
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/55">
+                Electric Entry
+              </p>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <p
+                className="font-display text-[#78BE20] leading-none"
+                style={{ fontSize: "clamp(28px, 4vw, 56px)" }}
+              >
+                SHRC
+              </p>
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/55">
+                Championship
+              </p>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* ── PHOTO GRID ──────────────────────────────────────────── */}
+      <div className="w-full py-[120px] bg-[#0d0d0d]">
+        <Container>
+          <div className="mb-10 inline-flex items-center gap-3">
+            <span className="w-6 h-px bg-[#78BE20]" />
+            <span className="text-[10px] uppercase tracking-[0.35em] text-white/35 font-mono">
+              On Track
+            </span>
+          </div>
+
+          <div className="ma-grid grid grid-cols-1 md:grid-cols-3 gap-3">
+
+            {/* Wide hero cell */}
+            <div
+              className="ma-cell md:col-span-3 group relative overflow-hidden bg-[#111]"
+              style={{ aspectRatio: "21/9" }}
+            >
+              <Image
+                src={PHOTOS[0]}
+                alt="Eva Ribelle MotoAmerica — race action"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                sizes="100vw"
+              />
+              <div className="absolute inset-x-0 bottom-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-black/80 to-transparent">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-mono">
+                  MotoAmerica — Race Action
+                </p>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 h-[2px] bg-[#78BE20] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            </div>
+
+            {/* Five standard cells */}
+            {PHOTOS.slice(1).map((src, i) => (
+              <div
+                key={src}
+                className="ma-cell group relative overflow-hidden bg-[#111]"
+                style={{ aspectRatio: "4/3" }}
+              >
+                <Image
+                  src={src}
+                  alt={`Eva Ribelle MotoAmerica — ${i + 2}`}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-black/80 to-transparent">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-mono">
+                    Super Hooligan · 202{3 + (i % 2)}
+                  </p>
+                </div>
+                <div className="absolute inset-x-0 bottom-0 h-[2px] bg-[#78BE20] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              </div>
+            ))}
+
+          </div>
+        </Container>
+      </div>
+
+    </section>
+  );
+}

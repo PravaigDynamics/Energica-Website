@@ -68,12 +68,12 @@ export default function LoadingScreen() {
     >
       {/* Logo */}
       <Image
-        src="/images/Logo/energica-logo@2x.png"
+        src="/images/Logo/energica-logo-standard.webp"
         alt="Energica"
         width={140}
         height={42}
         priority
-        className="object-contain brightness-0 invert opacity-75 mb-10"
+        className="object-contain opacity-75 mb-10"
       />
 
       {/* Thin red progress bar */}

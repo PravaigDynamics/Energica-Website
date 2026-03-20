@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 function EnergicaLogo({ className }: { className?: string }) {
   return (
     <Image
-      src="/images/Logo/energica-logo@2x.png"
+      src="/images/Logo/energica-logo-horizontal.webp"
       alt="Energica Motor Company"
       width={160}
       height={32}

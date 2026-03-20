@@ -105,17 +105,17 @@ export const models: BikeModel[] = [
       {
         name: "Bormio ICE",
         hex: "#8BB8D4",
-        image: "/images/Pagina%20Experia/Energica_Experia.png",
+        image: "/images/Pagina%20Experia/EXPERIA_Bormio%20Ice.webp",
       },
       {
         name: "White Flame",
-        hex: "#F5F5F5",
-        image: "/images/Pagina%20Experia/Energica_Experia.png",
+        hex: "#F5F0E8",
+        image: "/images/Pagina%20Experia/EXPERIA_White%20Flame.webp",
       },
       {
         name: "Metal Black",
         hex: "#1a1a1a",
-        image: "/images/Pagina%20Experia/Energica_Experia.png",
+        image: "/images/Pagina%20Experia/EXPERIA_Metal%20Black.webp",
       },
     ],
     keySpecs: [
@@ -191,20 +191,19 @@ export const models: BikeModel[] = [
     ],
     colors: [
       {
+        name: "Bormio ICE",
+        hex: "#8BB8D4",
+        image: "/images/Pagina%20SS9/EsseEsse9%20RS_Bormio%20Ice.webp",
+      },
+      {
         name: "Sunrise Red",
         hex: "#CC2200",
-        image:
-          "/images/Pagina%20SS9/esseesse9-sunrisered-plus-Colored-belly-pan-resize-5.png",
+        image: "/images/Pagina%20SS9/EsseEsse9%20RS_Sunrise%20Red.webp",
       },
       {
-        name: "Metal Black",
-        hex: "#1a1a1a",
-        image: "/images/Pagina%20SS9/egoplus-black-red-frame-resize-5.png",
-      },
-      {
-        name: "RS Edition",
-        hex: "#8B0000",
-        image: "/images/Pagina%20SS9/ss9RS.png",
+        name: "Riviera Green",
+        hex: "#2E7D6E",
+        image: "/images/Pagina%20SS9/EsseEsse9%20RS_Riviera%20Green.webp",
       },
     ],
     keySpecs: [
@@ -264,7 +263,7 @@ export const models: BikeModel[] = [
     storyParagraphs: [
       "Eva Ribelle. The name is a design decision. This motorcycle is built for riders who choose their machine deliberately — not for spectacle, but for what it does when the road gets interesting.",
       "107 HP. 200 Nm at the wheel. 261 km city range. Same motor architecture as the MotoE race machines. Same DC fast charge infrastructure as the Experia. Different silhouette.",
-      "Three colourways. Rebel Black. RS Edition. Tricolore. Each is the same motorcycle underneath. The choice is yours.",
+      "Three colourways. Stealth Grey. Rosso Corsa. Tricolore. Each is the same motorcycle underneath. The choice is yours.",
     ],
     callout: {
       stat: "107 HP",
@@ -279,19 +278,19 @@ export const models: BikeModel[] = [
     ],
     colors: [
       {
-        name: "Rebel Black",
-        hex: "#111111",
-        image: "/images/Pagina%20Eva/evaribelle.png",
+        name: "Stealth Grey",
+        hex: "#4A4A52",
+        image: "/images/Pagina%20Eva/EVA%20Ribelle%20RS_Stealth%20Grey.webp",
       },
       {
-        name: "RS Edition",
-        hex: "#CC2200",
-        image: "/images/Pagina%20Eva/evaribelle-RS.png",
+        name: "Rosso Corsa",
+        hex: "#CC0000",
+        image: "/images/Pagina%20Eva/EVA%20Ribelle%20RS_Rosso%20Corsa.webp",
       },
       {
         name: "Tricolore",
         hex: "#009246",
-        image: "/images/Pagina%20Eva/evaribelle-tricolore_670x377.png",
+        image: "/images/Pagina%20Eva/EVA%20Ribelle%20RS_Tricolore.webp",
       },
     ],
     keySpecs: [
@@ -366,19 +365,19 @@ export const models: BikeModel[] = [
     ],
     colors: [
       {
+        name: "Metal Black",
+        hex: "#1a1a1a",
+        image: "/images/Pagina%20EGO/EGO%20RS_Metal%20Black.webp",
+      },
+      {
+        name: "Rosso Corsa",
+        hex: "#CC0000",
+        image: "/images/Pagina%20EGO/EGO%20RS_Rosso%20Corsa.webp",
+      },
+      {
         name: "Tricolore",
         hex: "#009246",
-        image: "/images/Pagina%20EGO/ego-tricolore_670x377.png",
-      },
-      {
-        name: "RS Edition",
-        hex: "#8B0000",
-        image: "/images/Pagina%20EGO/Ego-RS.png",
-      },
-      {
-        name: "Carbon Black",
-        hex: "#0d0d0d",
-        image: "/images/Pagina%20EGO/Ego-1.png",
+        image: "/images/Pagina%20EGO/EGO%20RS_Tricolore.webp",
       },
     ],
     keySpecs: [

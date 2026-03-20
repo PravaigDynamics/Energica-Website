@@ -35,11 +35,11 @@ export default function Footer() {
             {/* Logo */}
             <Link href="/" className="block mb-6 w-fit">
               <Image
-                src="/images/Logo/energica-logo@2x.png"
+                src="/images/Logo/energica-logo-horizontal.webp"
                 alt="Energica Motor Company"
                 width={160}
                 height={48}
-                className="object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-200"
+                className="object-contain opacity-90 hover:opacity-100 transition-opacity duration-200"
               />
             </Link>
 
