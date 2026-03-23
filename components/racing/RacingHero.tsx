@@ -38,19 +38,20 @@ export default function RacingHero() {
 
       <Container className="relative z-10 w-full pt-20">
         <span className="mono-tag mb-6 inline-flex items-center gap-3">
-          Racing Heritage
+          MotoE · MotoAmerica · Racing Heritage
         </span>
         <h1
-          className="font-display text-white leading-none mb-6"
-          style={{ fontSize: "clamp(64px, 11vw, 160px)" }}
+          className="font-display text-white leading-[0.92] mb-8"
+          style={{ fontSize: "clamp(56px, 10vw, 148px)" }}
         >
-          4 Seasons.<br />
-          <span className="text-[#78BE20]">One Supplier.</span>
+          FULL<br />
+          ATTACK.<br />
+          <span className="text-[#78BE20]">ZERO<br />COMPROMISE.</span>
         </h1>
-        <p className="text-[length:var(--text-body-lg)] text-white/65 max-w-[750px] leading-relaxed" style={{ fontFamily: "var(--font-ibm-sans)", fontWeight: 300 }}>
-          Since the FIM Enel MotoE World Cup began in 2019, Energica has been
-          the sole motorcycle supplier — every race, every round, every
-          championship.
+        <p className="text-[length:var(--text-body-lg)] text-white/65 max-w-[540px] leading-relaxed" style={{ fontFamily: "var(--font-ibm-sans)", fontWeight: 300 }}>
+          4 seasons. 22+ rounds. One motorcycle — the Energica Ego Corsa.
+          Exclusive supplier to the FIM Enel MotoE World Cup. First electric in MotoAmerica.
+          The track doesn't lie.
         </p>
       </Container>
 

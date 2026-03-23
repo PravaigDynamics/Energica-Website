@@ -19,17 +19,17 @@ export default function RacingMoment() {
       <div className="absolute bottom-12 md:bottom-20 left-0 right-0 z-10">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
           <Reveal>
-            <span className="mono-tag mb-5 inline-block">Racing Heritage</span>
+            <span className="mono-tag mb-5 inline-block">MotoE · MotoAmerica</span>
             <h2 className="font-display text-[clamp(36px,9vw,112px)] text-white leading-none uppercase mb-4">
-              4 Seasons.<br />One Supplier.
+              Born<br />On Track.
             </h2>
-            <p className="text-sm text-white/65 mb-6 font-light" style={{ fontFamily: "var(--font-ibm-sans)" }}>
-              No Compromises.
+            <p className="text-sm text-white/65 mb-6 font-light max-w-sm" style={{ fontFamily: "var(--font-ibm-sans)" }}>
+              Every watt. Every lap. Every championship.<br />Race-proven, road-ridden.
             </p>
             <Link href="/racing" className="inline-flex items-center gap-3 group">
               <div className="w-8 h-px bg-white/40 group-hover:w-12 transition-all duration-300" />
               <span className="text-xs tracking-[0.3em] text-white/60 uppercase group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-ibm-mono)" }}>
-                The Racing Story
+                Full Racing Story
               </span>
             </Link>
           </Reveal>
