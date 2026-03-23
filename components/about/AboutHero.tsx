@@ -55,8 +55,8 @@ export default function AboutHero() {
 
       {/* Content — pinned bottom-left */}
       <div className="absolute bottom-0 left-0 right-0 z-10">
-        <Container className="pb-24">
-          <div ref={wrapRef} className="max-w-[640px]">
+        <Container className="pb-16">
+          <div ref={wrapRef}>
 
             {/* Eyebrow */}
             <p className="ah-item inline-flex items-center gap-3 mb-5">
@@ -66,10 +66,10 @@ export default function AboutHero() {
               </span>
             </p>
 
-            {/* Headline — tighter clamp so bikes stay visible above */}
+            {/* Headline — whitespace-nowrap keeps each line on one row */}
             <h1
-              className="ah-item font-display text-white leading-[0.92] mb-6"
-              style={{ fontSize: "clamp(44px, 6.5vw, 96px)" }}
+              className="ah-item font-display text-white leading-[0.92] mb-6 whitespace-nowrap"
+              style={{ fontSize: "clamp(40px, 5.8vw, 88px)" }}
             >
               Italian Heritage,<br />
               <span className="text-[#78BE20]">Electric Soul.</span>
@@ -80,8 +80,7 @@ export default function AboutHero() {
               className="ah-item text-sm text-white/65 max-w-[440px] leading-relaxed"
               style={{ fontFamily: "var(--font-ibm-sans)", fontWeight: 300 }}
             >
-              Four electric motorcycles. One obsession. Engineered where Ferrari,
-              Lamborghini and Ducati were born.
+              Four electric motorcycles. One obsession.
             </p>
 
             {/* Scroll indicator */}
