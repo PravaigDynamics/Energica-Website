@@ -23,12 +23,12 @@ export default function RacingHero() {
           fill
           priority
           className="object-cover"
-          style={{ objectPosition: "center 30%", transform: "scale(0.92)", transformOrigin: "center 30%" }}
+          style={{ objectPosition: "60% center" }}
           sizes="100vw"
         />
       </div>
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/35 to-black/05" />
 
       {/* Ambient particles */}
       <ParticleCanvas />
