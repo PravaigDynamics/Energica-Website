@@ -5,8 +5,15 @@ import { PrimaryButton, SecondaryButton } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "About | Energica Motor Company",
-  description: "The story of Energica Motor Company — born in Modena, Italy, pioneers of the electric superbike since 2014.",
+  description: "Born to Race. Reborn to Fly. Energica Motor Company — engineered in Modena's Motor Valley since 2014, exclusive MotoE supplier for 4 seasons.",
 };
+
+const CULTURAL = [
+  { label: "Film", title: "Nope", sub: "Jordan Peele · 2022" },
+  { label: "Film", title: "GI Joe: Snake Eyes", sub: "Paramount · 2021" },
+  { label: "TV Feature", title: "Jay Leno's Garage", sub: "NBC · Multiple features" },
+  { label: "Brand Advocate", title: "Nico Rosberg", sub: "F1 World Champion · Owner" },
+];
 
 export default function AboutPage() {
   return (
@@ -35,10 +42,10 @@ export default function AboutPage() {
           </p>
           <h1
             className="font-display text-white leading-none"
-            style={{ fontSize: "clamp(60px, 10vw, 140px)" }}
+            style={{ fontSize: "clamp(56px, 9vw, 130px)" }}
           >
-            Born in<br />
-            <span className="text-[#78BE20]">Modena.</span>
+            Born to Race.<br />
+            <span className="text-[#78BE20]">Reborn to Fly.</span>
           </h1>
         </Container>
       </section>
@@ -79,16 +86,19 @@ export default function AboutPage() {
               </p>
             </div>
 
+            {/* Stats sidebar */}
             <div className="space-y-6 lg:pt-16">
               {[
                 { stat: "2014", label: "Founded in Modena, Italy" },
-                { stat: "7", label: "Seasons as exclusive MotoE supplier" },
+                { stat: "4", label: "Seasons as exclusive MotoE supplier" },
+                { stat: "4,000+", label: "Riders globally" },
+                { stat: "135+", label: "Dealer & importer touchpoints" },
                 { stat: "4", label: "Road-legal models in production" },
               ].map((item) => (
-                <div key={item.stat} className="border-l-2 border-[#78BE20] pl-6 py-2">
+                <div key={item.label} className="border-l-2 border-[#78BE20] pl-6 py-2">
                   <p
                     className="font-display text-white"
-                    style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
+                    style={{ fontSize: "clamp(36px, 4.5vw, 60px)" }}
                   >
                     {item.stat}
                   </p>
@@ -98,6 +108,43 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ── CULTURAL VALIDATION ───────────────────────────────── */}
+      <section className="w-full py-[120px] bg-[#0d0d0d] border-t border-white/[0.04]">
+        <Container>
+          <p className="inline-flex items-center gap-3 mb-10">
+            <span className="w-6 h-px bg-[#78BE20]" />
+            <span className="text-[10px] uppercase tracking-[0.35em] text-white/60">
+              Beyond the Road
+            </span>
+          </p>
+          <h2
+            className="font-display text-white leading-none mb-12"
+            style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
+          >
+            Earned Visibility.<br />
+            <span className="text-[#78BE20]">No Paid Noise.</span>
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {CULTURAL.map((item) => (
+              <div
+                key={item.title}
+                className="p-6 border border-white/[0.08] bg-[#0a0a0a] hover:border-[#78BE20]/25 transition-colors duration-300"
+              >
+                <span className="text-[9px] uppercase tracking-[0.35em] text-[#78BE20]/70 font-mono block mb-3">
+                  {item.label}
+                </span>
+                <p className="font-display text-white text-xl leading-tight mb-1">
+                  {item.title}
+                </p>
+                <p className="text-[10px] text-white/45 tracking-wide">
+                  {item.sub}
+                </p>
+              </div>
+            ))}
           </div>
         </Container>
       </section>
