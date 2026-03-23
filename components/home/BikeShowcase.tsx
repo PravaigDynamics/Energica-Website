@@ -143,7 +143,7 @@ export default function BikeShowcase() {
     <div
       ref={sectionRef}
       className="bg-[#0A0A0A]"
-      style={{ height: `${bikes.length * 100}vh` }}
+      style={{ height: `${bikes.length * 70}vh` }}
     >
       <div className="sticky top-0 h-screen overflow-hidden bg-[#0A0A0A]">
 
