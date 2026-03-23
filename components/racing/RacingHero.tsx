@@ -18,11 +18,11 @@ export default function RacingHero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/Pagina%20EGO/ego_mosaico_ANN4320.jpg"
-          alt="Energica Racing"
+          src="/images/MotoAmerica/BJNB2279_3_P.jpg"
+          alt="Energica MotoAmerica Racing"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-top"
           sizes="100vw"
         />
       </div>

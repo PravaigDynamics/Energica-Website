@@ -148,10 +148,21 @@ export default function RacingPage() {
       <section className="w-full py-[120px] border-t border-white/[0.04]">
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {/* Big image — spans 2 cols on md */}
+            <div className="relative overflow-hidden bg-[#111] col-span-2 md:col-span-2" style={{ aspectRatio: "16/9" }}>
+              <Image
+                src="/images/MotoAmerica/BJNB1829_3_P.jpg"
+                alt="Energica MotoAmerica racing action"
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 768px) 100vw, 66vw"
+              />
+            </div>
+            {/* Small images — stacked on right */}
             {[
-              "/images/Pagina%20EGO/ANN4779.jpg",
-              "/images/Pagina%20EGO/ANN4787.jpg",
-              "/images/Pagina%20EGO/ANN4778.jpg",
+              "/images/MotoAmerica/BJNB1846_3_P.jpg",
+              "/images/MotoAmerica/BJNB2669_3_P.jpg",
+              "/images/MotoAmerica/BJNB2683_3_P.jpg",
             ].map((src, i) => (
               <div
                 key={i}
@@ -160,9 +171,9 @@ export default function RacingPage() {
               >
                 <Image
                   src={src}
-                  alt="Energica racing"
+                  alt="Energica MotoAmerica racing"
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-600"
+                  className="object-cover hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 50vw, 33vw"
                 />
               </div>
