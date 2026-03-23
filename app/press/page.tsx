@@ -13,7 +13,7 @@ export default function PressPage() {
       <Container>
         <p className="inline-flex items-center gap-3 mb-6">
           <span className="w-6 h-px bg-[#78BE20]" />
-          <span className="text-[10px] uppercase tracking-[0.4em] text-white/35">Press &amp; Media</span>
+          <span className="text-[10px] uppercase tracking-[0.4em] text-white/50">Press &amp; Media</span>
         </p>
         <h1
           className="font-display text-white leading-none mb-6"
@@ -21,7 +21,7 @@ export default function PressPage() {
         >
           Coming Soon.
         </h1>
-        <p className="text-white/40 text-[length:var(--text-body)] max-w-[750px] leading-relaxed mb-[32px]">
+        <p className="text-white/60 text-[length:var(--text-body)] max-w-[750px] leading-relaxed mb-[32px]">
           Our press section is being prepared. For media enquiries, press releases,
           or high-resolution assets, please contact us directly.
         </p>

@@ -92,7 +92,7 @@ export default function AboutPage() {
                   >
                     {item.stat}
                   </p>
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/35 mt-1">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 mt-1">
                     {item.label}
                   </p>
                 </div>
@@ -111,7 +111,7 @@ export default function AboutPage() {
           >
             Experience Energica.
           </h2>
-          <p className="text-white/40 text-[length:var(--text-body)] mb-[32px] max-w-[750px] mx-auto">
+          <p className="text-white/60 text-[length:var(--text-body)] mb-[32px] max-w-[750px] mx-auto">
             Book a free test ride at your nearest authorised dealer.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

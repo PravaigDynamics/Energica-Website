@@ -89,7 +89,7 @@ export default function SpecsAccordion({ specs }: SpecsAccordionProps) {
             >
               {/* Left: number tag + label */}
               <span className="flex items-center gap-4">
-                <span className="font-display text-sm text-white/30 group-hover:text-[#78BE20]/60 transition-colors duration-200 w-5 text-right">
+                <span className="font-display text-sm text-white/60 group-hover:text-[#78BE20]/60 transition-colors duration-200 w-5 text-right">
                   {(SECTION_ORDER.indexOf(key) + 1).toString().padStart(2, "0")}
                 </span>
                 <span
@@ -129,7 +129,7 @@ export default function SpecsAccordion({ specs }: SpecsAccordionProps) {
                     <SpecRow key={label} label={humanLabel(label)} value={value} />
                   ))
                 ) : (
-                  <p className="text-white/20 text-sm py-3">
+                  <p className="text-white/60 text-sm py-3">
                     Specifications coming soon
                   </p>
                 )}

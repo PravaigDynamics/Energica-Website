@@ -102,7 +102,7 @@ export default function RacingPage() {
           <div className="mb-14 text-center">
             <p className="inline-flex items-center gap-3 mb-4">
               <span className="w-6 h-px bg-[#78BE20]" />
-              <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
+              <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">
                 From Circuit to Street
               </span>
               <span className="w-6 h-px bg-[#78BE20]" />
@@ -137,7 +137,7 @@ export default function RacingPage() {
                 <h3 className="font-display text-white text-xl mb-3">
                   {item.title}
                 </h3>
-                <p className="text-white/45 text-sm leading-relaxed">{item.body}</p>
+                <p className="text-white/60 text-sm leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -180,7 +180,7 @@ export default function RacingPage() {
           >
             Experience the Difference.
           </h2>
-          <p className="text-white/40 text-[length:var(--text-body)] mb-[32px] max-w-[750px] mx-auto">
+          <p className="text-white/60 text-[length:var(--text-body)] mb-[32px] max-w-[750px] mx-auto">
             Book a free test ride at your nearest authorised dealer.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

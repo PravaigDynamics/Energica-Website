@@ -37,7 +37,7 @@ export default function EvaRibellePage() {
           <div className="mb-10">
             <p className="inline-flex items-center gap-3 mb-3">
               <span className="w-6 h-px bg-[#78BE20]" />
-              <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">Gallery</span>
+              <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">Gallery</span>
             </p>
             <h2
               className="font-display text-white leading-none"
@@ -54,7 +54,7 @@ export default function EvaRibellePage() {
           <div className="mb-12">
             <p className="inline-flex items-center gap-3 mb-3">
               <span className="w-6 h-px bg-[#78BE20]" />
-              <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
+              <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">
                 Full Specifications
               </span>
             </p>

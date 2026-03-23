@@ -67,7 +67,7 @@ export function StatCounter({
           </span>
         )}
       </div>
-      <p className="text-xs uppercase tracking-widest text-white/40">{label}</p>
+      <p className="text-xs uppercase tracking-widest text-white/60">{label}</p>
     </div>
   );
 }

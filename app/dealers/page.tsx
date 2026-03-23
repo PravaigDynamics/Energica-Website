@@ -173,7 +173,7 @@ export default function DealersPage() {
                       className="group p-5 border border-white/[0.06] bg-[#0d0d0d] hover:border-[#78BE20]/25 transition-all duration-200"
                     >
                       {/* Country badge */}
-                      <p className="text-[9px] uppercase tracking-widest text-white/45 mb-2">{dealer.country}</p>
+                      <p className="text-[9px] uppercase tracking-widest text-white/60 mb-2">{dealer.country}</p>
 
                       {/* Name */}
                       <h3 className="font-display text-white text-lg leading-tight mb-1 group-hover:text-[#78BE20] transition-colors duration-200">
@@ -260,9 +260,9 @@ export default function DealersPage() {
 
                 <div className="text-center px-8">
                   <p className="font-display text-white text-xl mb-2">Interactive Map</p>
-                  <p className="text-xs text-white/30 leading-relaxed max-w-[200px]">
+                  <p className="text-xs text-white/60 leading-relaxed max-w-[200px]">
                     Google Maps integration — embed your API key in{" "}
-                    <code className="text-white/40 text-[10px]">app/dealers/page.tsx</code>
+                    <code className="text-white/60 text-[10px]">app/dealers/page.tsx</code>
                   </p>
                 </div>
 
@@ -279,7 +279,7 @@ export default function DealersPage() {
 
               {/* Bottom bar */}
               <div className="absolute bottom-0 left-0 right-0 px-6 py-4 border-t border-white/[0.05] bg-[#080808]/80 backdrop-blur-sm">
-                <p className="text-[9px] uppercase tracking-widest text-white/40 text-center">
+                <p className="text-[9px] uppercase tracking-widest text-white/60 text-center">
                   To enable the live map, add a Google Maps embed or Mapbox integration
                 </p>
               </div>

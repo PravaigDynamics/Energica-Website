@@ -13,7 +13,7 @@ export default function OwnersPage() {
       <Container>
         <p className="inline-flex items-center gap-3 mb-6">
           <span className="w-6 h-px bg-[#78BE20]" />
-          <span className="text-[10px] uppercase tracking-[0.4em] text-white/35">Owners</span>
+          <span className="text-[10px] uppercase tracking-[0.4em] text-white/50">Owners</span>
         </p>
         <h1
           className="font-display text-white leading-none mb-6"
@@ -21,7 +21,7 @@ export default function OwnersPage() {
         >
           Owner<br />Portal.
         </h1>
-        <p className="text-white/40 text-[length:var(--text-body)] max-w-[750px] leading-relaxed mb-[32px]">
+        <p className="text-white/60 text-[length:var(--text-body)] max-w-[750px] leading-relaxed mb-[32px]">
           Manuals, software updates, and owner resources are being prepared.
           In the meantime, your nearest authorised Energica dealer can assist
           with any technical queries.

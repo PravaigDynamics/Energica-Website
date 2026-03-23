@@ -61,7 +61,7 @@ export default async function ModelPage({ params }: PageProps) {
           <div className="mb-[48px]">
             <p className="inline-flex items-center gap-3 mb-6">
               <span className="w-6 h-px bg-[#78BE20]" />
-              <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
+              <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">
                 Gallery
               </span>
             </p>
@@ -82,7 +82,7 @@ export default async function ModelPage({ params }: PageProps) {
           <div className="mb-[48px]">
             <p className="inline-flex items-center gap-3 mb-6">
               <span className="w-6 h-px bg-[#78BE20]" />
-              <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
+              <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">
                 Full Specifications
               </span>
             </p>

@@ -75,7 +75,7 @@ export default function NextModelCTA({ nextModel }: NextModelCTAProps) {
             {nextModel.name}
           </h2>
 
-          <p className="nm-tag text-[length:var(--text-body)] text-white/40 italic mb-10">
+          <p className="nm-tag text-[length:var(--text-body)] text-white/60 italic mb-10">
             &ldquo;{nextModel.tagline}&rdquo;
           </p>
 

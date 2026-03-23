@@ -93,7 +93,7 @@ export default function StorySection({ model }: StorySectionProps) {
                 >
                   {model.callout.stat}
                 </p>
-                <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-white/60">
                   {model.callout.label}
                 </p>
               </div>
@@ -106,7 +106,7 @@ export default function StorySection({ model }: StorySectionProps) {
             <div className="story-para">
               <p className="inline-flex items-center gap-3 mb-5">
                 <span className="w-6 h-px bg-[#78BE20]" />
-                <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">
+                <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">
                   The Story
                 </span>
               </p>
@@ -139,7 +139,7 @@ export default function StorySection({ model }: StorySectionProps) {
                     {spec.value}
                     <span className="text-[#78BE20] ml-0.5 text-sm">{spec.unit}</span>
                   </span>
-                  <p className="text-[9px] uppercase tracking-widest text-white/25 mt-0.5">
+                  <p className="text-[9px] uppercase tracking-widest text-white/60 mt-0.5">
                     {spec.label}
                   </p>
                 </div>

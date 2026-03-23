@@ -114,7 +114,7 @@ function SuccessView({ email, onReset }: { email: string; onReset: () => void })
         <h2 className="font-display text-white leading-none" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
           You&rsquo;re all set.
         </h2>
-        <p className="text-base text-white/40 max-w-sm leading-relaxed">
+        <p className="text-base text-white/60 max-w-sm leading-relaxed">
           We&rsquo;ll confirm your test ride appointment within 24 hours.
           Check your inbox at{" "}
           <span className="text-white/60">{email}</span>.
@@ -206,7 +206,7 @@ export default function TestRideForm() {
             Feel the<br />
             <span className="text-[#78BE20]">difference.</span>
           </h2>
-          <p className="text-sm text-white/40 max-w-xs leading-relaxed">
+          <p className="text-sm text-white/60 max-w-xs leading-relaxed">
             Words can&rsquo;t describe what it feels like to ride an Energica.
             That&rsquo;s why we offer free test rides at all authorised dealers worldwide.
           </p>
@@ -346,7 +346,7 @@ export default function TestRideForm() {
                     "Request Test Ride →"
                   )}
                 </button>
-                <p className="text-[9px] uppercase tracking-widest text-white/45 text-center mt-3">
+                <p className="text-[9px] uppercase tracking-widest text-white/60 text-center mt-3">
                   Free · No commitment · Response within 24 hours
                 </p>
               </div>

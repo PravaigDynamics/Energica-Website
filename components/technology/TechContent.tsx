@@ -512,7 +512,7 @@ function SafetyCards() {
           </div>
           <h3 className="font-display text-white text-xl mb-1">{f.title}</h3>
           <p className="text-[9px] uppercase tracking-widest text-[#78BE20]/60 mb-3">{f.sub}</p>
-          <p className="text-sm text-white/40 leading-relaxed">{f.body}</p>
+          <p className="text-sm text-white/60 leading-relaxed">{f.body}</p>
         </div>
       ))}
     </div>
@@ -544,7 +544,7 @@ function TechSection({
         <span className="inline-flex items-center gap-3 mb-6">
           <span className="font-display text-5xl text-white/[0.06]">{num}</span>
           <span className="w-8 h-px bg-[#78BE20]/40" />
-          <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">Tech Pillar</span>
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white/60">Tech Pillar</span>
         </span>
         <h2 className="font-display text-white leading-none mb-2" style={{ fontSize: "clamp(36px, 4.5vw, 64px)" }}>
           {title}
@@ -560,7 +560,7 @@ function TechSection({
                 <span className="font-display text-3xl text-white">{s.value}</span>
                 <span className="font-display text-sm text-[#78BE20]">{s.unit}</span>
               </div>
-              <p className="text-[9px] uppercase tracking-widest text-white/25 mt-0.5">{s.label}</p>
+              <p className="text-[9px] uppercase tracking-widest text-white/60 mt-0.5">{s.label}</p>
             </div>
           ))}
         </div>
@@ -609,20 +609,20 @@ export default function TechContent() {
         <div className="relative z-10 max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px]">
           <p className="th-eyebrow inline-flex items-center gap-3 mb-8">
             <span className="w-6 h-px bg-[#78BE20]" />
-            <span className="text-[10px] uppercase tracking-[0.35em] text-white/35">Under the fairing</span>
+            <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">Under the fairing</span>
           </p>
           <h1 className="th-h1 font-display text-white leading-none mb-8" style={{ fontSize: "clamp(60px, 11vw, 160px)" }}>
             <span className="block">OUR</span>
             <span className="block text-[#78BE20]">TECHNOLOGY</span>
           </h1>
-          <p className="th-body text-lg text-white/40 max-w-md leading-relaxed">
+          <p className="th-body text-lg text-white/60 max-w-md leading-relaxed">
             From motor to BMS to software, we control every variable.
           </p>
 
           {/* Jump-links */}
           <div className="mt-12 flex flex-wrap gap-3">
             {["Motor", "Battery", "Charging", "App", "Ride By Wire", "Safety"].map((t) => (
-              <span key={t} className="px-4 py-2 border border-white/10 text-[10px] uppercase tracking-widest text-white/40 hover:border-[#78BE20]/40 hover:text-white/60 transition-colors duration-200 cursor-pointer">
+              <span key={t} className="px-4 py-2 border border-white/10 text-[10px] uppercase tracking-widest text-white/60 hover:border-[#78BE20]/40 hover:text-white/60 transition-colors duration-200 cursor-pointer">
                 {t}
               </span>
             ))}
@@ -689,7 +689,7 @@ export default function TechContent() {
             <p className="inline-flex items-center gap-3 mb-6">
               <span className="font-display text-5xl text-white/[0.06]">06</span>
               <span className="w-8 h-px bg-[#78BE20]/40" />
-              <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">Tech Pillar</span>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-white/60">Tech Pillar</span>
             </p>
             <h2 className="font-display text-white leading-none mb-2" style={{ fontSize: "clamp(36px, 4.5vw, 64px)" }}>
               Safety Suite
@@ -712,7 +712,7 @@ export default function TechContent() {
             <h3 className="font-display text-white leading-none mb-2" style={{ fontSize: "clamp(32px, 4vw, 56px)" }}>
               Experience it for yourself.
             </h3>
-            <p className="text-white/40 text-base">Book a free test ride at your nearest dealer.</p>
+            <p className="text-white/60 text-base">Book a free test ride at your nearest dealer.</p>
           </div>
           <div className="flex gap-4 flex-shrink-0">
             <Link href="/test-ride" className="px-8 py-4 bg-[#78BE20] text-black font-display text-sm uppercase tracking-widest hover:bg-[#5a9018] transition-colors duration-200">

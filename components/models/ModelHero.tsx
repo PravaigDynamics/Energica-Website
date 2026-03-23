@@ -114,7 +114,7 @@ export default function ModelHero({ model }: ModelHeroProps) {
         {/* Eyebrow */}
         <p className="mh-eyebrow inline-flex items-center gap-3 mb-6">
           <span className="w-8 h-px bg-[#78BE20]" />
-          <span className="text-[11px] uppercase tracking-[0.35em] text-white/35">
+          <span className="text-[11px] uppercase tracking-[0.35em] text-white/50">
             Energica Motorcycles
           </span>
         </p>
@@ -128,7 +128,7 @@ export default function ModelHero({ model }: ModelHeroProps) {
         </h1>
 
         {/* Tagline */}
-        <p className="mh-tagline text-base md:text-lg text-white/45 italic mb-8">
+        <p className="mh-tagline text-base md:text-lg text-white/60 italic mb-8">
           &ldquo;{model.tagline}&rdquo;
         </p>
 
@@ -145,7 +145,7 @@ export default function ModelHero({ model }: ModelHeroProps) {
                 </span>
                 <span className="font-display text-sm text-[#78BE20]">{spec.unit}</span>
               </div>
-              <p className="text-[9px] uppercase tracking-[0.25em] text-white/30 mt-0.5">
+              <p className="text-[9px] uppercase tracking-[0.25em] text-white/60 mt-0.5">
                 {spec.label}
               </p>
             </div>
@@ -161,7 +161,7 @@ export default function ModelHero({ model }: ModelHeroProps) {
 
       {/* ── Scroll hint ─────────────────────────────────────── */}
       <div className="mh-scroll absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-[9px] uppercase tracking-[0.3em] text-white/25">Scroll</span>
+        <span className="text-[9px] uppercase tracking-[0.3em] text-white/60">Scroll</span>
         <div className="w-px h-8 bg-white/15 relative overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-full bg-white/60 scroll-indicator-line" />
         </div>

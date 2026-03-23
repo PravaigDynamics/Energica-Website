@@ -27,7 +27,7 @@ export default function ModelsPage() {
         <SectionReveal>
           <span className="flex items-center gap-3 mb-6">
             <span className="w-8 h-px bg-[#78BE20]" />
-            <span className="text-xs uppercase tracking-[0.3em] text-white/40">
+            <span className="text-xs uppercase tracking-[0.3em] text-white/60">
               Our Lineup
             </span>
           </span>
@@ -78,7 +78,7 @@ export default function ModelsPage() {
                       <h2 className="font-display text-4xl text-white group-hover:text-[#78BE20] transition-colors">
                         {model.name}
                       </h2>
-                      <p className="text-white/40 text-sm mt-1">{model.tagline}</p>
+                      <p className="text-white/60 text-sm mt-1">{model.tagline}</p>
                     </div>
                     <span className="text-[#78BE20] opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-2 transition-all duration-300 mt-2">
                       →
@@ -99,7 +99,7 @@ export default function ModelsPage() {
                             {spec.unit}
                           </span>
                         </p>
-                        <p className="text-[10px] uppercase tracking-widest text-white/30 mt-0.5">
+                        <p className="text-[10px] uppercase tracking-widest text-white/60 mt-0.5">
                           {spec.label}
                         </p>
                       </div>

@@ -33,7 +33,7 @@ export default function NotFound() {
         >
           Road Not Found
         </p>
-        <p className="text-white/35 text-sm max-w-xs mx-auto leading-relaxed">
+        <p className="text-white/50 text-sm max-w-xs mx-auto leading-relaxed">
           This page doesn&rsquo;t exist. Let&rsquo;s get you back on track.
         </p>
       </div>

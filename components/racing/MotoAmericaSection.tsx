@@ -192,7 +192,7 @@ export default function MotoAmericaSection() {
         <Container>
           <div className="mb-10 inline-flex items-center gap-3">
             <span className="w-6 h-px bg-[#78BE20]" />
-            <span className="text-[10px] uppercase tracking-[0.35em] text-white/35 font-mono">
+            <span className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-mono">
               On Track
             </span>
           </div>
