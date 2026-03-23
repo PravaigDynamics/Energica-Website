@@ -121,8 +121,8 @@ function MotorDiagram() {
   });
 
   useGSAP(() => {
-    // Continuous rotor spin
-    gsap.to(".md-rotor", { rotation: 360, transformOrigin: "200px 200px", duration: 12, ease: "none", repeat: -1 });
+    // Continuous rotor spin — svgOrigin uses SVG coordinate space (not CSS px)
+    gsap.to(".md-rotor", { rotation: 360, svgOrigin: "200 200", duration: 12, ease: "none", repeat: -1 });
     // Stator ring draw-in
     gsap.from(".md-stator", {
       strokeDasharray: "0 1200", duration: 1.4, ease: "power2.out",
@@ -130,7 +130,7 @@ function MotorDiagram() {
     });
     // Rotor fade + scale in
     gsap.from(".md-rotor", {
-      opacity: 0, scale: 0.7, transformOrigin: "200px 200px",
+      opacity: 0, scale: 0.7, svgOrigin: "200 200",
       duration: 0.9, ease: "back.out(1.7)", delay: 0.4,
       scrollTrigger: { trigger: ref.current, start: "top 78%" },
     });
