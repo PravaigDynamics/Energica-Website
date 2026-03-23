@@ -102,7 +102,7 @@ export default function HeroSection() {
           />
         </div>
         <span
-          className="text-[9px] tracking-[0.3em] text-white/55 uppercase mt-4"
+          className="text-[9px] tracking-[0.3em] text-white/65 uppercase mt-4"
           style={{ writingMode: "vertical-rl" }}
         >
           Scroll

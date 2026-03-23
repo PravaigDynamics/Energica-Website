@@ -99,13 +99,13 @@ export default function MotoAmericaSection() {
               </h2>
 
               <div className="ma-copy space-y-4 mb-8">
-                <p className="ma-para text-white/50 text-base leading-[1.8] max-w-[600px]">
+                <p className="ma-para text-white/65 text-base leading-[1.8] max-w-[600px]">
                   In 2023, the Eva Ribelle became the first electric motorcycle
                   to compete in the MotoAmerica Super Hooligan National
                   Championship — a production-based class where raw character
                   matters as much as lap time.
                 </p>
-                <p className="ma-para text-white/50 text-base leading-[1.8] max-w-[600px]">
+                <p className="ma-para text-white/65 text-base leading-[1.8] max-w-[600px]">
                   Returning in 2024, the program proved that electric torque
                   and MotoAmerica competition are not contradictions.
                   They are the same sentence.
@@ -149,7 +149,7 @@ export default function MotoAmericaSection() {
           <div className="grid grid-cols-3 gap-8 text-center">
             <div className="flex flex-col items-center gap-2">
               <StatCounter value={2} label="" className="items-center" />
-              <p className="text-[10px] uppercase tracking-[0.3em] text-white/55">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/65">
                 Seasons Racing
               </p>
             </div>
@@ -168,7 +168,7 @@ export default function MotoAmericaSection() {
                   st
                 </span>
               </div>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-white/55">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/65">
                 Electric Entry
               </p>
             </div>
@@ -179,7 +179,7 @@ export default function MotoAmericaSection() {
               >
                 SHRC
               </p>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-white/55">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/65">
                 Championship
               </p>
             </div>
@@ -192,7 +192,7 @@ export default function MotoAmericaSection() {
         <Container>
           <div className="mb-10 inline-flex items-center gap-3">
             <span className="w-6 h-px bg-[#78BE20]" />
-            <span className="text-[10px] uppercase tracking-[0.35em] text-white/50 font-mono">
+            <span className="text-[10px] uppercase tracking-[0.35em] text-white/65 font-mono">
               On Track
             </span>
           </div>

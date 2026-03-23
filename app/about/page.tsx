@@ -60,19 +60,19 @@ export default function AboutPage() {
               >
                 Pioneers Since 2014.
               </h2>
-              <p className="text-white/50 text-base leading-[1.8] mb-4">
+              <p className="text-white/65 text-base leading-[1.8] mb-4">
                 Energica Motor Company was founded in Modena, Italy — the same city
                 that gave the world Ferrari, Lamborghini, and Maserati. From the
                 very beginning, our mission was singular: build the world&apos;s most
                 advanced electric motorcycles.
               </p>
-              <p className="text-white/50 text-base leading-[1.8] mb-4">
+              <p className="text-white/65 text-base leading-[1.8] mb-4">
                 In 2019, we were named the exclusive motorcycle supplier to the FIM
                 Enel MotoE World Cup — a role we held for four seasons,
                 proving our technology against the most demanding conditions in
                 professional motorsport.
               </p>
-              <p className="text-white/50 text-base leading-[1.8]">
+              <p className="text-white/65 text-base leading-[1.8]">
                 Every lesson learned on the grid feeds directly into our road bikes.
                 The result is a lineup of four motorcycles that no other manufacturer
                 on earth can match for performance, refinement, or pedigree.
@@ -92,7 +92,7 @@ export default function AboutPage() {
                   >
                     {item.stat}
                   </p>
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 mt-1">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-white/65 mt-1">
                     {item.label}
                   </p>
                 </div>

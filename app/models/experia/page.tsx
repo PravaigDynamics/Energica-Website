@@ -45,7 +45,7 @@ export default function ExperiaPage() {
           <div className="mb-10">
             <p className="inline-flex items-center gap-3 mb-3">
               <span className="w-6 h-px bg-[#78BE20]" />
-              <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">
+              <span className="text-[10px] uppercase tracking-[0.35em] text-white/65">
                 Gallery
               </span>
             </p>
@@ -66,7 +66,7 @@ export default function ExperiaPage() {
           <div className="mb-12">
             <p className="inline-flex items-center gap-3 mb-3">
               <span className="w-6 h-px bg-[#78BE20]" />
-              <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">
+              <span className="text-[10px] uppercase tracking-[0.35em] text-white/65">
                 Full Specifications
               </span>
             </p>

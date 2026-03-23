@@ -119,12 +119,12 @@ function SuccessView({ email, onReset }: { email: string; onReset: () => void })
           Check your inbox at{" "}
           <span className="text-white/60">{email}</span>.
         </p>
-        <p className="text-sm text-white/55 mt-2">
+        <p className="text-sm text-white/65 mt-2">
           Your nearest dealer will reach out directly to confirm the time and location.
         </p>
         <button
           onClick={onReset}
-          className="mt-8 text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-colors duration-200 border border-white/20 hover:border-white/50 px-6 py-3"
+          className="mt-8 text-[10px] uppercase tracking-widest text-white/65 hover:text-white transition-colors duration-200 border border-white/20 hover:border-white/50 px-6 py-3"
         >
           Submit Another Request
         </button>
@@ -216,7 +216,7 @@ export default function TestRideForm() {
             {[["Free", "No cost"], ["24h", "Confirmation"], ["200+", "Locations"]].map(([val, lbl]) => (
               <div key={lbl}>
                 <p className="font-display text-xl text-white">{val}</p>
-                <p className="text-[9px] uppercase tracking-widest text-white/55">{lbl}</p>
+                <p className="text-[9px] uppercase tracking-widest text-white/65">{lbl}</p>
               </div>
             ))}
           </div>
@@ -293,7 +293,7 @@ export default function TestRideForm() {
                       <option value="">Select a model</option>
                       {MODELS.map((m) => <option key={m.value} value={m.value}>{m.label}</option>)}
                     </select>
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/55 pointer-events-none text-xs">▾</span>
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/65 pointer-events-none text-xs">▾</span>
                   </div>
                 </Field>
               </div>
@@ -313,7 +313,7 @@ export default function TestRideForm() {
                         </optgroup>
                       ))}
                     </select>
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/55 pointer-events-none text-xs">▾</span>
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/65 pointer-events-none text-xs">▾</span>
                   </div>
                 </Field>
               </div>

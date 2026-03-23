@@ -77,7 +77,7 @@ export default function ModelHero({ model }: ModelHeroProps) {
         className="absolute inset-0 flex items-center justify-end pr-6 overflow-hidden pointer-events-none select-none"
       >
         <span
-          className="font-display text-white/[0.022] leading-none"
+          className="font-display text-white/[0.15] leading-none"
           style={{ fontSize: "clamp(100px, 20vw, 280px)" }}
         >
           {model.name.replace(/[\s+]/g, "")}
@@ -114,7 +114,7 @@ export default function ModelHero({ model }: ModelHeroProps) {
         {/* Eyebrow */}
         <p className="mh-eyebrow inline-flex items-center gap-3 mb-6">
           <span className="w-8 h-px bg-[#78BE20]" />
-          <span className="text-[11px] uppercase tracking-[0.35em] text-white/50">
+          <span className="text-[11px] uppercase tracking-[0.35em] text-white/65">
             Energica Motorcycles
           </span>
         </p>

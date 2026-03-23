@@ -18,7 +18,7 @@ export default function NotFound() {
 
       {/* Giant 404 */}
       <h1
-        className="font-display text-white/[0.06] leading-none select-none"
+        className="font-display text-white/[0.20] leading-none select-none"
         style={{ fontSize: "clamp(120px, 30vw, 320px)" }}
         aria-hidden="true"
       >
@@ -33,7 +33,7 @@ export default function NotFound() {
         >
           Road Not Found
         </p>
-        <p className="text-white/50 text-sm max-w-xs mx-auto leading-relaxed">
+        <p className="text-white/65 text-sm max-w-xs mx-auto leading-relaxed">
           This page doesn&rsquo;t exist. Let&rsquo;s get you back on track.
         </p>
       </div>

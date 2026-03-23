@@ -542,7 +542,7 @@ function TechSection({
     <div className="ts-text flex flex-col justify-center gap-6">
       <div>
         <span className="inline-flex items-center gap-3 mb-6">
-          <span className="font-display text-5xl text-white/[0.06]">{num}</span>
+          <span className="font-display text-5xl text-white/[0.20]">{num}</span>
           <span className="w-8 h-px bg-[#78BE20]/40" />
           <span className="text-[10px] uppercase tracking-[0.3em] text-white/60">Tech Pillar</span>
         </span>
@@ -550,7 +550,7 @@ function TechSection({
           {title}
         </h2>
         <p className="text-[10px] uppercase tracking-widest text-[#78BE20]/70 mb-5">{sub}</p>
-        <p className="text-base text-white/50 leading-[1.8] max-w-lg">{body}</p>
+        <p className="text-base text-white/65 leading-[1.8] max-w-lg">{body}</p>
       </div>
       {stats && (
         <div className="flex gap-8 pt-4 border-t border-white/[0.05]">
@@ -609,7 +609,7 @@ export default function TechContent() {
         <div className="relative z-10 max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px]">
           <p className="th-eyebrow inline-flex items-center gap-3 mb-8">
             <span className="w-6 h-px bg-[#78BE20]" />
-            <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">Under the fairing</span>
+            <span className="text-[10px] uppercase tracking-[0.35em] text-white/65">Under the fairing</span>
           </p>
           <h1 className="th-h1 font-display text-white leading-none mb-8" style={{ fontSize: "clamp(60px, 11vw, 160px)" }}>
             <span className="block">OUR</span>
@@ -687,7 +687,7 @@ export default function TechContent() {
         <div className="max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px]">
           <div className="mb-14">
             <p className="inline-flex items-center gap-3 mb-6">
-              <span className="font-display text-5xl text-white/[0.06]">06</span>
+              <span className="font-display text-5xl text-white/[0.20]">06</span>
               <span className="w-8 h-px bg-[#78BE20]/40" />
               <span className="text-[10px] uppercase tracking-[0.3em] text-white/60">Tech Pillar</span>
             </p>
@@ -697,7 +697,7 @@ export default function TechContent() {
             <p className="text-[10px] uppercase tracking-widest text-[#78BE20]/70 mb-5">
               Co-developed with Bosch Motorsport
             </p>
-            <p className="text-base text-white/50 leading-[1.8] max-w-2xl">
+            <p className="text-base text-white/65 leading-[1.8] max-w-2xl">
               An integrated safety package co-engineered with Bosch, drawing on the same technology used in MotoGP paddock machinery. Six systems working together to keep you on the road.
             </p>
           </div>

@@ -106,7 +106,7 @@ export default function StorySection({ model }: StorySectionProps) {
             <div className="story-para">
               <p className="inline-flex items-center gap-3 mb-5">
                 <span className="w-6 h-px bg-[#78BE20]" />
-                <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">
+                <span className="text-[10px] uppercase tracking-[0.35em] text-white/65">
                   The Story
                 </span>
               </p>
@@ -125,7 +125,7 @@ export default function StorySection({ model }: StorySectionProps) {
             {paragraphs.map((para, i) => (
               <p
                 key={i}
-                className="story-para text-[length:var(--text-body)] text-white/50 leading-[1.6]"
+                className="story-para text-[length:var(--text-body)] text-white/65 leading-[1.6]"
               >
                 {para}
               </p>

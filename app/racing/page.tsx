@@ -36,7 +36,7 @@ export default function RacingPage() {
                 >
                   {s.num}
                 </p>
-                <p className="text-[10px] uppercase tracking-[0.3em] text-white/55 mt-2">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-white/65 mt-2">
                   {s.label}
                 </p>
               </div>
@@ -64,12 +64,12 @@ export default function RacingPage() {
               >
                 The Ego Corsa
               </h2>
-              <p className="text-white/50 text-base leading-[1.8] mb-4 max-w-[750px]">
+              <p className="text-white/65 text-base leading-[1.8] mb-4 max-w-[750px]">
                 The Ego Corsa is our race-specification motorcycle, purpose-built
                 for competition. Every technological breakthrough on the grid feeds
                 directly back into our road machines.
               </p>
-              <p className="text-white/50 text-base leading-[1.8] mb-[32px] max-w-[750px]">
+              <p className="text-white/65 text-base leading-[1.8] mb-[32px] max-w-[750px]">
                 The result: road-legal motorcycles with MotoE-derived electronics,
                 battery management, and thermal efficiency that no other
                 manufacturer can match.
@@ -102,7 +102,7 @@ export default function RacingPage() {
           <div className="mb-14 text-center">
             <p className="inline-flex items-center gap-3 mb-4">
               <span className="w-6 h-px bg-[#78BE20]" />
-              <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">
+              <span className="text-[10px] uppercase tracking-[0.35em] text-white/65">
                 From Circuit to Street
               </span>
               <span className="w-6 h-px bg-[#78BE20]" />

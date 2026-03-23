@@ -24,7 +24,7 @@ export function FeatureBlock({ number, title, body, tag, className }: FeatureBlo
       )}
     >
       {number && (
-        <span className="font-display text-5xl text-white/[0.07] flex-shrink-0 w-14 leading-none select-none">
+        <span className="font-display text-5xl text-white/[0.20] flex-shrink-0 w-14 leading-none select-none">
           {number}
         </span>
       )}
@@ -37,7 +37,7 @@ export function FeatureBlock({ number, title, body, tag, className }: FeatureBlo
         <h3 className="font-display text-2xl text-white mb-2 leading-[1.1]">
           {title}
         </h3>
-        <p className="text-white/50 text-[length:var(--text-body)] leading-[1.6]">{body}</p>
+        <p className="text-white/65 text-[length:var(--text-body)] leading-[1.6]">{body}</p>
       </div>
     </div>
   );

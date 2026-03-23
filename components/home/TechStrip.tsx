@@ -39,7 +39,7 @@ export default function TechStrip() {
           </div>
           <Link
             href="/technology"
-            className="text-[10px] tracking-[0.3em] text-white/55 uppercase hover:text-white transition-colors hidden md:block"
+            className="text-[10px] tracking-[0.3em] text-white/65 uppercase hover:text-white transition-colors hidden md:block"
             style={{ fontFamily: "var(--font-ibm-mono)" }}
           >
             Technology →
@@ -63,7 +63,7 @@ export default function TechStrip() {
         <div className="mt-10 md:hidden">
           <Link
             href="/technology"
-            className="text-[10px] tracking-[0.3em] text-white/55 uppercase"
+            className="text-[10px] tracking-[0.3em] text-white/65 uppercase"
             style={{ fontFamily: "var(--font-ibm-mono)" }}
           >
             Technology →

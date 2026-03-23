@@ -37,7 +37,7 @@ export default function ModelsPage() {
           >
             The Models
           </h1>
-          <p className="text-white/50 max-w-[750px] leading-relaxed text-[length:var(--text-body-lg)]">
+          <p className="text-white/65 max-w-[750px] leading-relaxed text-[length:var(--text-body-lg)]">
             Four motorcycles. One obsession: electric performance without
             compromise. Each born in Modena, each pushing the limits of what
             electric can be.
@@ -85,7 +85,7 @@ export default function ModelsPage() {
                     </span>
                   </div>
 
-                  <p className="text-white/50 text-sm leading-relaxed mb-6 max-w-[750px]">
+                  <p className="text-white/65 text-sm leading-relaxed mb-6 max-w-[750px]">
                     {model.description.substring(0, 120)}...
                   </p>
 

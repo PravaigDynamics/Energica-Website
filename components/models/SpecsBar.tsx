@@ -80,7 +80,7 @@ export default function SpecsBar({ specs }: SpecsBarProps) {
                   {spec.unit}
                 </span>
               </div>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-white/55 mt-2.5">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-white/65 mt-2.5">
                 {spec.label}
               </p>
             </div>

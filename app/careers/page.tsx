@@ -13,7 +13,7 @@ export default function CareersPage() {
       <Container>
         <p className="inline-flex items-center gap-3 mb-6">
           <span className="w-6 h-px bg-[#78BE20]" />
-          <span className="text-[10px] uppercase tracking-[0.4em] text-white/50">Careers</span>
+          <span className="text-[10px] uppercase tracking-[0.4em] text-white/65">Careers</span>
         </p>
         <h1
           className="font-display text-white leading-none mb-6"

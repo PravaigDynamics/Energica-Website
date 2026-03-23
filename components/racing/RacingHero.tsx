@@ -47,7 +47,7 @@ export default function RacingHero() {
           4 Seasons.<br />
           <span className="text-[#78BE20]">One Supplier.</span>
         </h1>
-        <p className="text-[length:var(--text-body-lg)] text-white/55 max-w-[750px] leading-relaxed" style={{ fontFamily: "var(--font-ibm-sans)", fontWeight: 300 }}>
+        <p className="text-[length:var(--text-body-lg)] text-white/65 max-w-[750px] leading-relaxed" style={{ fontFamily: "var(--font-ibm-sans)", fontWeight: 300 }}>
           Since the FIM Enel MotoE World Cup began in 2019, Energica has been
           the sole motorcycle supplier — every race, every round, every
           championship.

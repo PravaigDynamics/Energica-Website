@@ -160,7 +160,7 @@ export default function DealersPage() {
                 <div className="flex items-center gap-4 mb-6 pb-4 border-b border-white/[0.05]">
                   <span className="w-2 h-2 rounded-full bg-[#78BE20]" />
                   <h2 className="font-display text-2xl text-white">{region.region}</h2>
-                  <span className="ml-auto text-[10px] uppercase tracking-widest text-white/50">
+                  <span className="ml-auto text-[10px] uppercase tracking-widest text-white/65">
                     {region.dealers.length} dealers
                   </span>
                 </div>
@@ -179,7 +179,7 @@ export default function DealersPage() {
                       <h3 className="font-display text-white text-lg leading-tight mb-1 group-hover:text-[#78BE20] transition-colors duration-200">
                         {dealer.city}
                       </h3>
-                      <p className="text-xs text-white/55 mb-4">{dealer.name}</p>
+                      <p className="text-xs text-white/65 mb-4">{dealer.name}</p>
 
                       {/* Contact details */}
                       <div className="space-y-1.5 mb-4">
@@ -211,7 +211,7 @@ export default function DealersPage() {
                         </a>
                         <Link
                           href="/test-ride"
-                          className="text-[9px] uppercase tracking-widest text-white/50 hover:text-white transition-colors ml-auto"
+                          className="text-[9px] uppercase tracking-widest text-white/65 hover:text-white transition-colors ml-auto"
                         >
                           Book Ride
                         </Link>
@@ -271,7 +271,7 @@ export default function DealersPage() {
                   {[["12", "Countries"], [totalDealers.toString(), "Dealers"], ["200+", "Cities"]].map(([val, lbl]) => (
                     <div key={lbl} className="text-center">
                       <p className="font-display text-2xl text-white">{val}</p>
-                      <p className="text-[9px] uppercase tracking-widest text-white/50">{lbl}</p>
+                      <p className="text-[9px] uppercase tracking-widest text-white/65">{lbl}</p>
                     </div>
                   ))}
                 </div>
