@@ -42,89 +42,201 @@ function HeroRings() {
 }
 
 /* ─────────────────────────────────────────────────────────
-   SVG: Motor cross-section diagram
+   SVG: Motor cross-section diagram (PMASynRM — realistic)
 ───────────────────────────────────────────────────────── */
 function MotorDiagram() {
   const ref = useRef<SVGSVGElement>(null);
+
+  // Pre-round to 4dp — keeps SSR and client attribute strings identical
+  const R4 = (v: number) => Math.round(v * 1e4) / 1e4;
+  const CX = 200, CY = 200;
+
+  // ── 24 stator slots (copper windings) ─────────────────────
+  const SLOT_INNER_R = 122, SLOT_OUTER_R = 162;
+  const SLOT_IH = (5.5 * Math.PI) / 180; // inner half-angle
+  const SLOT_OH = (4.5 * Math.PI) / 180; // outer half-angle (slightly narrower)
+  const slots = Array.from({ length: 24 }, (_, i) => {
+    const a = (i / 24) * Math.PI * 2 - Math.PI / 2;
+    const iLx = R4(CX + Math.cos(a - SLOT_IH) * SLOT_INNER_R);
+    const iLy = R4(CY + Math.sin(a - SLOT_IH) * SLOT_INNER_R);
+    const iRx = R4(CX + Math.cos(a + SLOT_IH) * SLOT_INNER_R);
+    const iRy = R4(CY + Math.sin(a + SLOT_IH) * SLOT_INNER_R);
+    const oRx = R4(CX + Math.cos(a + SLOT_OH) * SLOT_OUTER_R);
+    const oRy = R4(CY + Math.sin(a + SLOT_OH) * SLOT_OUTER_R);
+    const oLx = R4(CX + Math.cos(a - SLOT_OH) * SLOT_OUTER_R);
+    const oLy = R4(CY + Math.sin(a - SLOT_OH) * SLOT_OUTER_R);
+    const d = `M ${iLx} ${iLy} A ${SLOT_INNER_R} ${SLOT_INNER_R} 0 0 1 ${iRx} ${iRy} L ${oRx} ${oRy} A ${SLOT_OUTER_R} ${SLOT_OUTER_R} 0 0 0 ${oLx} ${oLy} Z`;
+    const phase = i % 3;
+    const fill = phase === 0 ? "#78BE20" : phase === 1 ? "rgba(120,190,32,0.35)" : "rgba(255,255,255,0.05)";
+    return { i, d, fill };
+  });
+
+  // ── 8 arc-shaped permanent magnets (buried near rotor surface) ──
+  const MAG_INNER_R = 88, MAG_OUTER_R = 100;
+  const MAG_H = (9 * Math.PI) / 180;
+  const magnets = Array.from({ length: 8 }, (_, i) => {
+    const a = (i / 8) * Math.PI * 2 - Math.PI / 2;
+    const iLx = R4(CX + Math.cos(a - MAG_H) * MAG_INNER_R);
+    const iLy = R4(CY + Math.sin(a - MAG_H) * MAG_INNER_R);
+    const iRx = R4(CX + Math.cos(a + MAG_H) * MAG_INNER_R);
+    const iRy = R4(CY + Math.sin(a + MAG_H) * MAG_INNER_R);
+    const oRx = R4(CX + Math.cos(a + MAG_H) * MAG_OUTER_R);
+    const oRy = R4(CY + Math.sin(a + MAG_H) * MAG_OUTER_R);
+    const oLx = R4(CX + Math.cos(a - MAG_H) * MAG_OUTER_R);
+    const oLy = R4(CY + Math.sin(a - MAG_H) * MAG_OUTER_R);
+    const d = `M ${iLx} ${iLy} A ${MAG_INNER_R} ${MAG_INNER_R} 0 0 1 ${iRx} ${iRy} L ${oRx} ${oRy} A ${MAG_OUTER_R} ${MAG_OUTER_R} 0 0 0 ${oLx} ${oLy} Z`;
+    const mid = (MAG_INNER_R + MAG_OUTER_R) / 2;
+    const lx = R4(CX + Math.cos(a) * mid);
+    const ly = R4(CY + Math.sin(a) * mid);
+    return { i, d, fill: i % 2 === 0 ? "#78BE20" : "#8B1A1A", isNorth: i % 2 === 0, lx, ly };
+  });
+
+  // ── 8 flux barriers (the "reluctance" cutouts between pole pairs) ──
+  const BAR_INNER_R = 64, BAR_OUTER_R = 84;
+  const BAR_H = (8 * Math.PI) / 180;
+  const barriers = Array.from({ length: 8 }, (_, i) => {
+    const a = ((i + 0.5) / 8) * Math.PI * 2 - Math.PI / 2;
+    const iLx = R4(CX + Math.cos(a - BAR_H) * BAR_INNER_R);
+    const iLy = R4(CY + Math.sin(a - BAR_H) * BAR_INNER_R);
+    const iRx = R4(CX + Math.cos(a + BAR_H) * BAR_INNER_R);
+    const iRy = R4(CY + Math.sin(a + BAR_H) * BAR_INNER_R);
+    const oRx = R4(CX + Math.cos(a + BAR_H * 1.3) * BAR_OUTER_R);
+    const oRy = R4(CY + Math.sin(a + BAR_H * 1.3) * BAR_OUTER_R);
+    const oLx = R4(CX + Math.cos(a - BAR_H * 1.3) * BAR_OUTER_R);
+    const oLy = R4(CY + Math.sin(a - BAR_H * 1.3) * BAR_OUTER_R);
+    const d = `M ${iLx} ${iLy} A ${BAR_INNER_R} ${BAR_INNER_R} 0 0 1 ${iRx} ${iRy} L ${oRx} ${oRy} A ${BAR_OUTER_R} ${BAR_OUTER_R} 0 0 0 ${oLx} ${oLy} Z`;
+    return { i, d };
+  });
+
+  // ── 8 flux arcs (air-gap region, spin with rotor) ─────────
+  const fluxArcs = Array.from({ length: 8 }, (_, i) => {
+    const a = (i / 8) * Math.PI * 2;
+    const x1 = R4(CX + Math.cos(a) * 112);
+    const y1 = R4(CY + Math.sin(a) * 112);
+    const mx = R4(CX + Math.cos(a + 0.35) * 130);
+    const my = R4(CY + Math.sin(a + 0.35) * 130);
+    const x2 = R4(CX + Math.cos(a + 0.65) * 116);
+    const y2 = R4(CY + Math.sin(a + 0.65) * 116);
+    return { i, d: `M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}` };
+  });
+
   useGSAP(() => {
+    // Continuous rotor spin
     gsap.to(".md-rotor", { rotation: 360, transformOrigin: "200px 200px", duration: 12, ease: "none", repeat: -1 });
+    // Stator ring draw-in
     gsap.from(".md-stator", {
       strokeDasharray: "0 1200", duration: 1.4, ease: "power2.out",
       scrollTrigger: { trigger: ref.current, start: "top 78%" },
     });
+    // Rotor fade + scale in
     gsap.from(".md-rotor", {
-      opacity: 0, scale: 0.7, transformOrigin: "200px 200px", duration: 0.9, ease: "back.out(1.7)", delay: 0.4,
+      opacity: 0, scale: 0.7, transformOrigin: "200px 200px",
+      duration: 0.9, ease: "back.out(1.7)", delay: 0.4,
       scrollTrigger: { trigger: ref.current, start: "top 78%" },
     });
-    const fields = ref.current?.querySelectorAll<SVGPathElement>(".md-field");
-    fields?.forEach((p, i) => {
+    // Copper slots "power up" stagger
+    gsap.from(".md-slot", {
+      opacity: 0, duration: 0.35, stagger: 0.018, ease: "power2.out",
+      scrollTrigger: { trigger: ref.current, start: "top 78%" },
+    });
+    // Flux arc draw-in
+    const fluxEls = ref.current?.querySelectorAll<SVGPathElement>(".md-flux");
+    fluxEls?.forEach((p, i) => {
       const len = p.getTotalLength();
       gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
-      gsap.to(p, { strokeDashoffset: 0, duration: 0.8, delay: 0.6 + i * 0.08, ease: "power2.out",
-        scrollTrigger: { trigger: ref.current, start: "top 78%" } });
+      gsap.to(p, {
+        strokeDashoffset: 0, duration: 0.8, delay: 0.6 + i * 0.08, ease: "power2.out",
+        scrollTrigger: { trigger: ref.current, start: "top 78%" },
+      });
     });
   }, { scope: ref });
 
-  // Pre-round all computed coords so server & client output identical attribute strings
-  const statorTeeth = Array.from({ length: 12 }).map((_, i) => {
-    const a = ((i / 12) * 360 - 90) * (Math.PI / 180);
-    const r = (v: number) => Math.round(v * 1e6) / 1e6;
-    return { i, isCoil: i % 3 === 0, x1: r(200 + Math.cos(a) * 128), y1: r(200 + Math.sin(a) * 128), x2: r(200 + Math.cos(a) * 160), y2: r(200 + Math.sin(a) * 160) };
-  });
-  const fieldArcs = Array.from({ length: 8 }).map((_, i) => {
-    const a = (i / 8) * Math.PI * 2;
-    const r1 = 113, r2 = 127;
-    const r = (v: number) => Math.round(v * 1e6) / 1e6;
-    const x1 = r(200 + Math.cos(a) * r1), y1 = r(200 + Math.sin(a) * r1);
-    const mx = r(200 + Math.cos(a + 0.3) * 140), my = r(200 + Math.sin(a + 0.3) * 140);
-    const x2 = r(200 + Math.cos(a + 0.6) * r2), y2 = r(200 + Math.sin(a + 0.6) * r2);
-    return { i, d: `M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`, color: i % 2 === 0 ? "#78BE20" : "rgba(139,184,212,0.5)" };
-  });
-
   return (
     <svg ref={ref} viewBox="0 0 400 400" className="w-full max-w-[380px] mx-auto" aria-hidden>
-      {/* Housing */}
-      <circle cx="200" cy="200" r="182" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="28" />
-      {/* Stator outline */}
-      <circle className="md-stator" cx="200" cy="200" r="168" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="2" />
-      {/* 12 stator teeth — pre-rounded coords avoid SSR/client float mismatch */}
-      {statorTeeth.map(({ i, isCoil, x1, y1, x2, y2 }) => (
-        <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-          stroke={isCoil ? "#78BE20" : "rgba(255,255,255,0.1)"}
-          strokeWidth={isCoil ? "5" : "8"}
-        />
+      <defs>
+        <radialGradient id="gHousing" cx="50%" cy="50%">
+          <stop offset="0%" stopColor="#1c1c1c" />
+          <stop offset="100%" stopColor="#0f0f0f" />
+        </radialGradient>
+        <radialGradient id="gRotor" cx="50%" cy="50%">
+          <stop offset="0%" stopColor="#161616" />
+          <stop offset="100%" stopColor="#0a0a0a" />
+        </radialGradient>
+      </defs>
+
+      {/* ── Outer housing shell ── */}
+      <circle cx="200" cy="200" r="182" fill="url(#gHousing)" stroke="rgba(255,255,255,0.08)" strokeWidth="3" />
+      <circle cx="200" cy="200" r="169" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+
+      {/* ── Stator back-iron ring (r=121→169 via stroke on r=145, w=48) ── */}
+      <circle className="md-stator" cx="200" cy="200" r="145" fill="none"
+        stroke="rgba(55,58,50,0.92)" strokeWidth="48" />
+      <circle cx="200" cy="200" r="168" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+      <circle cx="200" cy="200" r="122" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+
+      {/* ── 24 stator slots with copper windings ── */}
+      {slots.map(({ i, d, fill }) => (
+        <path key={i} className="md-slot" d={d} fill={fill} />
       ))}
-      {/* Air gap */}
-      <circle cx="200" cy="200" r="120" fill="none" stroke="rgba(0,0,0,0.6)" strokeWidth="14" />
-      {/* Field arc lines */}
-      {fieldArcs.map(({ i, d, color }) => (
-        <path key={i} className="md-field" d={d}
-          fill="none" stroke={color}
-          strokeWidth="1.5" strokeLinecap="round" opacity="0.9"
-        />
-      ))}
-      {/* Rotor (rotates) */}
+
+      {/* ── Air gap (dark band separating stator from rotor) ── */}
+      <circle cx="200" cy="200" r="118" fill="none" stroke="rgba(0,0,0,0.95)" strokeWidth="9" />
+      <circle cx="200" cy="200" r="113" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
+
+      {/* ── Rotor group (everything inside spins) ── */}
       <g className="md-rotor">
-        <circle cx="200" cy="200" r="108" fill="#0c0c0c" />
-        <circle cx="200" cy="200" r="107" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-        {/* 8 permanent magnets */}
-        {Array.from({ length: 8 }).map((_, i) => {
-          const a = (i / 8) * Math.PI * 2;
-          const mx = 200 + Math.cos(a) * 84, my = 200 + Math.sin(a) * 84;
-          return (
-            <rect key={i} x={mx - 10} y={my - 5} width="20" height="10" rx="2"
-              fill={i % 2 === 0 ? "#78BE20" : "#1a3a5c"} opacity="0.85"
-              transform={`rotate(${(i / 8) * 360}, ${mx}, ${my})`} />
-          );
-        })}
-        {/* Shaft */}
-        <circle cx="200" cy="200" r="24" fill="#111" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-        <circle cx="200" cy="200" r="14" fill="#1a1a1a" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+        <circle cx="200" cy="200" r="110" fill="url(#gRotor)" />
+        <circle cx="200" cy="200" r="109" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+
+        {/* Flux barriers — the distinctive PMASynRM cutouts */}
+        {barriers.map(({ i, d }) => (
+          <path key={i} d={d} fill="rgba(0,0,0,0.92)" stroke="rgba(255,255,255,0.07)" strokeWidth="0.5" />
+        ))}
+
+        {/* Arc-shaped permanent magnets with N / S labels */}
+        {magnets.map(({ i, d, fill, isNorth, lx, ly }) => (
+          <g key={i}>
+            <path d={d} fill={fill} opacity="0.88" />
+            <text x={lx} y={ly} textAnchor="middle" dominantBaseline="middle"
+              fill="rgba(255,255,255,0.9)" fontSize="7" fontFamily="monospace" fontWeight="bold">
+              {isNorth ? "N" : "S"}
+            </text>
+          </g>
+        ))}
+
+        {/* Flux arcs (spin with rotor to show rotating field) */}
+        {fluxArcs.map(({ i, d }) => (
+          <path key={i} className="md-flux" d={d}
+            fill="none" stroke="rgba(120,190,32,0.45)" strokeWidth="1.5" strokeLinecap="round" />
+        ))}
+
+        {/* Bearing ring + shaft + keyway cross */}
+        <circle cx="200" cy="200" r="27" fill="#111" stroke="rgba(255,255,255,0.18)" strokeWidth="2" />
+        <circle cx="200" cy="200" r="19" fill="#1a1a1a" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+        <line x1="200" y1="183" x2="200" y2="217" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" />
+        <line x1="183" y1="200" x2="217" y2="200" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" />
         <circle cx="200" cy="200" r="5" fill="#78BE20" />
       </g>
-      {/* Labels */}
-      <text x="200" y="20" textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="8" letterSpacing="3" fontFamily="monospace">STATOR WINDING</text>
-      <text x="200" y="390" textAnchor="middle" fill="rgba(120, 190, 32, 0.5)" fontSize="8" letterSpacing="3" fontFamily="monospace">PMASynRM · 96% PEAK EFFICIENCY</text>
+
+      {/* ── Technical annotations ── */}
+      <text x="200" y="13" textAnchor="middle" fill="rgba(255,255,255,0.18)"
+        fontSize="7" letterSpacing="2" fontFamily="monospace">STATOR LAMINATIONS</text>
+      <line x1="200" y1="17" x2="200" y2="31" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
+
+      <text x="386" y="150" textAnchor="end" fill="rgba(255,255,255,0.15)"
+        fontSize="7" letterSpacing="1.5" fontFamily="monospace">COPPER</text>
+      <text x="386" y="160" textAnchor="end" fill="rgba(255,255,255,0.15)"
+        fontSize="7" letterSpacing="1.5" fontFamily="monospace">WINDINGS</text>
+      <line x1="372" y1="155" x2="358" y2="161" stroke="rgba(255,255,255,0.07)" strokeWidth="0.5" />
+
+      <text x="14" y="150" textAnchor="start" fill="rgba(255,255,255,0.15)"
+        fontSize="7" letterSpacing="1.5" fontFamily="monospace">FLUX</text>
+      <text x="14" y="160" textAnchor="start" fill="rgba(255,255,255,0.15)"
+        fontSize="7" letterSpacing="1.5" fontFamily="monospace">BARRIERS</text>
+      <line x1="28" y1="155" x2="44" y2="161" stroke="rgba(255,255,255,0.07)" strokeWidth="0.5" />
+
+      <text x="200" y="393" textAnchor="middle" fill="rgba(120,190,32,0.5)"
+        fontSize="7" letterSpacing="2" fontFamily="monospace">PMASynRM · 96% PEAK EFFICIENCY</text>
     </svg>
   );
 }
