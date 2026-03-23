@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import Link from "next/link";
 
@@ -42,10 +42,15 @@ function HeroRings() {
 }
 
 /* ─────────────────────────────────────────────────────────
-   SVG: Motor cross-section diagram (PMASynRM — realistic)
+   SVG: Motor cross-section diagram (PMASynRM — 3D + interactive)
 ───────────────────────────────────────────────────────── */
 function MotorDiagram() {
-  const ref = useRef<SVGSVGElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const svgRef       = useRef<SVGSVGElement>(null);
+  const rotorTween   = useRef<gsap.core.Tween | null>(null);
+  // Smooth 3D tilt state (no re-renders — all via RAF)
+  const tilt = useRef({ cx: 0, cy: 0, tx: 0, ty: 0 });
+  const rafId = useRef(0);
 
   // Pre-round to 4dp — keeps SSR and client attribute strings identical
   const R4 = (v: number) => Math.round(v * 1e4) / 1e4;
@@ -53,8 +58,8 @@ function MotorDiagram() {
 
   // ── 24 stator slots (copper windings) ─────────────────────
   const SLOT_INNER_R = 122, SLOT_OUTER_R = 162;
-  const SLOT_IH = (5.5 * Math.PI) / 180; // inner half-angle
-  const SLOT_OH = (4.5 * Math.PI) / 180; // outer half-angle (slightly narrower)
+  const SLOT_IH = (5.5 * Math.PI) / 180;
+  const SLOT_OH = (4.5 * Math.PI) / 180;
   const slots = Array.from({ length: 24 }, (_, i) => {
     const a = (i / 24) * Math.PI * 2 - Math.PI / 2;
     const iLx = R4(CX + Math.cos(a - SLOT_IH) * SLOT_INNER_R);
@@ -71,7 +76,7 @@ function MotorDiagram() {
     return { i, d, fill };
   });
 
-  // ── 8 arc-shaped permanent magnets (buried near rotor surface) ──
+  // ── 8 arc-shaped permanent magnets ────────────────────────
   const MAG_INNER_R = 88, MAG_OUTER_R = 100;
   const MAG_H = (9 * Math.PI) / 180;
   const magnets = Array.from({ length: 8 }, (_, i) => {
@@ -86,12 +91,11 @@ function MotorDiagram() {
     const oLy = R4(CY + Math.sin(a - MAG_H) * MAG_OUTER_R);
     const d = `M ${iLx} ${iLy} A ${MAG_INNER_R} ${MAG_INNER_R} 0 0 1 ${iRx} ${iRy} L ${oRx} ${oRy} A ${MAG_OUTER_R} ${MAG_OUTER_R} 0 0 0 ${oLx} ${oLy} Z`;
     const mid = (MAG_INNER_R + MAG_OUTER_R) / 2;
-    const lx = R4(CX + Math.cos(a) * mid);
-    const ly = R4(CY + Math.sin(a) * mid);
-    return { i, d, fill: i % 2 === 0 ? "#78BE20" : "#8B1A1A", isNorth: i % 2 === 0, lx, ly };
+    return { i, d, fill: i % 2 === 0 ? "#78BE20" : "#8B1A1A", isNorth: i % 2 === 0,
+      lx: R4(CX + Math.cos(a) * mid), ly: R4(CY + Math.sin(a) * mid) };
   });
 
-  // ── 8 flux barriers (the "reluctance" cutouts between pole pairs) ──
+  // ── 8 flux barriers (PMASynRM reluctance cutouts) ─────────
   const BAR_INNER_R = 64, BAR_OUTER_R = 84;
   const BAR_H = (8 * Math.PI) / 180;
   const barriers = Array.from({ length: 8 }, (_, i) => {
@@ -108,7 +112,7 @@ function MotorDiagram() {
     return { i, d };
   });
 
-  // ── 8 flux arcs (air-gap region, spin with rotor) ─────────
+  // ── 8 flux arcs (spin with rotor) ─────────────────────────
   const fluxArcs = Array.from({ length: 8 }, (_, i) => {
     const a = (i / 8) * Math.PI * 2;
     const x1 = R4(CX + Math.cos(a) * 112);
@@ -120,124 +124,188 @@ function MotorDiagram() {
     return { i, d: `M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}` };
   });
 
+  // ── GSAP animations ───────────────────────────────────────
   useGSAP(() => {
-    // Continuous rotor spin — svgOrigin uses SVG coordinate space (not CSS px)
-    gsap.to(".md-rotor", { rotation: 360, svgOrigin: "200 200", duration: 12, ease: "none", repeat: -1 });
-    // Stator ring draw-in
+    rotorTween.current = gsap.to(".md-rotor", {
+      rotation: 360, svgOrigin: "200 200", duration: 6, ease: "none", repeat: -1,
+    });
     gsap.from(".md-stator", {
       strokeDasharray: "0 1200", duration: 1.4, ease: "power2.out",
-      scrollTrigger: { trigger: ref.current, start: "top 78%" },
+      scrollTrigger: { trigger: svgRef.current, start: "top 78%" },
     });
-    // Rotor fade + scale in
     gsap.from(".md-rotor", {
       opacity: 0, scale: 0.7, svgOrigin: "200 200",
       duration: 0.9, ease: "back.out(1.7)", delay: 0.4,
-      scrollTrigger: { trigger: ref.current, start: "top 78%" },
+      scrollTrigger: { trigger: svgRef.current, start: "top 78%" },
     });
-    // Copper slots "power up" stagger
     gsap.from(".md-slot", {
       opacity: 0, duration: 0.35, stagger: 0.018, ease: "power2.out",
-      scrollTrigger: { trigger: ref.current, start: "top 78%" },
+      scrollTrigger: { trigger: svgRef.current, start: "top 78%" },
     });
-    // Flux arc draw-in
-    const fluxEls = ref.current?.querySelectorAll<SVGPathElement>(".md-flux");
+    const fluxEls = svgRef.current?.querySelectorAll<SVGPathElement>(".md-flux");
     fluxEls?.forEach((p, i) => {
       const len = p.getTotalLength();
       gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
       gsap.to(p, {
         strokeDashoffset: 0, duration: 0.8, delay: 0.6 + i * 0.08, ease: "power2.out",
-        scrollTrigger: { trigger: ref.current, start: "top 78%" },
+        scrollTrigger: { trigger: svgRef.current, start: "top 78%" },
       });
     });
-  }, { scope: ref });
+  }, { scope: svgRef });
+
+  // ── 3D tilt + hover speed-up (RAF loop, no re-renders) ────
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const onMove = (e: MouseEvent) => {
+      const { left, top, width, height } = el.getBoundingClientRect();
+      tilt.current.tx = ((e.clientY - top  - height / 2) / (height / 2)) * -14;
+      tilt.current.ty = ((e.clientX - left - width  / 2) / (width  / 2)) *  14;
+    };
+    const onEnter = () => {
+      rotorTween.current?.timeScale(2.5);
+      gsap.to(el, { filter: "drop-shadow(0 0 24px rgba(120,190,32,0.4))", duration: 0.45 });
+    };
+    const onLeave = () => {
+      rotorTween.current?.timeScale(1);
+      tilt.current.tx = 0; tilt.current.ty = 0;
+      gsap.to(el, { filter: "none", duration: 0.7 });
+    };
+
+    const loop = () => {
+      const L = 0.08; // lerp factor
+      tilt.current.cx += (tilt.current.tx - tilt.current.cx) * L;
+      tilt.current.cy += (tilt.current.ty - tilt.current.cy) * L;
+      el.style.transform =
+        `perspective(700px) rotateX(${tilt.current.cy}deg) rotateY(${tilt.current.cx}deg)`;
+      rafId.current = requestAnimationFrame(loop);
+    };
+    rafId.current = requestAnimationFrame(loop);
+
+    el.addEventListener("mousemove",  onMove);
+    el.addEventListener("mouseenter", onEnter);
+    el.addEventListener("mouseleave", onLeave);
+    return () => {
+      cancelAnimationFrame(rafId.current);
+      el.removeEventListener("mousemove",  onMove);
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
 
   return (
-    <svg ref={ref} viewBox="0 0 400 400" className="w-full max-w-[380px] mx-auto" aria-hidden>
-      <defs>
-        <radialGradient id="gHousing" cx="50%" cy="50%">
-          <stop offset="0%" stopColor="#1c1c1c" />
-          <stop offset="100%" stopColor="#0f0f0f" />
-        </radialGradient>
-        <radialGradient id="gRotor" cx="50%" cy="50%">
-          <stop offset="0%" stopColor="#161616" />
-          <stop offset="100%" stopColor="#0a0a0a" />
-        </radialGradient>
-      </defs>
+    <div ref={containerRef} className="w-full max-w-[380px] mx-auto cursor-pointer"
+      style={{ transformStyle: "preserve-3d" }}>
+      <svg ref={svgRef} viewBox="0 0 400 400" className="w-full" aria-hidden>
+        <defs>
+          {/* Off-centre gradient simulates a top-left light source */}
+          <radialGradient id="gHousing" cx="35%" cy="30%">
+            <stop offset="0%"   stopColor="#2c2c2a" />
+            <stop offset="55%"  stopColor="#181816" />
+            <stop offset="100%" stopColor="#0a0a09" />
+          </radialGradient>
+          <radialGradient id="gRotor" cx="40%" cy="35%">
+            <stop offset="0%"   stopColor="#222220" />
+            <stop offset="100%" stopColor="#080808" />
+          </radialGradient>
+          {/* Glow filter for magnets + centre dot */}
+          <filter id="fGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
 
-      {/* ── Outer housing shell ── */}
-      <circle cx="200" cy="200" r="182" fill="url(#gHousing)" stroke="rgba(255,255,255,0.08)" strokeWidth="3" />
-      <circle cx="200" cy="200" r="169" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+        {/* ── Housing shell + depth edges ── */}
+        <circle cx="200" cy="200" r="182" fill="url(#gHousing)" stroke="rgba(255,255,255,0.1)" strokeWidth="3" />
+        {/* Specular rim highlight (top-left arc) */}
+        <path d="M 76 100 A 162 162 0 0 1 260 42"
+          fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="2.5" strokeLinecap="round" />
+        {/* Shadow edge (bottom-right arc) */}
+        <path d="M 324 300 A 162 162 0 0 1 140 358"
+          fill="none" stroke="rgba(0,0,0,0.5)" strokeWidth="3" strokeLinecap="round" />
 
-      {/* ── Stator back-iron ring (r=121→169 via stroke on r=145, w=48) ── */}
-      <circle className="md-stator" cx="200" cy="200" r="145" fill="none"
-        stroke="rgba(55,58,50,0.92)" strokeWidth="48" />
-      <circle cx="200" cy="200" r="168" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-      <circle cx="200" cy="200" r="122" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+        {/* ── Stator back-iron ring ── */}
+        <circle className="md-stator" cx="200" cy="200" r="145" fill="none"
+          stroke="rgba(44,47,52,0.96)" strokeWidth="48" />
+        <circle cx="200" cy="200" r="168" fill="none" stroke="rgba(255,255,255,0.1)"  strokeWidth="1" />
+        <circle cx="200" cy="200" r="122" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+        {/* Partial highlight arc on stator (depth illusion) */}
+        <circle cx="200" cy="200" r="145" fill="none"
+          stroke="rgba(255,255,255,0.05)" strokeWidth="46"
+          strokeDasharray="210 740" strokeDashoffset="60" />
 
-      {/* ── 24 stator slots with copper windings ── */}
-      {slots.map(({ i, d, fill }) => (
-        <path key={i} className="md-slot" d={d} fill={fill} />
-      ))}
-
-      {/* ── Air gap (dark band separating stator from rotor) ── */}
-      <circle cx="200" cy="200" r="118" fill="none" stroke="rgba(0,0,0,0.95)" strokeWidth="9" />
-      <circle cx="200" cy="200" r="113" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
-
-      {/* ── Rotor group (everything inside spins) ── */}
-      <g className="md-rotor">
-        <circle cx="200" cy="200" r="110" fill="url(#gRotor)" />
-        <circle cx="200" cy="200" r="109" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-
-        {/* Flux barriers — the distinctive PMASynRM cutouts */}
-        {barriers.map(({ i, d }) => (
-          <path key={i} d={d} fill="rgba(0,0,0,0.92)" stroke="rgba(255,255,255,0.07)" strokeWidth="0.5" />
+        {/* ── 24 copper winding slots ── */}
+        {slots.map(({ i, d, fill }) => (
+          <path key={i} className="md-slot" d={d} fill={fill} />
         ))}
 
-        {/* Arc-shaped permanent magnets with N / S labels */}
-        {magnets.map(({ i, d, fill, isNorth, lx, ly }) => (
-          <g key={i}>
-            <path d={d} fill={fill} opacity="0.88" />
-            <text x={lx} y={ly} textAnchor="middle" dominantBaseline="middle"
-              fill="rgba(255,255,255,0.9)" fontSize="7" fontFamily="monospace" fontWeight="bold">
-              {isNorth ? "N" : "S"}
-            </text>
-          </g>
-        ))}
+        {/* ── Air gap ── */}
+        <circle cx="200" cy="200" r="118"   fill="none" stroke="rgba(0,0,0,0.97)"   strokeWidth="9" />
+        <circle cx="200" cy="200" r="113.5" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
 
-        {/* Flux arcs (spin with rotor to show rotating field) */}
-        {fluxArcs.map(({ i, d }) => (
-          <path key={i} className="md-flux" d={d}
-            fill="none" stroke="rgba(120,190,32,0.45)" strokeWidth="1.5" strokeLinecap="round" />
-        ))}
+        {/* ── Rotor group (spins) ── */}
+        <g className="md-rotor">
+          <circle cx="200" cy="200" r="110" fill="url(#gRotor)" />
+          <circle cx="200" cy="200" r="109" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+          {/* Rotor specular highlight */}
+          <ellipse cx="178" cy="162" rx="30" ry="13" fill="rgba(255,255,255,0.05)" />
 
-        {/* Bearing ring + shaft + keyway cross */}
-        <circle cx="200" cy="200" r="27" fill="#111" stroke="rgba(255,255,255,0.18)" strokeWidth="2" />
-        <circle cx="200" cy="200" r="19" fill="#1a1a1a" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-        <line x1="200" y1="183" x2="200" y2="217" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" />
-        <line x1="183" y1="200" x2="217" y2="200" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" />
-        <circle cx="200" cy="200" r="5" fill="#78BE20" />
-      </g>
+          {/* Flux barriers */}
+          {barriers.map(({ i, d }) => (
+            <path key={i} d={d} fill="rgba(0,0,0,0.93)" stroke="rgba(255,255,255,0.09)" strokeWidth="0.5" />
+          ))}
 
-      {/* ── Technical annotations ── */}
-      <text x="200" y="13" textAnchor="middle" fill="rgba(255,255,255,0.18)"
-        fontSize="7" letterSpacing="2" fontFamily="monospace">STATOR LAMINATIONS</text>
-      <line x1="200" y1="17" x2="200" y2="31" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
+          {/* Arc magnets with glow + N/S labels */}
+          {magnets.map(({ i, d, fill, isNorth, lx, ly }) => (
+            <g key={i} filter="url(#fGlow)">
+              <path d={d} fill={fill} opacity="0.92" />
+              <text x={lx} y={ly} textAnchor="middle" dominantBaseline="middle"
+                fill="white" fontSize="7.5" fontFamily="monospace" fontWeight="bold">
+                {isNorth ? "N" : "S"}
+              </text>
+            </g>
+          ))}
 
-      <text x="386" y="150" textAnchor="end" fill="rgba(255,255,255,0.15)"
-        fontSize="7" letterSpacing="1.5" fontFamily="monospace">COPPER</text>
-      <text x="386" y="160" textAnchor="end" fill="rgba(255,255,255,0.15)"
-        fontSize="7" letterSpacing="1.5" fontFamily="monospace">WINDINGS</text>
-      <line x1="372" y1="155" x2="358" y2="161" stroke="rgba(255,255,255,0.07)" strokeWidth="0.5" />
+          {/* Flux arcs */}
+          {fluxArcs.map(({ i, d }) => (
+            <path key={i} className="md-flux" d={d}
+              fill="none" stroke="rgba(120,190,32,0.5)" strokeWidth="1.5" strokeLinecap="round" />
+          ))}
 
-      <text x="14" y="150" textAnchor="start" fill="rgba(255,255,255,0.15)"
-        fontSize="7" letterSpacing="1.5" fontFamily="monospace">FLUX</text>
-      <text x="14" y="160" textAnchor="start" fill="rgba(255,255,255,0.15)"
-        fontSize="7" letterSpacing="1.5" fontFamily="monospace">BARRIERS</text>
-      <line x1="28" y1="155" x2="44" y2="161" stroke="rgba(255,255,255,0.07)" strokeWidth="0.5" />
+          {/* Bearing + shaft + keyway */}
+          <circle cx="200" cy="200" r="27" fill="#0e0e0e" stroke="rgba(255,255,255,0.24)" strokeWidth="2" />
+          <circle cx="200" cy="200" r="19" fill="#1c1c1c" stroke="rgba(255,255,255,0.1)"  strokeWidth="1" />
+          <line x1="200" y1="183" x2="200" y2="217" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+          <line x1="183" y1="200" x2="217" y2="200" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
+          <circle cx="200" cy="200" r="5" fill="#78BE20" filter="url(#fGlow)" />
+        </g>
 
-      <text x="200" y="393" textAnchor="middle" fill="rgba(120,190,32,0.5)"
-        fontSize="7" letterSpacing="2" fontFamily="monospace">PMASynRM · 96% PEAK EFFICIENCY</text>
-    </svg>
+        {/* ── Annotations — dark pill backgrounds for readability ── */}
+        <rect x="122" y="4"   width="156" height="14" rx="3" fill="rgba(0,0,0,0.6)" />
+        <text x="200" y="14" textAnchor="middle" fill="rgba(255,255,255,0.78)"
+          fontSize="7.5" letterSpacing="2.5" fontFamily="monospace">STATOR LAMINATIONS</text>
+        <line x1="200" y1="19" x2="200" y2="31" stroke="rgba(255,255,255,0.22)" strokeWidth="0.5" />
+
+        <rect x="311" y="142" width="80" height="26" rx="3" fill="rgba(0,0,0,0.6)" />
+        <text x="351" y="153" textAnchor="middle" fill="rgba(255,255,255,0.78)"
+          fontSize="7.5" letterSpacing="1.5" fontFamily="monospace">COPPER</text>
+        <text x="351" y="163" textAnchor="middle" fill="rgba(255,255,255,0.78)"
+          fontSize="7.5" letterSpacing="1.5" fontFamily="monospace">WINDINGS</text>
+        <line x1="311" y1="155" x2="299" y2="161" stroke="rgba(255,255,255,0.22)" strokeWidth="0.5" />
+
+        <rect x="9" y="142" width="74" height="26" rx="3" fill="rgba(0,0,0,0.6)" />
+        <text x="46" y="153" textAnchor="middle" fill="rgba(255,255,255,0.78)"
+          fontSize="7.5" letterSpacing="1.5" fontFamily="monospace">FLUX</text>
+        <text x="46" y="163" textAnchor="middle" fill="rgba(255,255,255,0.78)"
+          fontSize="7.5" letterSpacing="1.5" fontFamily="monospace">BARRIERS</text>
+        <line x1="83" y1="155" x2="95" y2="161" stroke="rgba(255,255,255,0.22)" strokeWidth="0.5" />
+
+        <rect x="88" y="385" width="224" height="13" rx="3" fill="rgba(0,0,0,0.6)" />
+        <text x="200" y="394" textAnchor="middle" fill="rgba(120,190,32,0.92)"
+          fontSize="7.5" letterSpacing="2" fontFamily="monospace">PMASynRM · 96% PEAK EFFICIENCY</text>
+      </svg>
+    </div>
   );
 }
 
