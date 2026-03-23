@@ -602,30 +602,32 @@ export default function TechContent() {
       {/* ── HERO ───────────────────────────────────────────── */}
       <div ref={heroRef} className="relative min-h-screen flex items-center pt-20 overflow-hidden">
         {/* Rings — fills background */}
-        <div aria-hidden className="absolute right-0 top-1/2 -translate-y-1/2 w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] opacity-60 pointer-events-none">
+        <div aria-hidden className="absolute right-[-5vw] top-1/2 -translate-y-1/2 w-[50vw] h-[50vw] max-w-[640px] max-h-[640px] opacity-45 pointer-events-none">
           <HeroRings />
         </div>
 
-        <div className="relative z-10 max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px]">
-          <p className="th-eyebrow inline-flex items-center gap-3 mb-8">
-            <span className="w-6 h-px bg-[#78BE20]" />
-            <span className="text-[10px] uppercase tracking-[0.35em] text-white/65">Under the fairing</span>
-          </p>
-          <h1 className="th-h1 font-display text-white leading-none mb-8" style={{ fontSize: "clamp(60px, 11vw, 160px)" }}>
-            <span className="block">OUR</span>
-            <span className="block text-[#78BE20]">TECHNOLOGY</span>
-          </h1>
-          <p className="th-body text-lg text-white/60 max-w-md leading-relaxed">
-            From motor to BMS to software, we control every variable.
-          </p>
+        <div className="relative z-10 max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px] w-full">
+          <div className="max-w-[680px]">
+            <p className="th-eyebrow inline-flex items-center gap-3 mb-8">
+              <span className="w-6 h-px bg-[#78BE20]" />
+              <span className="text-[10px] uppercase tracking-[0.35em] text-white/65">Under the fairing</span>
+            </p>
+            <h1 className="th-h1 font-display text-white leading-[0.9] mb-8" style={{ fontSize: "clamp(72px, 12vw, 168px)" }}>
+              <span className="block">OUR</span>
+              <span className="block text-[#78BE20]">TECH<wbr />NOLOGY</span>
+            </h1>
+            <p className="th-body text-lg text-white/60 max-w-[480px] leading-relaxed">
+              From motor to BMS to software, we control every variable.
+            </p>
 
-          {/* Jump-links */}
-          <div className="mt-12 flex flex-wrap gap-3">
-            {["Motor", "Battery", "Charging", "App", "Ride By Wire", "Safety"].map((t) => (
-              <span key={t} className="px-4 py-2 border border-white/10 text-[10px] uppercase tracking-widest text-white/60 hover:border-[#78BE20]/40 hover:text-white/60 transition-colors duration-200 cursor-pointer">
-                {t}
-              </span>
-            ))}
+            {/* Jump-links */}
+            <div className="mt-12 flex flex-wrap gap-3">
+              {["Motor", "Battery", "Charging", "App", "Ride By Wire", "Safety"].map((t) => (
+                <span key={t} className="px-4 py-2 border border-white/10 text-[10px] uppercase tracking-widest text-white/60 hover:border-[#78BE20]/40 hover:text-white/60 transition-colors duration-200 cursor-pointer">
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
