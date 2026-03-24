@@ -12,7 +12,7 @@ export default function TestRideCTA() {
           </p>
 
           <h2 className="font-display text-[clamp(36px,8vw,96px)] text-white leading-tight uppercase mb-4">
-            Words won&apos;t<br />do it justice.
+            Ride one.
           </h2>
 
           <p className="text-white/60 text-lg mb-12">

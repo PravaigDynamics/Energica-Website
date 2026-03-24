@@ -106,9 +106,7 @@ export default function MotoAmericaSection() {
                   matters as much as lap time.
                 </p>
                 <p className="ma-para text-white/65 text-base leading-[1.8] max-w-[600px]">
-                  Returning in 2024, the program proved that electric torque
-                  and MotoAmerica competition are not contradictions.
-                  They are the same sentence.
+                  Electric torque. MotoAmerica competition. Same motorcycle.
                 </p>
               </div>
 

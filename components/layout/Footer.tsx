@@ -77,7 +77,7 @@ export default function Footer() {
 
             {/* Tagline */}
             <p className="text-[11px] uppercase tracking-[0.25em] text-[#78BE20]/85 mb-3">
-              Born Electric. Born Italian.
+              Progress, Ridden.
             </p>
             <p className="text-sm text-white/60 leading-relaxed max-w-xs">
               The world&rsquo;s most advanced electric motorcycles, engineered in Modena, Italy since 2009.

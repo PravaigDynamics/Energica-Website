@@ -245,7 +245,7 @@ export default function RacingPage() {
             className="font-display text-white leading-none mb-[24px]"
             style={{ fontSize: "var(--text-h1)" }}
           >
-            Experience the Difference.
+            Ride one. 200+ locations worldwide.
           </h2>
           <p className="text-white/60 text-[length:var(--text-body)] mb-[32px] max-w-[750px] mx-auto">
             Book a free test ride at your nearest authorised dealer.

@@ -710,7 +710,7 @@ export default function TechContent() {
         <div className="max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px] flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <h3 className="font-display text-white leading-none mb-2" style={{ fontSize: "clamp(32px, 4vw, 56px)" }}>
-              Experience it for yourself.
+              Ride one. 200+ locations worldwide.
             </h3>
             <p className="text-white/60 text-base">Book a free test ride at your nearest dealer.</p>
           </div>
