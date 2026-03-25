@@ -25,6 +25,7 @@ export default function GalleryGrid({
         stagger: 0.1,
         duration: 0.85,
         ease: "power3.out",
+        immediateRender: false,
         scrollTrigger: {
           trigger: gridRef.current,
           start: "top 80%",
@@ -37,7 +38,7 @@ export default function GalleryGrid({
   if (!images.length) return null;
 
   return (
-    <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-3">
+    <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-[2px] bg-white/[0.05] ring-1 ring-white/[0.05]">
       {images.map((src, i) => {
         const isWide = i === 0;
         const caption = `${altPrefix} — ${CAPTIONS[i % CAPTIONS.length]}`;

@@ -23,24 +23,25 @@ export default function ModelHero({ model }: ModelHeroProps) {
         duration: 1.3,
         ease: "power3.out",
         delay: 0.15,
+        immediateRender: false,
       });
 
       /* Text cascade */
       const tl = gsap.timeline({ delay: 0.1 });
-      tl.from(".mh-eyebrow", { y: 24, opacity: 0, duration: 0.6, ease: "power3.out" })
-        .from(".mh-title", { y: 80, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.3")
-        .from(".mh-tagline", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out" }, "-=0.4")
+      tl.from(".mh-eyebrow", { y: 24, opacity: 0, duration: 0.6, ease: "power3.out", immediateRender: false })
+        .from(".mh-title", { y: 80, opacity: 0, duration: 1, ease: "power3.out", immediateRender: false }, "-=0.3")
+        .from(".mh-tagline", { y: 30, opacity: 0, duration: 0.6, ease: "power3.out", immediateRender: false }, "-=0.4")
         .from(
           ".mh-inline-spec",
-          { y: 20, opacity: 0, stagger: 0.08, duration: 0.5, ease: "power3.out" },
+          { y: 20, opacity: 0, stagger: 0.08, duration: 0.5, ease: "power3.out", immediateRender: false },
           "-=0.35"
         )
         .from(
           ".mh-cta",
-          { y: 20, opacity: 0, stagger: 0.07, duration: 0.45, ease: "power3.out" },
+          { y: 20, opacity: 0, stagger: 0.07, duration: 0.45, ease: "power3.out", immediateRender: false },
           "-=0.2"
         )
-        .from(".mh-scroll", { opacity: 0, duration: 0.5, ease: "power2.out" }, "-=0.1");
+        .from(".mh-scroll", { opacity: 0, duration: 0.5, ease: "power2.out", immediateRender: false }, "-=0.1");
 
       /* Subtle parallax drift on the bike as page scrolls */
       gsap.to(".mh-bike", {
