@@ -28,9 +28,7 @@ export default function EsseEsse9Page() {
       <SpecsBar specs={model.keySpecs} />
       <StorySection model={model} />
       <section className="bg-[#0a0a0a] border-t border-white/[0.04]">
-        <div className="max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px]">
-          <ColorSelector colors={model.colors} />
-        </div>
+        <ColorSelector colors={model.colors} />
       </section>
       <section className="bg-[#080808] border-t border-white/[0.04]">
         <div className="max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px]">
