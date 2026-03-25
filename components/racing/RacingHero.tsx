@@ -14,7 +14,7 @@ export default function RacingHero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/MotoAmerica/BJNB2279_3_P.jpg"
+          src="/images/MotoAmerica/BJNB1844_P.jpg"
           alt="Energica MotoAmerica Racing"
           fill
           priority

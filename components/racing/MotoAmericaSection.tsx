@@ -12,12 +12,12 @@ import { Container } from "@/components/ui/Container";
 gsap.registerPlugin(ScrollTrigger);
 
 const PHOTOS = [
-  "/images/MotoAmerica/BJNB1829_3_P.jpg",
-  "/images/MotoAmerica/BJNB1846_3_P.jpg",
-  "/images/MotoAmerica/BJNB2279_3_P.jpg",
-  "/images/MotoAmerica/BJNB2669_3_P.jpg",
-  "/images/MotoAmerica/BJNB2683_3_P.jpg",
-  "/images/MotoAmerica/BJNB2689_3_P.jpg",
+  "/images/MotoAmerica/BJN61888_P-2048x1365.jpg",   // [0] story panel — paddock atmosphere
+  "/images/MotoAmerica/BJNB1284_P.jpg",              // [1] grid cell 1 — Laguna Seca corkscrew
+  "/images/MotoAmerica/MotoAmerica-3-1200x900.jpg",  // [2] unused slot
+  "/images/MotoAmerica/BJNB2669_3_P.jpg",            // [3] wide hero cell — dramatic front-on
+  "/images/MotoAmerica/BJNB2683_3_P.jpg",            // [4] grid cell 2 — left-lean action
+  "/images/MotoAmerica/MotoAmerica-3-1200x900.jpg",  // [5] grid cell 3 — top-down overhead
 ];
 
 export default function MotoAmericaSection() {
