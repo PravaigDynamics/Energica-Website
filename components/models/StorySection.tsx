@@ -15,42 +15,29 @@ export default function StorySection({ model }: StorySectionProps) {
 
   useGSAP(
     () => {
-      /* Each paragraph fades in as it enters viewport */
       gsap.utils.toArray<HTMLElement>(".story-para").forEach((el) => {
         gsap.from(el, {
-          y: 40,
+          y: 32,
           opacity: 0,
-          duration: 0.85,
+          duration: 0.8,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-          },
+          scrollTrigger: { trigger: el, start: "top 87%" },
         });
       });
-
-      /* Callout box slides in from left */
-      gsap.from(".story-callout", {
-        x: -40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".story-callout",
-          start: "top 85%",
-        },
-      });
-
-      /* Image reveal */
       gsap.from(".story-img", {
-        scale: 1.05,
+        scale: 1.04,
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".story-img",
-          start: "top 80%",
-        },
+        scrollTrigger: { trigger: ".story-img", start: "top 82%" },
+      });
+      gsap.from(".story-callout", {
+        y: 20,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".story-img", start: "top 75%" },
+        delay: 0.3,
       });
     },
     { scope: sectionRef }
@@ -61,17 +48,16 @@ export default function StorySection({ model }: StorySectionProps) {
     model.lifestyleImages[2] ?? model.lifestyleImages[0] ?? model.heroImage;
 
   return (
-    <section ref={sectionRef} className="relative bg-[#080808] overflow-hidden">
-      {/* Subtle horizontal rule at top */}
-      <div className="absolute top-0 left-8 right-8 h-px bg-white/[0.04]" />
+    <section ref={sectionRef} className="relative bg-[#080808] border-t border-white/[0.04]">
+      <Container className="py-20">
+        <div className="grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16 items-center">
 
-      <Container className="py-[80px]">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-          {/* ── LEFT: Sticky lifestyle image + callout ─────────── */}
+          {/* ── LEFT: Image with overlaid callout ─────────────── */}
           <div className="lg:sticky lg:top-24 self-start">
-            {/* Lifestyle photo */}
-            <div className="story-img relative overflow-hidden bg-[#111]" style={{ aspectRatio: "3/2" }}>
+            <div
+              className="story-img relative overflow-hidden bg-[#111]"
+              style={{ aspectRatio: "4/3" }}
+            >
               <Image
                 src={storyImage}
                 alt={`${model.name} lifestyle`}
@@ -79,72 +65,81 @@ export default function StorySection({ model }: StorySectionProps) {
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              {/* Corner accents */}
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#78BE20]" />
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#78BE20]" />
-            </div>
 
-            {/* Callout stat box */}
-            {model.callout && (
-              <div className="story-callout mt-6 p-6 border-l-[3px] border-[#78BE20] bg-[#78BE20]/[0.05]">
-                <p
-                  className="font-display text-white leading-none mb-2"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
+              {/* Corner accents */}
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#78BE20] z-10" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#78BE20] z-10" />
+
+              {/* Callout overlaid at bottom of image */}
+              {model.callout && (
+                <div className="story-callout absolute bottom-0 left-0 right-0 px-6 pt-14 pb-5 z-10"
+                  style={{ background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 50%, transparent 100%)" }}
                 >
-                  {model.callout.stat}
-                </p>
-                <p className="text-[10px] uppercase tracking-[0.3em] text-white/60">
-                  {model.callout.label}
-                </p>
-              </div>
-            )}
+                  <p
+                    className="font-display text-white leading-none mb-1.5"
+                    style={{ fontSize: "clamp(26px, 3vw, 44px)" }}
+                  >
+                    {model.callout.stat}
+                  </p>
+                  <p className="text-[9px] uppercase tracking-[0.32em] text-white/65">
+                    {model.callout.label}
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* ── RIGHT: text reveals ────────────────────────────── */}
-          <div className="flex flex-col gap-6 pt-0">
-            {/* Section header */}
+          {/* ── RIGHT: Text ────────────────────────────────────── */}
+          <div className="flex flex-col gap-5">
+
+            {/* Eyebrow */}
             <div className="story-para">
-              <p className="inline-flex items-center gap-3 mb-5">
+              <p className="inline-flex items-center gap-3">
                 <span className="w-6 h-px bg-[#78BE20]" />
-                <span className="text-[10px] uppercase tracking-[0.35em] text-white/65">
+                <span className="text-[10px] uppercase tracking-[0.35em] text-white/60">
                   The Story
                 </span>
               </p>
+            </div>
+
+            {/* Headline */}
+            <div className="story-para">
               <h2
                 className="font-display text-white leading-[1.0]"
-                style={{ fontSize: "clamp(36px, 5.5vw, 80px)" }}
+                style={{ fontSize: "clamp(34px, 4.5vw, 68px)" }}
               >
                 {model.headline}
               </h2>
+              <div className="w-10 h-[2px] bg-[#78BE20] mt-5" />
             </div>
 
-            {/* Divider */}
-            <div className="w-12 h-px bg-[#78BE20]/40" />
-
             {/* Story paragraphs */}
-            {paragraphs.map((para, i) => (
-              <p
-                key={i}
-                className="story-para text-[length:var(--text-body)] text-white/65 leading-[1.6]"
-              >
-                {para}
-              </p>
-            ))}
+            <div className="flex flex-col gap-4">
+              {paragraphs.map((para, i) => (
+                <p
+                  key={i}
+                  className="story-para text-[15px] text-white/65 leading-[1.75]"
+                >
+                  {para}
+                </p>
+              ))}
+            </div>
 
-            {/* Inline specs footnote */}
-            <div className="story-para flex flex-wrap gap-x-8 gap-y-3 pt-4 border-t border-white/[0.06]">
+            {/* Inline key specs */}
+            <div className="story-para flex flex-wrap gap-x-8 gap-y-3 pt-5 mt-1 border-t border-white/[0.07]">
               {model.keySpecs.slice(0, 2).map((spec) => (
                 <div key={spec.label}>
-                  <span className="font-display text-xl text-white">
-                    {spec.value}
-                    <span className="text-[#78BE20] ml-0.5 text-sm">{spec.unit}</span>
-                  </span>
-                  <p className="text-[9px] uppercase tracking-widest text-white/60 mt-0.5">
+                  <div className="flex items-baseline gap-1">
+                    <span className="font-display text-2xl text-white">{spec.value}</span>
+                    <span className="font-display text-sm text-[#78BE20]">{spec.unit}</span>
+                  </div>
+                  <p className="text-[9px] uppercase tracking-widest text-white/55 mt-0.5">
                     {spec.label}
                   </p>
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </Container>
