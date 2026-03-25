@@ -65,13 +65,13 @@ export default function StorySection({ model }: StorySectionProps) {
       {/* Subtle horizontal rule at top */}
       <div className="absolute top-0 left-8 right-8 h-px bg-white/[0.04]" />
 
-      <Container className="py-[120px]">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-28 items-start">
+      <Container className="py-[80px]">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* ── LEFT: Sticky lifestyle image + callout ─────────── */}
-          <div className="lg:sticky lg:top-28 self-start">
+          <div className="lg:sticky lg:top-24 self-start">
             {/* Lifestyle photo */}
-            <div className="story-img relative overflow-hidden bg-[#111]" style={{ aspectRatio: "4/5" }}>
+            <div className="story-img relative overflow-hidden bg-[#111]" style={{ aspectRatio: "3/2" }}>
               <Image
                 src={storyImage}
                 alt={`${model.name} lifestyle`}
@@ -101,7 +101,7 @@ export default function StorySection({ model }: StorySectionProps) {
           </div>
 
           {/* ── RIGHT: text reveals ────────────────────────────── */}
-          <div className="flex flex-col gap-8 pt-4 lg:pt-12">
+          <div className="flex flex-col gap-6 pt-0">
             {/* Section header */}
             <div className="story-para">
               <p className="inline-flex items-center gap-3 mb-5">
@@ -111,8 +111,8 @@ export default function StorySection({ model }: StorySectionProps) {
                 </span>
               </p>
               <h2
-                className="font-display text-white leading-[1.1]"
-                style={{ fontSize: "var(--text-h1)" }}
+                className="font-display text-white leading-[1.0]"
+                style={{ fontSize: "clamp(36px, 5.5vw, 80px)" }}
               >
                 {model.headline}
               </h2>
