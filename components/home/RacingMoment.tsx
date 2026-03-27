@@ -10,11 +10,11 @@ export default function RacingMoment() {
         src="/images/MotoAmerica/BJNB2279_3_P.jpg"
         alt="Energica Racing"
         fill
-        className="object-cover opacity-60"
+        className="object-cover opacity-90"
         sizes="100vw"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
       <div className="absolute bottom-12 md:bottom-20 left-0 right-0 z-10">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
