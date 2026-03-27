@@ -6,97 +6,61 @@ import { PrimaryButton } from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "Find a Dealer | Energica Motor Company",
   description:
-    "Find an authorized Energica dealer near you. Test rides available at 200+ locations worldwide.",
+    "Find an authorized Energica dealer near you. Test rides available at authorised locations worldwide.",
 };
 
-const regions = [
-  {
-    region: "North America",
-    dealers: [
-      {
-        name: "Energica USA — New York",
-        city: "New York",
-        country: "United States",
-        phone: "+1 212 555 0100",
-        email: "newyork@energica.com",
-        mapsQuery: "Energica+New+York",
-      },
-      {
-        name: "Energica USA — Los Angeles",
-        city: "Los Angeles",
-        country: "United States",
-        phone: "+1 310 555 0200",
-        email: "losangeles@energica.com",
-        mapsQuery: "Energica+Los+Angeles",
-      },
-      {
-        name: "Energica USA — Miami",
-        city: "Miami",
-        country: "United States",
-        phone: "+1 305 555 0300",
-        email: "miami@energica.com",
-        mapsQuery: "Energica+Miami",
-      },
-      {
-        name: "Energica Canada — Toronto",
-        city: "Toronto",
-        country: "Canada",
-        phone: "+1 416 555 0100",
-        email: "toronto@energica.com",
-        mapsQuery: "Energica+Toronto",
-      },
-    ],
-  },
+interface Dealer {
+  name: string;
+  type: "Importer" | "Dealer";
+  country: string;
+  address?: string;
+  mapsQuery: string;
+}
+
+const regions: { region: string; dealers: Dealer[] }[] = [
   {
     region: "Europe",
     dealers: [
       {
-        name: "Energica Italia — Milano",
-        city: "Milano",
-        country: "Italy",
-        phone: "+39 02 555 0100",
-        email: "milano@energica.com",
-        mapsQuery: "Energica+Milano",
+        name: "Future Mobility",
+        type: "Importer",
+        country: "Belgium",
+        mapsQuery: "Future+Mobility+Belgium",
       },
       {
-        name: "Energica Deutschland — München",
-        city: "München",
+        name: "Infidel j.d.o.o.",
+        type: "Importer",
+        country: "Croatia",
+        address: "ul. Vukovarska 99, 21000 Split",
+        mapsQuery: "ul.+Vukovarska+99+21000+Split+Croatia",
+      },
+      {
+        name: "Alwin Otten",
+        type: "Dealer",
         country: "Germany",
-        phone: "+49 89 555 0200",
-        email: "munchen@energica.com",
-        mapsQuery: "Energica+München",
+        address: "Industriestr. 22, 49716 Meppen",
+        mapsQuery: "Industriestr.+22+49716+Meppen+Germany",
       },
       {
-        name: "Energica France — Paris",
-        city: "Paris",
+        name: "Autohaus Richter & Zech GmbH",
+        type: "Dealer",
+        country: "Germany",
+        address: "Richtweg 55, 90530 Wendelstein",
+        mapsQuery: "Richtweg+55+90530+Wendelstein+Germany",
+      },
+      {
+        name: "Ramsperger Automobile GmbH & Co. KG",
+        type: "Dealer",
+        country: "Germany",
+        address: "Robert-Bosch-Str. 9-11, 72622 Nuertingen",
+        mapsQuery: "Robert-Bosch-Str.+9+72622+Nuertingen+Germany",
+      },
+      {
+        name: "Mob'Elec 83",
+        type: "Dealer",
         country: "France",
-        phone: "+33 1 555 0300",
-        email: "paris@energica.com",
-        mapsQuery: "Energica+Paris",
-      },
-      {
-        name: "Energica UK — London",
-        city: "London",
-        country: "United Kingdom",
-        phone: "+44 20 555 0400",
-        email: "london@energica.com",
-        mapsQuery: "Energica+London",
-      },
-      {
-        name: "Energica España — Madrid",
-        city: "Madrid",
-        country: "Spain",
-        phone: "+34 91 555 0100",
-        email: "madrid@energica.com",
-        mapsQuery: "Energica+Madrid",
-      },
-      {
-        name: "Energica Netherlands — Amsterdam",
-        city: "Amsterdam",
-        country: "Netherlands",
-        phone: "+31 20 555 0100",
-        email: "amsterdam@energica.com",
-        mapsQuery: "Energica+Amsterdam",
+        address: "470 avenue Colonel Picot, 83100 Toulon",
+        mapsQuery: "470+avenue+Colonel+Picot+83100+Toulon+France",
       },
     ],
   },
@@ -104,28 +68,18 @@ const regions = [
     region: "Asia Pacific",
     dealers: [
       {
-        name: "Energica Japan — Tokyo",
-        city: "Tokyo",
-        country: "Japan",
-        phone: "+81 3 555 0100",
-        email: "tokyo@energica.com",
-        mapsQuery: "Energica+Tokyo",
-      },
-      {
-        name: "Energica Australia — Sydney",
-        city: "Sydney",
-        country: "Australia",
-        phone: "+61 2 555 0200",
-        email: "sydney@energica.com",
-        mapsQuery: "Energica+Sydney",
+        name: "Rydu",
+        type: "Importer",
+        country: "Hong Kong",
+        address: "B3 G/F, Superluck Industrial Centre Phase 2, 30-38 Tai Chung Rd, Tsuen Wan",
+        mapsQuery: "30+Tai+Chung+Rd+Tsuen+Wan+Hong+Kong",
       },
     ],
   },
 ];
 
 export default function DealersPage() {
-  const allDealers = regions.flatMap((r) => r.dealers);
-  const totalDealers = allDealers.length;
+  const totalDealers = regions.reduce((n, r) => n + r.dealers.length, 0);
 
   return (
     <main className="min-h-screen bg-[#0a0a0a] pt-20">
@@ -135,7 +89,7 @@ export default function DealersPage() {
         <p className="inline-flex items-center gap-3 mb-6">
           <span className="w-6 h-px bg-[#78BE20]" />
           <span className="text-[10px] uppercase tracking-[0.35em] text-white/60">
-            {totalDealers}+ Authorised Locations
+            {totalDealers} Authorised Locations
           </span>
         </p>
         <h1 className="font-display text-white leading-none mb-6" style={{ fontSize: "clamp(56px, 10vw, 140px)" }}>
@@ -161,7 +115,7 @@ export default function DealersPage() {
                   <span className="w-2 h-2 rounded-full bg-[#78BE20]" />
                   <h2 className="font-display text-2xl text-white">{region.region}</h2>
                   <span className="ml-auto text-[10px] uppercase tracking-widest text-white/65">
-                    {region.dealers.length} dealers
+                    {region.dealers.length} {region.dealers.length === 1 ? "location" : "locations"}
                   </span>
                 </div>
 
@@ -172,35 +126,25 @@ export default function DealersPage() {
                       key={dealer.name}
                       className="group p-5 border border-white/[0.06] bg-[#0d0d0d] hover:border-[#78BE20]/25 transition-all duration-200"
                     >
-                      {/* Country badge */}
-                      <p className="text-[9px] uppercase tracking-widest text-white/60 mb-2">{dealer.country}</p>
-
-                      {/* Name */}
-                      <h3 className="font-display text-white text-lg leading-tight mb-1 group-hover:text-[#78BE20] transition-colors duration-200">
-                        {dealer.city}
-                      </h3>
-                      <p className="text-xs text-white/65 mb-4">{dealer.name}</p>
-
-                      {/* Contact details */}
-                      <div className="space-y-1.5 mb-4">
-                        <a
-                          href={`tel:${dealer.phone.replace(/\s/g, "")}`}
-                          className="flex items-center gap-2 text-xs text-white/60 hover:text-white transition-colors"
-                        >
-                          <span className="text-[#78BE20]/50">↗</span>
-                          {dealer.phone}
-                        </a>
-                        <a
-                          href={`mailto:${dealer.email}`}
-                          className="flex items-center gap-2 text-xs text-white/60 hover:text-white transition-colors"
-                        >
-                          <span className="text-[#78BE20]/50">@</span>
-                          {dealer.email}
-                        </a>
+                      {/* Type + country badge */}
+                      <div className="flex items-center gap-2 mb-2">
+                        <p className="text-[9px] uppercase tracking-widest text-white/60">{dealer.country}</p>
+                        <span className="text-white/20">·</span>
+                        <p className="text-[9px] uppercase tracking-widest text-[#78BE20]/60">{dealer.type}</p>
                       </div>
 
+                      {/* Name */}
+                      <h3 className="font-display text-white text-lg leading-tight mb-2 group-hover:text-[#78BE20] transition-colors duration-200">
+                        {dealer.name}
+                      </h3>
+
+                      {/* Address */}
+                      {dealer.address && (
+                        <p className="text-xs text-white/50 leading-relaxed mb-4">{dealer.address}</p>
+                      )}
+
                       {/* Actions */}
-                      <div className="flex gap-3">
+                      <div className="flex gap-3 mt-auto pt-3 border-t border-white/[0.04]">
                         <a
                           href={`https://maps.google.com/?q=${dealer.mapsQuery}`}
                           target="_blank"
@@ -260,15 +204,14 @@ export default function DealersPage() {
 
                 <div className="text-center px-8">
                   <p className="font-display text-white text-xl mb-2">Interactive Map</p>
-                  <p className="text-xs text-white/60 leading-relaxed max-w-[200px]">
-                    Google Maps integration — embed your API key in{" "}
-                    <code className="text-white/60 text-[10px]">app/dealers/page.tsx</code>
+                  <p className="text-xs text-white/60 leading-relaxed max-w-[220px]">
+                    Contact your nearest dealer for directions and test ride availability.
                   </p>
                 </div>
 
                 {/* Stats */}
                 <div className="flex gap-6 mt-4">
-                  {[["12", "Countries"], [totalDealers.toString(), "Dealers"], ["200+", "Cities"]].map(([val, lbl]) => (
+                  {[["2", "Regions"], [totalDealers.toString(), "Locations"], ["3", "Countries"]].map(([val, lbl]) => (
                     <div key={lbl} className="text-center">
                       <p className="font-display text-2xl text-white">{val}</p>
                       <p className="text-[9px] uppercase tracking-widest text-white/65">{lbl}</p>
@@ -280,7 +223,7 @@ export default function DealersPage() {
               {/* Bottom bar */}
               <div className="absolute bottom-0 left-0 right-0 px-6 py-4 border-t border-white/[0.05] bg-[#080808]/80 backdrop-blur-sm">
                 <p className="text-[9px] uppercase tracking-widest text-white/60 text-center">
-                  To enable the live map, add a Google Maps embed or Mapbox integration
+                  Authorised dealers — Europe &amp; Asia Pacific
                 </p>
               </div>
             </div>

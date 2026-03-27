@@ -16,24 +16,40 @@ export interface MotorSpecs {
   torque?: string;
   topSpeed?: string;
   acceleration?: string;
+  range?: string;
+}
+
+export interface PerformanceSpecs {
+  maxSpeed?: string;
+  acceleration?: string;
+  torque?: string;
+  power?: string;
+  range?: string;
+  ridingModes?: string;
+  parkAssistant?: string;
 }
 
 export interface BatterySpecs {
   capacity?: string;
-  chemistry?: string;
-  range?: string;
+  life?: string;
+  batteryCharger?: string;
   charging?: string;
   chargingTime?: string;
+  lprFunction?: string;
+  chargeInterruption?: string;
   warranty?: string;
 }
 
 export interface ElectronicsSpecs {
   abs?: string;
   tractionControl?: string;
+  dashboard?: string;
+  vehicleControlUnit?: string;
+  ridingProfiles?: string;
   ridingModes?: string;
-  display?: string;
-  connectivity?: string;
-  dataRecorder?: string;
+  regenMaps?: string;
+  parkAssistant?: string;
+  cruiseControl?: string;
 }
 
 export interface CyclePartsSpecs {
@@ -47,15 +63,17 @@ export interface CyclePartsSpecs {
 }
 
 export interface DimensionSpecs {
+  height?: string;
   seatHeight?: string;
+  width?: string;
   wheelbase?: string;
   length?: string;
   weight?: string;
-  fuelCapacity?: string;
 }
 
 export interface ModelSpecs {
   motor: MotorSpecs;
+  performance?: PerformanceSpecs;
   battery: BatterySpecs;
   electronics: ElectronicsSpecs;
   dimensions: DimensionSpecs;
@@ -127,33 +145,39 @@ export const models: BikeModel[] = [
     specs: {
       motor: {
         type: "Permanent Magnet Assisted Synchronous Reluctance Motor (PMASynRM) — 306V nominal, 96% efficiency peak",
-        power: "Continuous 60 kW / 80 HP — Peak 75 kW / 102 HP at 7,500 rpm",
-        torque: "115 Nm — 900 Nm at wheel",
+        power: "Continuous 60 kW / 80 HP at 7000 rpm — Peak 75 kW / 102 HP at 7500 rpm",
+        torque: "115 Nm / 85 ft lb — 900 Nm / 664 ft lb at wheel",
         topSpeed: "180 km/h (112 mph)",
         acceleration: "0–100 km/h in 3.5 sec",
+        range: "City: 420 km (261 mi) / Combined: 256 km / Extra-Urban: 208 km / WMTC: 222 km",
       },
       battery: {
-        capacity: "Max 22.5 kWh / Nominal 19.6 kWh — lithium polymer",
-        chemistry: "Lithium Polymer",
-        range: "City: 420 km / Combined: 256 km / Extra-Urban: 208 km / WMTC: 222 km",
+        capacity: "Max 22.5 kWh / Nominal 19.6 kWh",
+        life: "1200 Cycles @ 80% Capacity (100% DOD)",
+        batteryCharger: "Onboard 3kW 90–264Vac 50/60Hz — Conforms to SAE J1772 and IEC 62196-2",
         charging: "DC Fast Charge Level 3 — CCS Combo (DCFC Mode 4: 400 km/h charge rate)",
         chargingTime: "0–80% in under 40 min (DC fast) · Slow Charge Level 2: 63.5 km/h",
+        lprFunction: "Long Period Rest: maintains and automatically balances batteries during extended non-use",
+        chargeInterruption: "AC and DC up to requested State Of Charge — CCS charge completion with balancing, CHAdeMO 95%",
         warranty: "3 years / 31,000 miles",
       },
       electronics: {
-        abs: "Cornering Bosch 9.3 MP — six levels of intervention",
-        tractionControl: "Six levels — combined with eABS and Cornering Bosch 9.3 MP",
-        ridingModes: "7 Profiles (Energica 1–4 factory + Custom 1–3) · Eco · Urban · Rain · Sport · 4 Regen Maps",
-        display: "5\" IPS 1000 nits bonded 848×480 TFT Colour Display",
-        connectivity: "Bluetooth · 4G connectivity",
-        dataRecorder: "On-board data logger · Park Assistant: Forward and Reverse",
+        abs: "Cornering ABS — six levels of intervention",
+        tractionControl: "Six levels — combined with eABS and Cornering ABS",
+        dashboard: "5\" IPS 1000 nits bonded 848×480 TFT Color Display",
+        vehicleControlUnit: "Dual Microcontroller ARM Based",
+        ridingProfiles: "7 Profiles — Energica 1–4 (factory preset), Custom 1–3",
+        ridingModes: "4 Riding Modes: Eco · Urban · Rain · Sport",
+        regenMaps: "4 Regenerative Maps: High · Medium · Low · Off",
+        parkAssistant: "Forward and Reverse (Slow speed)",
       },
       dimensions: {
+        height: "1461 mm / 57.5\"",
         seatHeight: "847 mm (33.3\")",
-        wheelbase: "1,513 mm (59.5\")",
-        length: "2,132 mm (83.9\")",
+        width: "867 mm / 34.1\" (mirrors not included)",
+        wheelbase: "1513 mm (59.5\")",
+        length: "2132 mm (83.9\")",
         weight: "260 kg (573 lbs)",
-        fuelCapacity: "Equivalent 22.5 kWh",
       },
       cycleParts: {
         frame: "Front Steel Tubular Trellis / Aluminium side plates",
@@ -213,32 +237,30 @@ export const models: BikeModel[] = [
     ],
     specs: {
       motor: {
-        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase – 300V – 12,000 rpm with Adaptive Control Inverter (EMCE)",
+        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase — 300V — 12000 rpm with Adaptive Control Inverter (EMCE)",
         power: "80 kW / 107 HP (EMCE)",
-        torque: "207 Nm / 153 lb. ft at wheel",
+        torque: "207 Nm / 153 lb ft at wheel",
         topSpeed: "201 km/h (125 mph)",
         acceleration: "RS Version 0–60 mph in 2.8 sec · Standard 0–60 mph in 3.0 sec",
       },
       battery: {
-        capacity: "Max 21.5 kWh / Nominal 18.9 kWh — lithium polymer",
-        chemistry: "Lithium Polymer",
-        range: "City: ~420 km (261 mi) / Combined: ~246 km (153 mi) / Extra-Urban: ~201 km (125 mi)",
-        charging: "DC Fast Charge Mode 4 — 250 mph charge rate, 80% in 40 min",
-        chargingTime: "0–80% in 40 min (DC fast) · Slow Charge Mode 2 or 3: 42 mph",
+        capacity: "Max 21.5 kWh / Nominal 18.9 kWh",
+        life: "1200 Cycles @ 80% Capacity (100% DOD)",
+        charging: "DC Fast Charge Mode 4 — 80% in 40 min",
+        chargingTime: "0–80% in 40 min (DC fast) · Slow Charge Mode 2 or 3",
+        lprFunction: "Long Period Rest: maintains and automatically balances batteries during extended non-use",
+        chargeInterruption: "The vehicle can be configured to autonomously stop charge at a set level",
         warranty: "3 years / 31,000 miles",
       },
       electronics: {
-        abs: "Bosch Switchable ABS — six levels of intervention combined with eABS",
-        tractionControl: "Six levels — combined with eABS and Bosch ABS",
-        ridingModes: "Urban · Eco · Rain · Sport · 4 Regenerative Maps: Low, Medium, High, Off",
-        display: "Cobo 4.3\" WQVGA 480×272 TFT — integrated GPS, Ambient Light Sensor",
-        connectivity: "Bluetooth · 4G connectivity",
-        dataRecorder: "On-board data logger — ride telemetry",
+        abs: "Switchable ABS — six levels of intervention combined with eABS",
+        tractionControl: "Six levels — combined with eABS and ABS",
+        dashboard: "Cobo 4.3\" WQVGA 480×272 TFT — integrated GPS, Ambient Light Sensor",
       },
       dimensions: {
         seatHeight: "789 mm (31.1\")",
-        wheelbase: "1,466 mm (57.7\")",
-        length: "2,139 mm (84.2\")",
+        wheelbase: "1466 mm (57.7\")",
+        length: "2139 mm (84.2\")",
         weight: "260 kg (573 lbs)",
       },
       cycleParts: {
@@ -299,32 +321,30 @@ export const models: BikeModel[] = [
     ],
     specs: {
       motor: {
-        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase – 300V – 12,000 rpm with Adaptive Control Inverter (EMCE)",
+        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase — 300V — 12000 rpm with Adaptive Control Inverter (EMCE)",
         power: "Sustained 110 kW / 147 HP — Peak 126 kW / 169 HP (EMCE)",
-        torque: "222 Nm / 164 lb. ft at wheel",
+        torque: "222 Nm / 164 lb ft at wheel",
         topSpeed: "201 km/h (125 mph)",
         acceleration: "RS Version 0–60 mph in 2.6 sec · Standard 0–60 mph in 2.8 sec",
       },
       battery: {
-        capacity: "Max 21.5 kWh / Nominal 18.9 kWh — lithium polymer",
-        chemistry: "Lithium Polymer",
-        range: "City: ~420 km (261 mi) / Combined: ~257 km (160 mi) / Extra-Urban: ~209 km (130 mi)",
-        charging: "DC Fast Charge Mode 4 — 250 mph charge rate, 80% in 40 min",
-        chargingTime: "0–80% in 40 min (DC fast) · Slow Charge Mode 2 or 3: 42 mph",
+        capacity: "Max 21.5 kWh / Nominal 18.9 kWh",
+        life: "1200 Cycles @ 80% Capacity (100% DOD)",
+        charging: "DC Fast Charge Mode 4 — 80% in 40 min",
+        chargingTime: "0–80% in 40 min (DC fast) · Slow Charge Mode 2 or 3",
+        lprFunction: "Long Period Rest: maintains and automatically balances batteries during extended non-use",
+        chargeInterruption: "The vehicle can be configured to autonomously stop charge at a set level",
         warranty: "3 years / 31,000 miles",
       },
       electronics: {
-        abs: "Bosch Switchable ABS — six levels of intervention combined with eABS",
-        tractionControl: "Six levels — combined with eABS and Bosch ABS",
-        ridingModes: "Urban · Eco · Rain · Sport · 4 Regenerative Maps: Low, Medium, High, Off",
-        display: "Cobo 4.3\" WQVGA 480×272 TFT — integrated GPS, Ambient Light Sensor",
-        connectivity: "Bluetooth · 4G connectivity",
-        dataRecorder: "On-board data logger — ride telemetry",
+        abs: "Switchable ABS — six levels of intervention combined with eABS",
+        tractionControl: "Six levels — combined with eABS and ABS",
+        dashboard: "Cobo 4.3\" WQVGA 480×272 TFT — integrated GPS, Ambient Light Sensor",
       },
       dimensions: {
         seatHeight: "789 mm (31.1\")",
-        wheelbase: "1,466 mm (57.7\")",
-        length: "2,139 mm (84.2\")",
+        wheelbase: "1466 mm (57.7\")",
+        length: "2139 mm (84.2\")",
         weight: "260 kg (573 lbs)",
       },
       cycleParts: {
@@ -385,32 +405,34 @@ export const models: BikeModel[] = [
     ],
     specs: {
       motor: {
-        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase – 300V – 12,000 rpm with Adaptive Control Inverter (EMCE)",
-        power: "Sustained 110 kW / 147 HP — Peak 126 kW / 169 HP (EMCE)",
-        torque: "222 Nm / 164 lb. ft at wheel",
-        topSpeed: "241 km/h (150 mph)",
-        acceleration: "RS Version 0–60 mph in 2.6 sec · Standard 0–60 mph in 2.8 sec",
+        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase — 300V — 12000 rpm with Adaptive Control Inverter (EMCE)",
+      },
+      performance: {
+        maxSpeed: "241 km/h (150 mph)",
+        acceleration: "RS Version 0–60 mph: 2.6 sec · EGO+ 0–60 mph: 2.8 sec",
+        torque: "222 Nm / 164 lb ft at wheel",
+        power: "Peak 169 HP (126 kW) · Sustained 147 HP (110 kW)",
+        range: "City: ~420 km (261 mi) / Combined: ~257 km (160 mi) / Extra-Urban: ~209 km (130 mi)",
+        ridingModes: "4 Riding Modes: Eco · Standard · Wet · Sport — 4 Regenerative Maps: Low · Medium · High · Off",
+        parkAssistant: "Back and Forth (Slow Speed)",
       },
       battery: {
-        capacity: "Max 21.5 kWh / Nominal 18.9 kWh — lithium polymer",
-        chemistry: "Lithium Polymer",
-        range: "City: ~420 km (261 mi) / Combined: ~257 km (160 mi) / Extra-Urban: ~209 km (130 mi)",
-        charging: "DC Fast Charge Mode 4 — 250 mph charge rate, 80% in 40 min",
-        chargingTime: "0–80% in 40 min (DC fast) · Slow Charge Mode 2 or 3: 42 mph",
+        capacity: "Max 21.5 kWh / Nominal 18.9 kWh",
+        life: "1200 Cycles @ 80% Capacity (100% DOD)",
+        charging: "DC Fast Charge Mode 4 — 80% in 40 min",
+        chargingTime: "0–80% in 40 min (DC fast) · Slow Charge Mode 2 or 3",
+        lprFunction: "Long Period Rest: maintains and automatically balances batteries during extended non-use",
+        chargeInterruption: "The vehicle can be configured to autonomously stop charge at a set level via the dashboard",
         warranty: "3 years / 31,000 miles",
       },
       electronics: {
-        abs: "Bosch Switchable ABS — six levels of intervention combined with eABS",
-        tractionControl: "Six levels — combined with eABS and Bosch ABS",
-        ridingModes: "Eco · Standard · Wet · Sport · 4 Regenerative Maps: Low, Medium, High, Off",
-        display: "Cobo 4.3\" WQVGA 480×272 TFT — integrated GPS, Ambient Light Sensor",
-        connectivity: "Bluetooth · 4G connectivity",
-        dataRecorder: "On-board data logger — MotoE-spec telemetry",
+        dashboard: "Cobo 4.3\" WQVGA 480×272 TFT — 16.7M colours, integrated GPS receiver, 9 Warning Lights, Ambient Light Sensor",
+        vehicleControlUnit: "Multi-map adaptive energy and power management algorithm. RS version adds dedicated mapping for high performance.",
       },
       dimensions: {
         seatHeight: "810 mm (31.9\")",
-        wheelbase: "1,466 mm (57.7\")",
-        length: "2,139 mm (84.2\")",
+        wheelbase: "1466 mm (57.7\")",
+        length: "2139 mm (84.2\")",
         weight: "260 kg (573 lbs)",
       },
       cycleParts: {

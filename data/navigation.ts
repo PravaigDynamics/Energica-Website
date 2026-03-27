@@ -57,10 +57,9 @@ export const footerLinks = {
   ],
   support: [
     { label: "Find a Dealer", href: "/dealers" },
-    { label: "Book Test Ride", href: "/test-ride" },
+    { label: "Reserve a Test Ride", href: "/test-ride" },
     { label: "Configurator", href: "/configurator" },
     { label: "Owners", href: "/owners" },
-    { label: "Warranty", href: "/warranty" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },

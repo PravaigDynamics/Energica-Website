@@ -126,7 +126,7 @@ export default function RacingPage() {
                 body: "Race-spec thermal management and BMS algorithms, tested across 4 seasons of competitive motorsport.",
               },
               {
-                title: "Bosch MSC Electronics",
+                title: "MSC Electronics",
                 body: "Motorcycle Stability Control, Cornering ABS, and traction control — straight from the race paddock.",
               },
             ].map((item) => (

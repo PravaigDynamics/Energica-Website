@@ -9,17 +9,18 @@ interface SpecsAccordionProps {
   specs: ModelSpecs;
 }
 
-type AccordionKey = "motor" | "battery" | "electronics" | "dimensions" | "cycleParts";
+type AccordionKey = "motor" | "performance" | "battery" | "electronics" | "dimensions" | "cycleParts";
 
 const SECTION_LABELS: Record<AccordionKey, string> = {
-  motor: "Motor & Performance",
+  motor: "Motor",
+  performance: "Performance",
   battery: "Battery & Charging",
-  electronics: "Electronics & Connectivity",
+  electronics: "Electronics",
   dimensions: "Dimensions & Weight",
   cycleParts: "Cycle Parts",
 };
 
-const SECTION_ORDER: AccordionKey[] = [
+const BASE_ORDER: AccordionKey[] = [
   "motor",
   "battery",
   "electronics",
@@ -27,7 +28,20 @@ const SECTION_ORDER: AccordionKey[] = [
   "cycleParts",
 ];
 
+const HUMAN_LABEL_OVERRIDES: Record<string, string> = {
+  dashboard: "Dashboard",
+  vehicleControlUnit: "Vehicle Control Unit",
+  ridingProfiles: "Riding Profiles",
+  regenMaps: "Regenerative Maps",
+  parkAssistant: "Park Assistant",
+  lprFunction: "LPR Function",
+  chargeInterruption: "Charge Interruption",
+  batteryCharger: "Battery Charger",
+  maxSpeed: "Max Speed",
+};
+
 function humanLabel(key: string): string {
+  if (HUMAN_LABEL_OVERRIDES[key]) return HUMAN_LABEL_OVERRIDES[key];
   return key
     .replace(/([A-Z])/g, " $1")
     .replace(/^./, (c) => c.toUpperCase())
@@ -49,6 +63,11 @@ export default function SpecsAccordion({ specs }: SpecsAccordionProps) {
   const [open, setOpen] = useState<AccordionKey>("motor");
   const wrapRef = useRef<HTMLDivElement>(null);
 
+  // Build the section order — insert performance between motor and battery when present
+  const sectionOrder: AccordionKey[] = specs.performance
+    ? ["motor", "performance", "battery", "electronics", "dimensions", "cycleParts"]
+    : BASE_ORDER;
+
   useGSAP(
     () => {
       gsap.from(".sa-row", {
@@ -66,7 +85,7 @@ export default function SpecsAccordion({ specs }: SpecsAccordionProps) {
     { scope: wrapRef }
   );
 
-  const sectionsData: Record<AccordionKey, Record<string, string | undefined>> = {
+  const sectionsData: Partial<Record<AccordionKey, Record<string, string | undefined>>> = {
     motor: specs.motor as Record<string, string | undefined>,
     battery: specs.battery as Record<string, string | undefined>,
     electronics: specs.electronics as Record<string, string | undefined>,
@@ -74,11 +93,15 @@ export default function SpecsAccordion({ specs }: SpecsAccordionProps) {
     cycleParts: specs.cycleParts as Record<string, string | undefined>,
   };
 
+  if (specs.performance) {
+    sectionsData.performance = specs.performance as Record<string, string | undefined>;
+  }
+
   return (
     <div ref={wrapRef} className="divide-y divide-white/[0.05]">
-      {SECTION_ORDER.map((key) => {
+      {sectionOrder.map((key, index) => {
         const isOpen = open === key;
-        const data = sectionsData[key];
+        const data = sectionsData[key] ?? {};
         const entries = Object.entries(data).filter(([, v]) => !!v) as [string, string][];
 
         return (
@@ -90,7 +113,7 @@ export default function SpecsAccordion({ specs }: SpecsAccordionProps) {
               {/* Left: number tag + label */}
               <span className="flex items-center gap-4">
                 <span className="font-display text-sm text-white/60 group-hover:text-[#78BE20]/60 transition-colors duration-200 w-5 text-right">
-                  {(SECTION_ORDER.indexOf(key) + 1).toString().padStart(2, "0")}
+                  {(index + 1).toString().padStart(2, "0")}
                 </span>
                 <span
                   className={cn(
