@@ -19,7 +19,7 @@ export default function RacingMoment() {
       <div className="absolute bottom-12 md:bottom-20 left-0 right-0 z-10">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
           <Reveal>
-            <span className="mono-tag mb-5 inline-block">MotoE · MotoAmerica</span>
+            <span className="mono-tag mb-5 inline-block" style={{ backgroundColor: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}>MotoE · MotoAmerica</span>
             <h2 className="font-display text-[clamp(36px,9vw,112px)] text-white leading-none uppercase mb-4">
               Born<br />On Track.
             </h2>
