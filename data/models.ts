@@ -43,13 +43,13 @@ export interface BatterySpecs {
 export interface ElectronicsSpecs {
   abs?: string;
   tractionControl?: string;
+  cruiseControl?: string;
   dashboard?: string;
   vehicleControlUnit?: string;
   ridingProfiles?: string;
   ridingModes?: string;
   regenMaps?: string;
   parkAssistant?: string;
-  cruiseControl?: string;
 }
 
 export interface CyclePartsSpecs {
@@ -146,29 +146,28 @@ export const models: BikeModel[] = [
       motor: {
         type: "Permanent Magnet Assisted Synchronous Reluctance Motor (PMASynRM) — 306V nominal, 96% efficiency peak",
         power: "Continuous 60 kW / 80 HP at 7000 rpm — Peak 75 kW / 102 HP at 7500 rpm",
-        torque: "115 Nm / 85 ft lb — 900 Nm / 664 ft lb at wheel",
-        topSpeed: "180 km/h (112 mph)",
-        acceleration: "0–100 km/h in 3.5 sec",
-        range: "City: 420 km (261 mi) / Combined: 256 km / Extra-Urban: 208 km / WMTC: 222 km",
+        torque: "115 Nm / 85 ft lb. – 900 Nm / 664 ft lb. at wheel",
+        topSpeed: "Limited at 180 km/h (112 mph)",
+        acceleration: "0-100 km/h (0-60 mph): 3.5 sec",
+        range: "City: 420 km (261 miles) / Combined: 256 km (160 miles) / Extra-Urban: 208 km (130 miles) / WMTC: 222 km (138 miles)",
       },
       battery: {
-        capacity: "Max 22.5 kWh / Nominal 19.6 kWh",
+        capacity: "Max. 22.5 kWh / Nominal 19.6 kWh – lithium polymer",
         life: "1200 Cycles @ 80% Capacity (100% DOD)",
-        batteryCharger: "Onboard 3kW 90–264Vac 50/60Hz — Conforms to SAE J1772 and IEC 62196-2",
-        charging: "DC Fast Charge Level 3 — CCS Combo (DCFC Mode 4: 400 km/h charge rate)",
-        chargingTime: "0–80% in under 40 min (DC fast) · Slow Charge Level 2: 63.5 km/h",
-        lprFunction: "Long Period Rest: maintains and automatically balances batteries during extended non-use",
-        chargeInterruption: "AC and DC up to requested State Of Charge — CCS charge completion with balancing, CHAdeMO 95%",
+        batteryCharger: "Onboard, 3kW 90-264Vac 50/60Hz [1kW 90-177Vac range]. Conforms to Standards SAE J1772 and IEC 62196-2 with pilot signal for charging station interface",
+        charging: "Fast Charge DCFC Level 3 Mode 4: 400 km/h o 6,7 km/min (248 miles/h o 4 miles/min) / Slow Charge Level 2 Mode 2 or 3: 63,5 km/h (39,5 miles/h)",
+        lprFunction: "Long Period Rest: allows the maintenance and automatic balancing of the batteries during long period of non-use",
+        chargeInterruption: "AC and DC up to requested State Of Charge, AC and DC CCS charge completion with balancing, CHAdeMO 95% (depending on environmental conditions).",
         warranty: "3 years / 31,000 miles",
       },
       electronics: {
-        abs: "Cornering ABS — six levels of intervention",
-        tractionControl: "Six levels — combined with eABS and Cornering ABS",
         dashboard: "5\" IPS 1000 nits bonded 848×480 TFT Color Display",
         vehicleControlUnit: "Dual Microcontroller ARM Based",
-        ridingProfiles: "7 Profiles — Energica 1–4 (factory preset), Custom 1–3",
-        ridingModes: "4 Riding Modes: Eco · Urban · Rain · Sport",
-        regenMaps: "4 Regenerative Maps: High · Medium · Low · Off",
+        tractionControl: "Six levels of intervention combined with the existing eABS and the Cornering Bosch 9.3 MP",
+        cruiseControl: "Cruise control system that uses the electronic brake to maintain speed and increase braking energy",
+        ridingProfiles: "7 Profiles: Energica 1–4 (factory preset), Custom 1–3 (Customizable)",
+        ridingModes: "4 Riding Modes: Eco, Urban, Rain, Sport",
+        regenMaps: "4 Regenerative Modes: High, Medium, Low, Off",
         parkAssistant: "Forward and Reverse (Slow speed)",
       },
       dimensions: {
@@ -237,25 +236,24 @@ export const models: BikeModel[] = [
     ],
     specs: {
       motor: {
-        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase — 300V — 12000 rpm with Adaptive Control Inverter (EMCE)",
+        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase – 300 V – 12,000 rpm with Adaptive Control Inverter",
         power: "80 kW / 107 HP (EMCE)",
         torque: "207 Nm / 153 lb ft at wheel",
         topSpeed: "201 km/h (125 mph)",
         acceleration: "RS Version 0–60 mph in 2.8 sec · Standard 0–60 mph in 3.0 sec",
       },
       battery: {
-        capacity: "Max 21.5 kWh / Nominal 18.9 kWh",
+        capacity: "Max 21.5 kWh / Nominal 18.9 kWh – lithium polymer",
         life: "1200 Cycles @ 80% Capacity (100% DOD)",
-        charging: "DC Fast Charge Mode 4 — 80% in 40 min",
-        chargingTime: "0–80% in 40 min (DC fast) · Slow Charge Mode 2 or 3",
-        lprFunction: "Long Period Rest: maintains and automatically balances batteries during extended non-use",
-        chargeInterruption: "The vehicle can be configured to autonomously stop charge at a set level",
-        warranty: "3 years / 31,000 miles",
+        warranty: "on vehicle 2 years – on battery 3 years / 31.000 miles",
+        charging: "DC Fast Charge Mode 4: 250 mph, 80% charge in 40 min / Slow Charge Mode 2 or 3: 42 mph",
+        batteryCharger: "Onboard, [110-220]V [50-60]Hz, 3 kW. Conforms to Standards SAE J1772 and IEC 62196-2 with pilot signal for charging station interface",
+        lprFunction: "Long Period Rest: allows the maintenance and automatic balancing of the batteries during long period of non-use",
+        chargeInterruption: "The vehicle can be configured to autonomously stop the charge at a certain level. The user can configure this function through the dashboard",
       },
       electronics: {
-        abs: "Switchable ABS — six levels of intervention combined with eABS",
-        tractionControl: "Six levels — combined with eABS and ABS",
-        dashboard: "Cobo 4.3\" WQVGA 480×272 TFT — integrated GPS, Ambient Light Sensor",
+        dashboard: "Cobo, 4.3\" WQVGA 480×272 TFT 16.7 million colors Display; integrated GPS receiver; 9 Warning Lights; 6 + 6 Current Consumption Lights; Ambient Light Sensor; Real Time Clock; GPS 10Hz.",
+        vehicleControlUnit: "A Vehicle Control Unit implementing a multi-map adaptive energy and power management algorithm manages the vehicle. It constantly monitors batteries, even in key off position. RS version implements a dedicated mapping and parameterization to highlight the high-performing and thrilling nature of Energica, developed within the racing world.",
       },
       dimensions: {
         seatHeight: "789 mm (31.1\")",
@@ -321,25 +319,24 @@ export const models: BikeModel[] = [
     ],
     specs: {
       motor: {
-        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase — 300V — 12000 rpm with Adaptive Control Inverter (EMCE)",
+        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase – 300 V – 12,000 rpm with Adaptive Control Inverter",
         power: "Sustained 110 kW / 147 HP — Peak 126 kW / 169 HP (EMCE)",
         torque: "222 Nm / 164 lb ft at wheel",
         topSpeed: "201 km/h (125 mph)",
         acceleration: "RS Version 0–60 mph in 2.6 sec · Standard 0–60 mph in 2.8 sec",
       },
       battery: {
-        capacity: "Max 21.5 kWh / Nominal 18.9 kWh",
+        capacity: "Max 21.5 kWh / Nominal 18.9 kWh – lithium polymer",
         life: "1200 Cycles @ 80% Capacity (100% DOD)",
-        charging: "DC Fast Charge Mode 4 — 80% in 40 min",
-        chargingTime: "0–80% in 40 min (DC fast) · Slow Charge Mode 2 or 3",
-        lprFunction: "Long Period Rest: maintains and automatically balances batteries during extended non-use",
-        chargeInterruption: "The vehicle can be configured to autonomously stop charge at a set level",
-        warranty: "3 years / 31,000 miles",
+        warranty: "on vehicle 2 years – on battery 3 years / 31.000 miles",
+        charging: "DC Fast Charge Mode 4: 250 mph, 80% charge in 40 min / Slow Charge Mode 2 or 3: 42 mph",
+        batteryCharger: "Onboard, [110-220]V [50-60]Hz, 3 kW. Conforms to Standards SAE J1772 and IEC 62196-2 with pilot signal for charging station interface",
+        lprFunction: "Long Period Rest: allows the maintenance and automatic balancing of the batteries during long period of non-use",
+        chargeInterruption: "The vehicle can be configured to autonomously stop the charge at a certain level. The user can configure this function through the dashboard",
       },
       electronics: {
-        abs: "Switchable ABS — six levels of intervention combined with eABS",
-        tractionControl: "Six levels — combined with eABS and ABS",
-        dashboard: "Cobo 4.3\" WQVGA 480×272 TFT — integrated GPS, Ambient Light Sensor",
+        dashboard: "Cobo, 4.3\" WQVGA 480×272 TFT 16.7 million colors Display; integrated GPS receiver; 9 Warning Lights; 6 + 6 Current Consumption Lights; Ambient Light Sensor; Real Time Clock; GPS 10Hz.",
+        vehicleControlUnit: "A Vehicle Control Unit implementing a multi-map adaptive energy and power management algorithm manages the vehicle. It constantly monitors batteries, even in key off position. RS version implements a dedicated mapping and parameterization to highlight the high-performing and thrilling nature of Energica, developed within the racing world.",
       },
       dimensions: {
         seatHeight: "789 mm (31.1\")",
@@ -398,42 +395,46 @@ export const models: BikeModel[] = [
       },
     ],
     keySpecs: [
-      { label: "Peak Power", value: "147", unit: "HP" },
+      { label: "Peak Power", value: "169", unit: "HP" },
       { label: "0–60 mph (RS)", value: "2.6", unit: "sec" },
-      { label: "City Range", value: "420", unit: "km" },
-      { label: "Top Speed", value: "241", unit: "km/h" },
+      { label: "City Range", value: "261", unit: "miles" },
+      { label: "Top Speed", value: "150", unit: "mph" },
     ],
     specs: {
       motor: {
-        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase — 300V — 12000 rpm with Adaptive Control Inverter (EMCE)",
+        type: "HSM (Hybrid Synchronous Motor) Liquid-Cooled 3-Phase – 300 V – 12,000 rpm with Adaptive Control Inverter",
       },
       performance: {
-        maxSpeed: "241 km/h (150 mph)",
-        acceleration: "RS Version 0–60 mph: 2.6 sec · EGO+ 0–60 mph: 2.8 sec",
-        torque: "222 Nm / 164 lb ft at wheel",
-        power: "Peak 169 HP (126 kW) · Sustained 147 HP (110 kW)",
-        range: "City: ~420 km (261 mi) / Combined: ~257 km (160 mi) / Extra-Urban: ~209 km (130 mi)",
-        ridingModes: "4 Riding Modes: Eco · Standard · Wet · Sport — 4 Regenerative Maps: Low · Medium · High · Off",
+        maxSpeed: "Limited at 150 mph",
+        acceleration: "EGO+ RS Version 0-60 mph: 2.6 sec (EMCE) / EGO+ 0-60 mph: 2.8 sec (EMCE)",
+        torque: "222 Nm / 164 lb. ft (EMCE)",
+        power: "Peak 169 hp (126 kW) (EMCE) / Sustained 147 hp (110 kW) (EMCE)",
+        range: "City: 261 miles – Combined: 160 miles – Extra-Urban: 130 miles (EMCE)",
+        ridingModes: "4 Riding Modes: Eco, Standard, Wet, Sport / 4 Regenerative Maps: Low, Medium, High, Off",
         parkAssistant: "Back and Forth (Slow Speed)",
       },
       battery: {
-        capacity: "Max 21.5 kWh / Nominal 18.9 kWh",
+        capacity: "Max 21.5 kWh / Nominal 18.9 kWh – lithium polymer",
         life: "1200 Cycles @ 80% Capacity (100% DOD)",
-        charging: "DC Fast Charge Mode 4 — 80% in 40 min",
-        chargingTime: "0–80% in 40 min (DC fast) · Slow Charge Mode 2 or 3",
-        lprFunction: "Long Period Rest: maintains and automatically balances batteries during extended non-use",
-        chargeInterruption: "The vehicle can be configured to autonomously stop charge at a set level via the dashboard",
-        warranty: "3 years / 31,000 miles",
+        warranty: "on vehicle 2 years – on battery 3 years / 31.000 miles",
+        charging: "DC Fast Charge Mode 4: 250 mph, 80% charge in 40 min / Slow Charge Mode 2 or 3: 42 mph",
+        batteryCharger: "Onboard, [110-220]V [50-60]Hz, 3 kW. Conforms to Standards SAE J1772 and IEC 62196-2 with pilot signal for charging station interface",
+        lprFunction: "Long Period Rest: allows the maintenance and automatic balancing of the batteries during long period of non-use",
+        chargeInterruption: "The vehicle can be configured to autonomously stop the charge at a certain level. The user can configure this function through the dashboard",
       },
       electronics: {
-        dashboard: "Cobo 4.3\" WQVGA 480×272 TFT — 16.7M colours, integrated GPS receiver, 9 Warning Lights, Ambient Light Sensor",
-        vehicleControlUnit: "Multi-map adaptive energy and power management algorithm. RS version adds dedicated mapping for high performance.",
+        dashboard: "Cobo, 4.3\" WQVGA 480×272 TFT 16.7 million colors Display; integrated GPS receiver; 9 Warning Lights; 6 + 6 Current Consumption Lights; Ambient Light Sensor; Real Time Clock; GPS 10Hz.",
+        vehicleControlUnit: "A Vehicle Control Unit implementing a multi-map adaptive energy and power management algorithm manages the vehicle. It constantly monitors batteries, even in key off position. RS version implements a dedicated mapping and parameterization to highlight the high-performing and thrilling nature of Energica, developed within the racing world.",
+        tractionControl: "Six levels of intervention combined with the existing eABS and the Bosch ABS",
+        cruiseControl: "Sophisticated cruise control system that uses the electronic brake to maintain speed and increase braking energy",
       },
       dimensions: {
-        seatHeight: "810 mm (31.9\")",
-        wheelbase: "1466 mm (57.7\")",
-        length: "2139 mm (84.2\")",
-        weight: "260 kg (573 lbs)",
+        seatHeight: "31.9\"",
+        wheelbase: "57.7\"",
+        length: "84.2\"",
+        width: "34.25\"",
+        height: "45.9\" (mirrors not included)",
+        weight: "573 lbs. (EMCE)",
       },
       cycleParts: {
         frame: "Steel Tubular Trellis",

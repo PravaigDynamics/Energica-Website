@@ -32,11 +32,13 @@ const HUMAN_LABEL_OVERRIDES: Record<string, string> = {
   dashboard: "Dashboard",
   vehicleControlUnit: "Vehicle Control Unit",
   ridingProfiles: "Riding Profiles",
-  regenMaps: "Regenerative Maps",
+  cruiseControl: "Cruise Control",
+  regenMaps: "Regenerative Modes",
   parkAssistant: "Park Assistant",
   lprFunction: "LPR Function",
   chargeInterruption: "Charge Interruption",
   batteryCharger: "Battery Charger",
+  charging: "Recharge",
   maxSpeed: "Max Speed",
 };
 

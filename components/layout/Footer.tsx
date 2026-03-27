@@ -159,7 +159,7 @@ export default function Footer() {
                 href="/test-ride"
                 className="inline-flex items-center gap-2 text-xs text-[#78BE20]/90 hover:text-[#78BE20] transition-colors duration-200"
               >
-                Book a test ride →
+                Reserve a test ride →
               </Link>
             </div>
           </div>

@@ -620,7 +620,7 @@ export default function TechContent() {
 
           {/* Jump-links */}
           <div className="flex flex-wrap gap-3">
-            {["Motor", "Battery", "Charging", "App", "Ride By Wire", "Safety"].map((t) => (
+            {["Motor", "Battery", "Charging", "Ride By Wire", "Safety"].map((t) => (
               <span key={t} className="px-4 py-2 border border-white/10 text-[10px] uppercase tracking-widest text-white/60 hover:border-[#78BE20]/40 hover:text-white/60 transition-colors duration-200 cursor-pointer">
                 {t}
               </span>
@@ -645,12 +645,11 @@ export default function TechContent() {
       {/* ── 02 BATTERY ──────────────────────────────────────── */}
       <TechSection
         num="02" title="Battery System"
-        sub="22.5 kWh lithium polymer — largest of any production electric motorcycle"
+        sub="21.5 / 22.5 kWh lithium polymer — custom-built for Energica platforms"
         body="Custom lithium polymer cells arranged in a structural aluminium pack. Each of the 84 cells is individually monitored by the BMS — optimising charge rate, thermal management, and longevity simultaneously. The pack doubles as a stressed chassis member, reducing weight elsewhere."
         stats={[
           { value: "22.5", unit: "kWh", label: "Total Capacity" },
           { value: "420", unit: "km", label: "City Range" },
-          { value: "3yr", unit: "", label: "Warranty" },
         ]}
         visual={<BatteryGrid />}
         flip
@@ -660,7 +659,7 @@ export default function TechContent() {
       <TechSection
         num="03" title="DC Fast Charging"
         sub="CCS Combo Level 3 — compatible with every public fast-charge network"
-        body="The only electric motorcycle fully compatible with DC fast-charge infrastructure. The chart shows a real CCS charging session — 0 to 80% in under 40 minutes, including the natural taper above 80% that protects cell longevity. On-board AC charger also supports Level 2 home charging."
+        body="Electric motorcycle fully compatible with DC fast-charge infrastructure. The chart shows a real CCS charging session — 0 to 80% in under 40 minutes, including the natural taper above 80% that protects cell longevity. On-board AC charger also supports Level 2 home charging."
         stats={[
           { value: "40", unit: "min", label: "0–80% DC Fast" },
           { value: "3.3", unit: "kW", label: "AC Home Rate" },
@@ -668,9 +667,9 @@ export default function TechContent() {
         visual={<ChargingCurve />}
       />
 
-      {/* ── 05 RIDE BY WIRE ─────────────────────────────────── */}
+      {/* ── 04 RIDE BY WIRE ─────────────────────────────────── */}
       <TechSection
-        num="05" title="Ride By Wire"
+        num="04" title="Ride By Wire"
         sub="Linear, lag-free throttle response from 0 rpm"
         body="Because an electric motor delivers full torque from the first revolution, Energica's Ride By Wire system maintains perfectly linear throttle mapping — what you ask for is exactly what you get, at any speed. The graph compares electric delivery (green) against a typical internal combustion power curve. No powerband, no hesitation, no surprises."
         stats={[
@@ -681,12 +680,12 @@ export default function TechContent() {
         flip
       />
 
-      {/* ── 06 SAFETY ───────────────────────────────────────── */}
+      {/* ── 05 SAFETY ───────────────────────────────────────── */}
       <div className="border-t border-white/[0.04]">
         <div className="max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] py-[120px]">
           <div className="mb-14">
             <p className="inline-flex items-center gap-3 mb-6">
-              <span className="font-display text-5xl text-white/[0.20]">06</span>
+              <span className="font-display text-5xl text-white/[0.20]">05</span>
               <span className="w-8 h-px bg-[#78BE20]/40" />
               <span className="text-[10px] uppercase tracking-[0.3em] text-white/60">Tech Pillar</span>
             </p>
@@ -694,7 +693,7 @@ export default function TechContent() {
               Safety Suite
             </h2>
             <p className="text-base text-white/65 leading-[1.8] max-w-2xl">
-              An integrated safety system combining IMU-based lean sensing, cornering ABS, and adaptive traction control. Six features working together.
+              An integrated safety system combining IMU-based lean sensing, cornering ABS, and adaptive traction control. Five features working together.
             </p>
           </div>
           <SafetyCards />
@@ -712,7 +711,7 @@ export default function TechContent() {
           </div>
           <div className="flex gap-4 flex-shrink-0">
             <Link href="/test-ride" className="px-8 py-4 bg-[#78BE20] text-black font-display text-sm uppercase tracking-widest hover:bg-[#5a9018] transition-colors duration-200">
-              Book Test Ride
+              Reserve a Test Ride
             </Link>
             <Link href="/models" className="px-8 py-4 border border-white/20 text-white font-display text-sm uppercase tracking-widest hover:border-white/50 transition-colors duration-200">
               View Models
