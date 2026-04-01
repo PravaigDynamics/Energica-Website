@@ -168,10 +168,19 @@ export default function TestRideForm() {
       return;
     }
     setLoading(true);
-    // Simulate async submit (wire up to API later)
-    await new Promise((r) => setTimeout(r, 1000));
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      const res = await fetch("/api/test-ride", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Server error");
+      setSubmitted(true);
+    } catch {
+      setErrors({ email: "Something went wrong. Please try again." });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const reset = () => {
