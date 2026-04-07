@@ -149,7 +149,7 @@ export default function ContactForm() {
         {/* Message */}
         <div className="field-row">
           <label className={labelClass}>Message</label>
-          <textarea value={data.message} onChange={update("message")} rows={4} className={cn(fieldClass(false), "resize-none")} placeholder="Tell us what you&apos;re looking for..." />
+          <textarea value={data.message} onChange={update("message")} rows={4} className={cn(fieldClass(false), "resize-none")} placeholder="Tell us what you're looking for..." />
         </div>
 
         <div className="field-row pt-2">
@@ -160,9 +160,6 @@ export default function ContactForm() {
           >
             {loading ? "Sending..." : "Send Enquiry"}
           </button>
-          <p className="text-white/30 text-[10px] tracking-wide mt-3 text-center">
-            We&apos;ll connect you with the right dealer or team member within 24 hours.
-          </p>
         </div>
       </form>
     </div>
