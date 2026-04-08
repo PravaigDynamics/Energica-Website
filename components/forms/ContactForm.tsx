@@ -136,9 +136,9 @@ export default function ContactForm() {
         <div className="field-row">
           <label className={labelClass}>Model of interest</label>
           <div className="relative">
-            <select value={data.model} onChange={update("model")} className={cn(fieldClass(false), "appearance-none pr-10")}>
-              <option value="">Select a model</option>
-              {MODELS.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
+            <select value={data.model} onChange={update("model")} className={cn(fieldClass(false), "appearance-none pr-10 bg-[#1a1a1a]")}>
+              <option value="" className="bg-[#1a1a1a] text-white">Select a model</option>
+              {MODELS.map(m => <option key={m.value} value={m.value} className="bg-[#1a1a1a] text-white">{m.label}</option>)}
             </select>
             <svg className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="7" viewBox="0 0 12 7" fill="none">
               <path d="M1 1l5 5 5-5" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round"/>
