@@ -340,7 +340,7 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-xs uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors duration-200"
+                  className="text-xs uppercase tracking-[0.2em] text-white/60 hover:text-[#78BE20] transition-colors duration-200"
                   style={{ fontFamily: "var(--font-ibm-mono)" }}
                 >
                   <SplitLabel label={item.label} />
