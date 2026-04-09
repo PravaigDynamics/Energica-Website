@@ -157,9 +157,9 @@ export default function Footer() {
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 text-xs text-[#78BE20]/90 hover:text-[#78BE20] transition-colors duration-200"
+                className="inline-flex items-center gap-2 text-xs text-[#78BE20]/90 hover:text-[#78BE20] transition-colors duration-200 group border-b border-[#78BE20]/20 hover:border-[#78BE20] pb-0.5"
               >
-                Get in touch →
+                Get in touch <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
               </Link>
             </div>
           </div>
