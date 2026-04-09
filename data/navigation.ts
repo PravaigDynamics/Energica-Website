@@ -42,8 +42,8 @@ export const navItems: NavItem[] = [
     href: "/racing",
   },
   {
-    label: "Contact",
-    href: "/contact",
+    label: "Company",
+    href: "/about",
   },
 ];
 

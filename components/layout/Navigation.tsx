@@ -305,10 +305,10 @@ export default function Navigation() {
         )}
         style={{ transitionTimingFunction: "cubic-bezier(0.25, 1, 0.5, 1)" }}
       >
-        <div className="max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] h-16 md:h-20 flex items-center justify-between">
+        <div className="max-w-[1600px] mx-auto px-[clamp(24px,4vw,64px)] h-20 md:h-24 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="relative z-50 flex-shrink-0">
-            <EnergicaLogo className="h-8 w-auto" />
+            <EnergicaLogo className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
@@ -340,7 +340,7 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-xs uppercase tracking-[0.2em] text-white/60 hover:text-[#78BE20] transition-colors duration-200"
+                  className="text-sm uppercase tracking-[0.2em] text-white/60 hover:text-[#78BE20] transition-colors duration-200"
                   style={{ fontFamily: "var(--font-ibm-mono)" }}
                 >
                   <SplitLabel label={item.label} />
@@ -354,7 +354,7 @@ export default function Navigation() {
             <Link
               href="/contact"
               data-magnetic
-              className="px-4 py-2 text-xs uppercase tracking-[0.15em] bg-[#78BE20] text-black hover:bg-[#5a9018] transition-all duration-200 btn-electric"
+              className="px-5 py-2.5 text-sm uppercase tracking-[0.15em] bg-[#78BE20] text-black hover:bg-[#5a9018] transition-all duration-200 btn-electric"
               style={{ fontFamily: "var(--font-ibm-mono)" }}
             >
               Contact Us

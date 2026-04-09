@@ -43,11 +43,13 @@ export default function HeroSection() {
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
           videoLoaded ? "opacity-100" : "opacity-0"
         }`}
+        style={{ willChange: "transform", transform: "translateZ(0)" }}
         src="/videos/energica-hero.mp4"
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
         onLoadedData={() => setVideoLoaded(true)}
       />
 

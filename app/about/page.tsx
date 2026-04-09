@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { PrimaryButton, SecondaryButton } from "@/components/ui/Button";
 import AboutHero from "@/components/about/AboutHero";
+import { CulturalCards, type CulturalItem } from "@/components/about/CulturalCards";
 
 export const metadata: Metadata = {
   title: "About | Energica Motor Company",
@@ -15,11 +16,14 @@ const STATS = [
   { stat: "135+", label: "Dealer & importer touchpoints" },
 ];
 
-const CULTURAL = [
-  { label: "Film", title: "Nope", sub: "Jordan Peele · 2022" },
-  { label: "Film", title: "GI Joe: Snake Eyes", sub: "Paramount · 2021" },
-  { label: "TV Feature", title: "Jay Leno's Garage", sub: "NBC · Multiple features" },
-  { label: "Brand Advocate", title: "Nico Rosberg", sub: "F1 World Champion · Owner" },
+const CULTURAL: CulturalItem[] = [
+  { label: "Film", title: "Nope", sub: "Jordan Peele · 2022", url: "https://youtu.be/2R8kNIqijwg", ytId: "2R8kNIqijwg" },
+  { label: "Film", title: "GI Joe: Snake Eyes", sub: "Paramount · 2021", url: "https://youtu.be/NFHdXsffPSA", ytId: "NFHdXsffPSA" },
+  { label: "TV Feature", title: "Jay Leno's Garage", sub: "NBC · Multiple features", url: "https://youtu.be/LM_OaQjL6G8", ytId: "LM_OaQjL6G8" },
+  { label: "Brand Advocate", title: "Nico Rosberg", sub: "F1 World Champion · Owner", url: "https://youtu.be/Yc9CFXBIFZc", ytId: "Yc9CFXBIFZc" },
+  { label: "Video Game", title: "RIDE 4 — Energica EGO", sub: "Milestone · PS4 / PS5 / PC", url: "https://www.youtube.com/watch?v=22XzuIWcKrw", ytId: "22XzuIWcKrw" },
+  { label: "Highlights", title: "EGO vs ZX10R & Lamborghini", sub: "Drag race · Road test", url: "https://youtu.be/QtDBURP_Drk", ytId: "QtDBURP_Drk" },
+  { label: "Highlights", title: "Mugello with Bob Sinclair", sub: "Track experience", url: "https://www.youtube.com/watch?v=hR-j6rSota4", ytId: "hR-j6rSota4" },
 ];
 
 export default function AboutPage() {
@@ -105,7 +109,7 @@ export default function AboutPage() {
       {/* ── CULTURAL VALIDATION ───────────────────────────────── */}
       <section className="w-full py-[120px]">
         <Container>
-          <div className="grid lg:grid-cols-[2fr_3fr] gap-16 items-start">
+          <div className="grid lg:grid-cols-[1fr_2fr] gap-16 items-start">
 
             {/* Left — heading */}
             <div>
@@ -129,25 +133,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Right — cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {CULTURAL.map((item) => (
-                <div
-                  key={item.title}
-                  className="p-6 border border-white/[0.08] bg-[#0d0d0d] hover:border-[#78BE20]/30 transition-colors duration-300 group"
-                >
-                  <span className="text-[9px] uppercase tracking-[0.35em] text-[#78BE20]/70 font-mono block mb-3">
-                    {item.label}
-                  </span>
-                  <p className="font-display text-white text-xl leading-tight mb-2 group-hover:text-[#78BE20] transition-colors duration-300">
-                    {item.title}
-                  </p>
-                  <p className="text-[11px] text-white/45 tracking-wide">
-                    {item.sub}
-                  </p>
-                </div>
-              ))}
-            </div>
+            {/* Right — interactive video cards */}
+            <CulturalCards items={CULTURAL} />
 
           </div>
         </Container>

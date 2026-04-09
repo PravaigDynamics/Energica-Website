@@ -42,7 +42,7 @@
   --text-sm:      14px;
 
   /* ── Layout ────────────────────────────────────────────── */
-  --container-max: 1600px;
+  --container-max: 1280px;
   --container-px:  clamp(24px, 4vw, 64px);
   --section-py:    120px;
   --prose-max:     750px;
